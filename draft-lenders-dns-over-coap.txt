@@ -5,13 +5,13 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                 FU Berlin
 Intended status: Standards Track                               C. Amsüss
-Expires: 8 September 2022                                               
+Expires: 24 December 2022                                               
                                                              C. Gündoğan
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                                                FU Berlin
-                                                            7 March 2022
+                                                            22 June 2022
 
 
                       DNS Queries over CoAP (DoC)
@@ -30,7 +30,9 @@ Discussion Venues
 
    This note is to be removed before publishing as an RFC.
 
-   Discussion of this document takes place on TODO
+   Discussion of this document takes place on the Constrained RESTful
+   Environments Working Group mailing list (core@ietf.org), which is
+   archived at https://mailarchive.ietf.org/arch/browse/core/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/anr-bmbf-pivot/draft-dns-over-coap.
@@ -50,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 September 2022.
+   This Internet-Draft will expire on 24 December 2022.
 
 Copyright Notice
 
@@ -82,9 +84,9 @@ Table of Contents
        4.3.2.  Support of CoAP Caching
        4.3.3.  Examples
    5.  CoAP/CoRE Integration
-     5.1.  DoC server considerations
+     5.1.  DoC Server Considerations
      5.2.  Proxies and caching
-     5.3.  OBSERVE (modifications)?
+     5.3.  Observing the DNS Resource
      5.4.  OSCORE
    6.  Considerations for Unencrypted Use
    7.  Security Considerations
@@ -127,8 +129,8 @@ Table of Contents
    information, which saves memory on constrained devices.
 
    To prevent resource requirements of DTLS or TLS on top of UDP (e.g.,
-   introduced by DNS over QUIC [I-D.ietf-dprive-dnsoquic]), DoC allows
-   for lightweight end-to-end payload encryption based on OSCORE.
+   introduced by DNS over QUIC [RFC9250]), DoC allows for lightweight
+   end-to-end payload encryption based on OSCORE.
 
                    - FETCH coaps://[2001:db8::1]/
                   /
@@ -148,12 +150,6 @@ Table of Contents
    may not resolve that DNS information itself by using other DNS
    transports with an upstream DNS server.  The DoC server then replies
    to the DNS queries with DNS responses carried within CoAP responses.
-
-   TBD: additional feature sets of CoAP/CoRE
-
-   *  resource directory for DoC service discovery,
-
-   *  ...
 
 2.  Terminology
 
@@ -179,9 +175,9 @@ Table of Contents
    server and the DNS resource at the DoC server.  Possible options
    could be manual configuration of a URI [RFC3986] or CRI
    [I-D.ietf-core-href], or automatic configuration, e.g., using a CoRE
-   resource directory [I-D.ietf-core-resource-directory], DHCP or Router
-   Advertisement options [I-D.ietf-add-dnr].  Automatic configuration
-   SHOULD only be done from a trusted source.
+   resource directory [RFC9176], DHCP or Router Advertisement options
+   [I-D.ietf-add-dnr].  Automatic configuration SHOULD only be done from
+   a trusted source.
 
    When discovering the DNS resource through a link mechanism that
    allows describing a resource type (e.g., the Resource Type Attribute
@@ -333,7 +329,7 @@ Table of Contents
 
 5.  CoAP/CoRE Integration
 
-5.1.  DoC server considerations
+5.1.  DoC Server Considerations
 
    In the case of CNAME records in a DNS response, a DoC server SHOULD
    follow common DNS resolver behavior [RFC1034] by resolving a CNAME
@@ -375,31 +371,19 @@ Table of Contents
             Figure 2: CoAP retransmission (rt) is received before DNS
                          query could have been fulfilled.
 
-5.3.  OBSERVE (modifications)?
+5.3.  Observing the DNS Resource
 
-   *  TBD
-
-   *  DoH has considerations on Server Push to deliver additional,
-      potentially outstanding requests + response to the DoC client for
-      caching
-
-   *  OBSERVE does not include the request it would have been generated
-      from ==> cannot be cached without corresponding request having
-      been send over the wire.
-
-   *  If use case exists: extend OBSERVE with option that contains
-      "promised" request (see [RFC7540], section 8.2)?
-
-   *  Other caveat: clients can't cache, only proxys so value needs to
-      be evaluated
-
-   *  Potential use case: [RFC8490] Section 4.1.2
+   There are use cases where updating a DNS record might be necessary on
+   the fly.  Examples of this include e.g.  [RFC8490], Section 4.1.2,
+   but just saving messages by omitting the query for a subscribed name
+   might also be valid.  As such, the DNS resource MAY be observable as
+   specified in [RFC7641].
 
 5.4.  OSCORE
 
-   *  TBD
-
-   *  With OSCORE DTLS might not be required
+   It is RECOMMENDED to carry DNS messages end-to-end encrypted using
+   OSCORE [RFC8611].  The exchange of the security context is out of
+   scope of this document.
 
 6.  Considerations for Unencrypted Use
 
@@ -467,6 +451,11 @@ Table of Contents
               DOI 10.17487/RFC7252, June 2014,
               <https://www.rfc-editor.org/rfc/rfc7252>.
 
+   [RFC7641]  Hartke, K., "Observing Resources in the Constrained
+              Application Protocol (CoAP)", RFC 7641,
+              DOI 10.17487/RFC7641, September 2015,
+              <https://www.rfc-editor.org/rfc/rfc7641>.
+
    [RFC7959]  Bormann, C. and Z. Shelby, Ed., "Block-Wise Transfers in
               the Constrained Application Protocol (CoAP)", RFC 7959,
               DOI 10.17487/RFC7959, August 2016,
@@ -492,30 +481,16 @@ Table of Contents
               Boucadair, M., Reddy, T., Wing, D., Cook, N., and T.
               Jensen, "DHCP and Router Advertisement Options for the
               Discovery of Network-designated Resolvers (DNR)", Work in
-              Progress, Internet-Draft, draft-ietf-add-dnr-05, 13
-              December 2021, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-add-dnr-05>.
+              Progress, Internet-Draft, draft-ietf-add-dnr-08, 12 June
+              2022, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              add-dnr-08>.
 
    [I-D.ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
               Identifiers", Work in Progress, Internet-Draft, draft-
-              ietf-core-href-09, 15 January 2022,
+              ietf-core-href-10, 7 March 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-core-
-              href-09>.
-
-   [I-D.ietf-core-resource-directory]
-              Amsüss, C., Shelby, Z., Koster, M., Bormann, C., and P. V.
-              D. Stok, "CoRE Resource Directory", Work in Progress,
-              Internet-Draft, draft-ietf-core-resource-directory-28, 7
-              March 2021, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-core-resource-directory-28>.
-
-   [I-D.ietf-dprive-dnsoquic]
-              Huitema, C., Dickinson, S., and A. Mankin, "DNS over
-              Dedicated QUIC Connections", Work in Progress, Internet-
-              Draft, draft-ietf-dprive-dnsoquic-10, 28 February 2022,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-dprive-
-              dnsoquic-10>.
+              href-10>.
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
@@ -535,11 +510,6 @@ Table of Contents
               DOI 10.17487/RFC7228, May 2014,
               <https://www.rfc-editor.org/rfc/rfc7228>.
 
-   [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
-              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015,
-              <https://www.rfc-editor.org/rfc/rfc7540>.
-
    [RFC8094]  Reddy, T., Wing, D., and P. Patil, "DNS over Datagram
               Transport Layer Security (DTLS)", RFC 8094,
               DOI 10.17487/RFC8094, February 2017,
@@ -554,12 +524,23 @@ Table of Contents
               RFC 8490, DOI 10.17487/RFC8490, March 2019,
               <https://www.rfc-editor.org/rfc/rfc8490>.
 
+   [RFC8611]  Akiya, N., Swallow, G., Litkowski, S., Decraene, B.,
+              Drake, J., and M. Chen, "Label Switched Path (LSP) Ping
+              and Traceroute Multipath Support for Link Aggregation
+              Group (LAG) Interfaces", RFC 8611, DOI 10.17487/RFC8611,
+              June 2019, <https://www.rfc-editor.org/rfc/rfc8611>.
+
+   [RFC9176]  Amsüss, C., Ed., Shelby, Z., Koster, M., Bormann, C., and
+              P. van der Stok, "Constrained RESTful Environments (CoRE)
+              Resource Directory", RFC 9176, DOI 10.17487/RFC9176, April
+              2022, <https://www.rfc-editor.org/rfc/rfc9176>.
+
+   [RFC9250]  Huitema, C., Dickinson, S., and A. Mankin, "DNS over
+              Dedicated QUIC Connections", RFC 9250,
+              DOI 10.17487/RFC9250, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9250>.
+
 Appendix A.  Change Log
-
-   TBD:
-
-   *  Request text duplication (https://github.com/anr-bmbf-pivot/draft-
-      dns-over-coap/issues/4)
 
 A.1.  Since draft-lenders-dns-over-coap-02
       (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
