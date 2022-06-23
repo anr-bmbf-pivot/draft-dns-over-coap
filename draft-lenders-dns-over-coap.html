@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>DNS Queries over CoAP (DoC)</title>
+<title>DNS over CoAP (DoC)</title>
 <meta content="Martine Sophie Lenders" name="author">
 <meta content="Christian Amsüss" name="author">
 <meta content="Cenk Gündoğan" name="author">
@@ -1038,7 +1038,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Lenders, et al.</td>
-<td class="center">Expires 24 December 2022</td>
+<td class="center">Expires 25 December 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1051,12 +1051,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-lenders-dns-over-coap-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-06-22" class="published">22 June 2022</time>
+<time datetime="2022-06-23" class="published">23 June 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-12-24">24 December 2022</time></dd>
+<dd class="expires"><time datetime="2022-12-25">25 December 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1081,7 +1081,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">DNS Queries over CoAP (DoC)</h1>
+<h1 id="title">DNS over CoAP (DoC)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document defines a protocol for sending DNS messages over the
@@ -1120,7 +1120,7 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 December 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 December 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1330,7 +1330,7 @@ server" to differentiate it from a classic "DNS server". Correspondingly, a
 client using this protocol to retrieve the DNS information is called a "DoC
 client".<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">The term "constrained nodes" is used as defined in <span>[<a href="#RFC7228" class="xref">RFC7228</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
-<p id="section-2-3">The terms "CoAP payload" and "CoAP body" are used as defined in <span>[<a href="#RFC7959" class="xref">RFC7959</a>]</span>.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-3">The terms "CoAP payload" and "CoAP body" are used as defined in [RFC7959].<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="xref">RFC8174</a>]</span> when, and only when, they
@@ -1366,7 +1366,8 @@ identify a generic DNS resolver that is available to the client.<a href="#sectio
 <p id="section-4.1-1">This document defines the Internet media type "application/dns-message" for
 the CoAP Content-Format. This media type is defined as in <span>[<a href="#RFC8484" class="xref">RFC8484</a>]</span>
 Section 6, i.e., a single DNS message encoded in the DNS on-the-wire format
-<span>[<a href="#RFC1035" class="xref">RFC1035</a>]</span>.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span>[<a href="#RFC1035" class="xref">RFC1035</a>]</span>.
+Both DoC client and DoC server <span class="bcp14">MUST</span> be able to parse contents in the "application/dns-message" format.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="dns-queries-in-coap-requests">
@@ -1382,15 +1383,10 @@ Requests <span class="bcp14">SHOULD</span> include an Accept option to indicate 
           <h4 id="name-request-format">
 <a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-request-format" class="section-name selfRef">Request Format</a>
           </h4>
-<p id="section-4.2.1-1">When sending a CoAP request, a DoC client <span class="bcp14">MUST</span> include the DNS query in the body (i.e. the payload, or the concatenated payloads) of the CoAP request.
+<p id="section-4.2.1-1">When sending a CoAP request, a DoC client <span class="bcp14">MUST</span> include the DNS query in the body of the CoAP request.
 As specified in <span>[<a href="#RFC8132" class="xref">RFC8132</a>]</span> Section 2.3.1, the type of content of the body <span class="bcp14">MUST</span> be indicated using the Content-Format option.
-This document specifies the usage of Content-Format "application/dns-message" (details see <a href="#sec_content-format" class="xref">Section 4.1</a>).<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.2.1-2">If block-wise transfer <span>[<a href="#RFC7959" class="xref">RFC7959</a>]</span> is supported by the client, more than one CoAP request message <span class="bcp14">MAY</span> be used.
-If more than one CoAP request message is used to encode the DNS query, it
-must be chained together using the Block1 option in those CoAP requests.<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.2.1-3">The FETCH request is sent to the URI specified in <a href="#selection-of-a-doc-server" class="xref">Section 3</a>.<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.2.1-4">A DoC server <span class="bcp14">MUST</span> be able to parse requests of Content-Format
-"application/dns-message".<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
+This document specifies the usage of Content-Format "application/dns-message" (details see <a href="#sec_content-format" class="xref">Section 4.1</a>).
+A DoC server <span class="bcp14">MUST</span> be able to parse requests of Content-Format "application/dns-message".<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec_req-caching">
@@ -1430,16 +1426,13 @@ Payload: 00 00 01 20 00 02 00 00 00 00 00 00 07 65 78 61 [binary]
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-dns-responses-in-coap-respo" class="section-name selfRef">DNS Responses in CoAP Responses</a>
         </h3>
 <p id="section-4.3-1">Each DNS query-response pair is mapped to a CoAP REST request-response
-operation, which may consist of several CoAP request-response pairs if
-block-wise transfer is involved.  DNS responses are provided in the body (i.e. the
-payload, or the concatenated payloads) of the CoAP response. A DoC server <span class="bcp14">MUST</span>
-indicate the type of content of the body using the Content-Format option,
-and <span class="bcp14">MUST</span> be able to produce responses in the "application/dns-message"
+operation. DNS responses are provided in the body of the CoAP response.
+A DoC server <span class="bcp14">MUST</span> be able to produce responses in the "application/dns-message"
 Content-Format (details see <a href="#sec_content-format" class="xref">Section 4.1</a>) when requested.
 A DoC client <span class="bcp14">MUST</span> understand responses in "application/dns-message" format
-when it does not send an Accept option.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.3-2">If supported, a DoC server <span class="bcp14">MAY</span> transfer the DNS response in more than one
-CoAP responses using the Block2 option <span>[<a href="#RFC7959" class="xref">RFC7959</a>]</span>.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+when it does not send an Accept option.
+Any other response format than "application/dns-message" <span class="bcp14">MUST</span> be indicated with
+the Content-Format option by the DoC server.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <div id="response-codes-and-handling-dns-and-coap-errors">
 <section id="section-4.3.1">
           <h4 id="name-response-codes-and-handling">
@@ -1449,8 +1442,8 @@ CoAP responses using the Block2 option <span>[<a href="#RFC7959" class="xref">RF
 the DNS header (see <span>[<a href="#RFC1035" class="xref">RFC1035</a>]</span> Section 4.1.1). It is <span class="bcp14">RECOMMENDED</span> that
 CoAP responses that carry any valid DNS response use a "2.05 Content"
 response code.<a href="#section-4.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.3.1-2">CoAP responses use non-successful response codes <span class="bcp14">MUST NOT</span> contain any payload
-and may only be used on errors in the CoAP layer or when a request does not
+<p id="section-4.3.1-2">CoAP responses use non-successful response codes <span class="bcp14">MUST NOT</span> contain a DNS response
+and <span class="bcp14">MUST</span> only be used on errors in the CoAP layer or when a request does not
 fulfill the requirements of the DoC protocol.<a href="#section-4.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.3.1-3">Communication errors with a DNS server (e.g., timeouts) <span class="bcp14">SHOULD</span> be indicated
 by including a SERVFAIL DNS response in a successful CoAP response.<a href="#section-4.3.1-3" class="pilcrow">¶</a></p>
@@ -1464,14 +1457,6 @@ The DoC client might also decide to repeat a non-successful exchange with a diff
 <a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-support-of-coap-caching-2" class="section-name selfRef">Support of CoAP Caching</a>
           </h4>
 <p id="section-4.3.2-1">It is <span class="bcp14">RECOMMENDED</span> to set the Max-Age option of a response to the minimum TTL in the Answer section of a DNS response. This prevents expired records unintentionally being served from a CoAP cache.<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.3.2-2">It is <span class="bcp14">RECOMMENDED</span> that DoC servers set an ETag option on large responses (TBD: more concrete guidance) that have a short Max-Age relative to the expected clients' caching time.
-Thus, clients that need to revalidate a response can do so using the established ETag mechanism.
-
-With responses large enough to be fragmented,
-it's best practice for servers to set an ETag anyway.
-As specified in <span>[<a href="#RFC7252" class="xref">RFC7252</a>]</span> and <span>[<a href="#RFC8132" class="xref">RFC8132</a>]</span>, if the response associated with
-the ETag is still valid, the response uses the "2.03 Valid" code and consequently
-carries no payload.<a href="#section-4.3.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="examples-1">
@@ -1685,10 +1670,6 @@ register <span>[<a href="#RFC6690" class="xref">RFC6690</a>]</span>.<a href="#se
 <dt id="RFC7641">[RFC7641]</dt>
         <dd>
 <span class="refAuthor">Hartke, K.</span>, <span class="refTitle">"Observing Resources in the Constrained Application Protocol (CoAP)"</span>, <span class="seriesInfo">RFC 7641</span>, <span class="seriesInfo">DOI 10.17487/RFC7641</span>, <time datetime="2015-09" class="refDate">September 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7641">https://www.rfc-editor.org/rfc/rfc7641</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7959">[RFC7959]</dt>
-        <dd>
-<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">Z. Shelby, Ed.</span>, <span class="refTitle">"Block-Wise Transfers in the Constrained Application Protocol (CoAP)"</span>, <span class="seriesInfo">RFC 7959</span>, <span class="seriesInfo">DOI 10.17487/RFC7959</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7959">https://www.rfc-editor.org/rfc/rfc7959</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8132">[RFC8132]</dt>
         <dd>

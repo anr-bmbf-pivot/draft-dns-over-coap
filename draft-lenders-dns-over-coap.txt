@@ -5,16 +5,16 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                 FU Berlin
 Intended status: Standards Track                               C. Amsüss
-Expires: 24 December 2022                                               
+Expires: 25 December 2022                                               
                                                              C. Gündoğan
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                                                FU Berlin
-                                                            22 June 2022
+                                                            23 June 2022
 
 
-                      DNS Queries over CoAP (DoC)
+                          DNS over CoAP (DoC)
                    draft-lenders-dns-over-coap-latest
 
 Abstract
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 December 2022.
+   This Internet-Draft will expire on 25 December 2022.
 
 Copyright Notice
 
@@ -191,7 +191,8 @@ Table of Contents
    This document defines the Internet media type "application/dns-
    message" for the CoAP Content-Format.  This media type is defined as
    in [RFC8484] Section 6, i.e., a single DNS message encoded in the DNS
-   on-the-wire format [RFC1035].
+   on-the-wire format [RFC1035].  Both DoC client and DoC server MUST be
+   able to parse contents in the "application/dns-message" format.
 
 4.2.  DNS Queries in CoAP Requests
 
@@ -206,21 +207,12 @@ Table of Contents
 4.2.1.  Request Format
 
    When sending a CoAP request, a DoC client MUST include the DNS query
-   in the body (i.e. the payload, or the concatenated payloads) of the
-   CoAP request.  As specified in [RFC8132] Section 2.3.1, the type of
-   content of the body MUST be indicated using the Content-Format
-   option.  This document specifies the usage of Content-Format
-   "application/dns-message" (details see Section 4.1).
-
-   If block-wise transfer [RFC7959] is supported by the client, more
-   than one CoAP request message MAY be used.  If more than one CoAP
-   request message is used to encode the DNS query, it must be chained
-   together using the Block1 option in those CoAP requests.
-
-   The FETCH request is sent to the URI specified in Section 3.
-
-   A DoC server MUST be able to parse requests of Content-Format
-   "application/dns-message".
+   in the body of the CoAP request.  As specified in [RFC8132]
+   Section 2.3.1, the type of content of the body MUST be indicated
+   using the Content-Format option.  This document specifies the usage
+   of Content-Format "application/dns-message" (details see
+   Section 4.1).  A DoC server MUST be able to parse requests of
+   Content-Format "application/dns-message".
 
 4.2.2.  Support of CoAP Caching
 
@@ -247,18 +239,13 @@ Table of Contents
 4.3.  DNS Responses in CoAP Responses
 
    Each DNS query-response pair is mapped to a CoAP REST request-
-   response operation, which may consist of several CoAP request-
-   response pairs if block-wise transfer is involved.  DNS responses are
-   provided in the body (i.e. the payload, or the concatenated payloads)
-   of the CoAP response.  A DoC server MUST indicate the type of content
-   of the body using the Content-Format option, and MUST be able to
-   produce responses in the "application/dns-message" Content-Format
-   (details see Section 4.1) when requested.  A DoC client MUST
-   understand responses in "application/dns-message" format when it does
-   not send an Accept option.
-
-   If supported, a DoC server MAY transfer the DNS response in more than
-   one CoAP responses using the Block2 option [RFC7959].
+   response operation.  DNS responses are provided in the body of the
+   CoAP response.  A DoC server MUST be able to produce responses in the
+   "application/dns-message" Content-Format (details see Section 4.1)
+   when requested.  A DoC client MUST understand responses in
+   "application/dns-message" format when it does not send an Accept
+   option.  Any other response format than "application/dns-message"
+   MUST be indicated with the Content-Format option by the DoC server.
 
 4.3.1.  Response Codes and Handling DNS and CoAP errors
 
@@ -267,9 +254,9 @@ Table of Contents
    RECOMMENDED that CoAP responses that carry any valid DNS response use
    a "2.05 Content" response code.
 
-   CoAP responses use non-successful response codes MUST NOT contain any
-   payload and may only be used on errors in the CoAP layer or when a
-   request does not fulfill the requirements of the DoC protocol.
+   CoAP responses use non-successful response codes MUST NOT contain a
+   DNS response and MUST only be used on errors in the CoAP layer or
+   when a request does not fulfill the requirements of the DoC protocol.
 
    Communication errors with a DNS server (e.g., timeouts) SHOULD be
    indicated by including a SERVFAIL DNS response in a successful CoAP
@@ -285,16 +272,6 @@ Table of Contents
    It is RECOMMENDED to set the Max-Age option of a response to the
    minimum TTL in the Answer section of a DNS response.  This prevents
    expired records unintentionally being served from a CoAP cache.
-
-   It is RECOMMENDED that DoC servers set an ETag option on large
-   responses (TBD: more concrete guidance) that have a short Max-Age
-   relative to the expected clients' caching time.  Thus, clients that
-   need to revalidate a response can do so using the established ETag
-   mechanism.  With responses large enough to be fragmented, it's best
-   practice for servers to set an ETag anyway.  As specified in
-   [RFC7252] and [RFC8132], if the response associated with the ETag is
-   still valid, the response uses the "2.03 Valid" code and consequently
-   carries no payload.
 
 4.3.3.  Examples
 
@@ -455,11 +432,6 @@ Table of Contents
               Application Protocol (CoAP)", RFC 7641,
               DOI 10.17487/RFC7641, September 2015,
               <https://www.rfc-editor.org/rfc/rfc7641>.
-
-   [RFC7959]  Bormann, C. and Z. Shelby, Ed., "Block-Wise Transfers in
-              the Constrained Application Protocol (CoAP)", RFC 7959,
-              DOI 10.17487/RFC7959, August 2016,
-              <https://www.rfc-editor.org/rfc/rfc7959>.
 
    [RFC8132]  van der Stok, P., Bormann, C., and A. Sehgal, "PATCH and
               FETCH Methods for the Constrained Application Protocol
