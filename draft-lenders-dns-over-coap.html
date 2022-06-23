@@ -1201,13 +1201,10 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-doc-server-considerations" class="xref">DoC Server Considerations</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-proxies-and-caching" class="xref">Proxies and caching</a></p>
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-observing-the-dns-resource" class="xref">Observing the DNS Resource</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-observing-the-dns-resource" class="xref">Observing the DNS Resource</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-oscore" class="xref">OSCORE</a></p>
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-oscore" class="xref">OSCORE</a></p>
 </li>
             </ul>
 </li>
@@ -1456,7 +1453,14 @@ The DoC client might also decide to repeat a non-successful exchange with a diff
           <h4 id="name-support-of-coap-caching-2">
 <a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-support-of-coap-caching-2" class="section-name selfRef">Support of CoAP Caching</a>
           </h4>
-<p id="section-4.3.2-1">It is <span class="bcp14">RECOMMENDED</span> to set the Max-Age option of a response to the minimum TTL in the Answer section of a DNS response. This prevents expired records unintentionally being served from a CoAP cache.<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.3.2-1">The DoC server <span class="bcp14">MUST</span> ensure that any sum of the Max-Age value of a CoAP response and any TTL in the
+DNS response is less or equal to the corresponding TTL received from an upstream DNS server.
+This also includes the default Max-Age value of 60 seconds (see <span>[<a href="#RFC7252" class="xref">RFC7252</a>]</span>, section 5.10.5) when no Max-Age option is provided.
+The DoC client <span class="bcp14">MUST</span> then add the Max-Age value of the carrying CoAP response to all TTLs in a DNS response on reception and use these calculated TTLs for the associated records.<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.3.2-2">The <span class="bcp14">RECOMMENDED</span> algorithm to assure the requirement for the DoC is to set the Max-Age option of a response to the minimum TTL of a DNS response and to subtract this value from all TTLs of that DNS response.
+This prevents expired records unintentionally being served from an intermediate CoAP cache.
+Additionally, it allows for the ETag value for cache validation, if it is based on the content of the response, not to change even if the TTL values are updated by an upstream DNS cache.
+If only one record set per DNS response is assumed, a simplification of this algorithm is to just set all TTLs in the response to 0 and set the TTLs at the DoC client to the value of the Max-Age option.<a href="#section-4.3.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="examples-1">
@@ -1518,68 +1522,24 @@ response should only be sent if needed or if it is anticipated that they help th
 reduce additional queries.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="proxies-and-caching">
-<section id="section-5.2">
-        <h3 id="name-proxies-and-caching">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-proxies-and-caching" class="section-name selfRef">Proxies and caching</a>
-        </h3>
-<p id="section-5.2-1">TBD:<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.2-2.1">
-            <a href="https://github.com/anr-bmbf-pivot/draft-dns-over-coap/issues/5">TTL vs. Max-Age</a><a href="#section-5.2-2.1" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-5.2-2.2">Responses that are not globally valid<a href="#section-5.2-2.2" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-5.2-2.3">
-            <p id="section-5.2-2.3.1">General CoAP proxy problem, but what to do when DoC server is a DNS proxy,
-response came not yet in but retransmission by DoC client was received (see
-<a href="#rt-problem" class="xref">Figure 2</a>)<a href="#section-5.2-2.3.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.2-2.3.2.1">
-                <p id="section-5.2-2.3.2.1.1">send empty ACK (<a href="https://github.com/anr-bmbf-pivot/draft-dns-over-coap/issues/6#issuecomment-895880206">maybe move to best practices appendix</a>)<a href="#section-5.2-2.3.2.1.1" class="pilcrow">¶</a></p>
-<span id="name-coap-retransmission-rt-is-r"></span><div id="rt-problem">
-<figure id="figure-2">
-                  <div id="section-5.2-2.3.2.1.2.1">
-<pre class="lang-drawing sourcecode">
-DoC client           DoC proxy           DNS server
-     |  CoAP req [rt 1]  |                    |
-     |------------------&gt;|  DNS query [rt 1]  |
-     |                   |-------------------&gt;|
-     |  CoAP req [rt 2]  |                    |
-     |------------------&gt;|      DNS resp      |
-     |     CoAP resp     |&lt;-------------------|
-     |&lt;------------------|                    |
-     |                   |                    |
-</pre>
-</div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-coap-retransmission-rt-is-r" class="selfRef">CoAP retransmission (rt) is received before DNS query could have been fulfilled.</a>
-                  </figcaption></figure>
-</div>
-</li>
-            </ul>
-</li>
-        </ul>
-</section>
-</div>
 <div id="observing-the-dns-resource">
-<section id="section-5.3">
+<section id="section-5.2">
         <h3 id="name-observing-the-dns-resource">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-observing-the-dns-resource" class="section-name selfRef">Observing the DNS Resource</a>
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-observing-the-dns-resource" class="section-name selfRef">Observing the DNS Resource</a>
         </h3>
-<p id="section-5.3-1">There are use cases where updating a DNS record might be necessary on the fly.
+<p id="section-5.2-1">There are use cases where updating a DNS record might be necessary on the fly.
 Examples of this include e.g. <span>[<a href="#RFC8490" class="xref">RFC8490</a>]</span>, Section 4.1.2, but just saving messages by omitting the
 query for a subscribed name might also be valid.
-As such, the DNS resource <span class="bcp14">MAY</span> be observable as specified in <span>[<a href="#RFC7641" class="xref">RFC7641</a>]</span>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+As such, the DNS resource <span class="bcp14">MAY</span> be observable as specified in <span>[<a href="#RFC7641" class="xref">RFC7641</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="oscore">
-<section id="section-5.4">
+<section id="section-5.3">
         <h3 id="name-oscore">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-oscore" class="section-name selfRef">OSCORE</a>
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-oscore" class="section-name selfRef">OSCORE</a>
         </h3>
-<p id="section-5.4-1">It is <span class="bcp14">RECOMMENDED</span> to carry DNS messages end-to-end encrypted using OSCORE <span>[<a href="#RFC8611" class="xref">RFC8611</a>]</span>.
-The exchange of the security context is out of scope of this document.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">It is <span class="bcp14">RECOMMENDED</span> to carry DNS messages end-to-end encrypted using OSCORE <span>[<a href="#RFC8611" class="xref">RFC8611</a>]</span>.
+The exchange of the security context is out of scope of this document.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

@@ -85,9 +85,8 @@ Table of Contents
        4.3.3.  Examples
    5.  CoAP/CoRE Integration
      5.1.  DoC Server Considerations
-     5.2.  Proxies and caching
-     5.3.  Observing the DNS Resource
-     5.4.  OSCORE
+     5.2.  Observing the DNS Resource
+     5.3.  OSCORE
    6.  Considerations for Unencrypted Use
    7.  Security Considerations
    8.  IANA Considerations
@@ -269,9 +268,26 @@ Table of Contents
 
 4.3.2.  Support of CoAP Caching
 
-   It is RECOMMENDED to set the Max-Age option of a response to the
-   minimum TTL in the Answer section of a DNS response.  This prevents
-   expired records unintentionally being served from a CoAP cache.
+   The DoC server MUST ensure that any sum of the Max-Age value of a
+   CoAP response and any TTL in the DNS response is less or equal to the
+   corresponding TTL received from an upstream DNS server.  This also
+   includes the default Max-Age value of 60 seconds (see [RFC7252],
+   section 5.10.5) when no Max-Age option is provided.  The DoC client
+   MUST then add the Max-Age value of the carrying CoAP response to all
+   TTLs in a DNS response on reception and use these calculated TTLs for
+   the associated records.
+
+   The RECOMMENDED algorithm to assure the requirement for the DoC is to
+   set the Max-Age option of a response to the minimum TTL of a DNS
+   response and to subtract this value from all TTLs of that DNS
+   response.  This prevents expired records unintentionally being served
+   from an intermediate CoAP cache.  Additionally, it allows for the
+   ETag value for cache validation, if it is based on the content of the
+   response, not to change even if the TTL values are updated by an
+   upstream DNS cache.  If only one record set per DNS response is
+   assumed, a simplification of this algorithm is to just set all TTLs
+   in the response to 0 and set the TTLs at the DoC client to the value
+   of the Max-Age option.
 
 4.3.3.  Examples
 
@@ -318,37 +334,7 @@ Table of Contents
    or if it is anticipated that they help the DoC client to reduce
    additional queries.
 
-5.2.  Proxies and caching
-
-   TBD:
-
-   *  TTL vs. Max-Age (https://github.com/anr-bmbf-pivot/draft-dns-over-
-      coap/issues/5)
-
-   *  Responses that are not globally valid
-
-   *  General CoAP proxy problem, but what to do when DoC server is a
-      DNS proxy, response came not yet in but retransmission by DoC
-      client was received (see Figure 2)
-
-      -  send empty ACK (maybe move to best practices appendix
-         (https://github.com/anr-bmbf-pivot/draft-dns-over-coap/
-         issues/6#issuecomment-895880206))
-
-         DoC client           DoC proxy           DNS server
-              |  CoAP req [rt 1]  |                    |
-              |------------------>|  DNS query [rt 1]  |
-              |                   |------------------->|
-              |  CoAP req [rt 2]  |                    |
-              |------------------>|      DNS resp      |
-              |     CoAP resp     |<-------------------|
-              |<------------------|                    |
-              |                   |                    |
-
-            Figure 2: CoAP retransmission (rt) is received before DNS
-                         query could have been fulfilled.
-
-5.3.  Observing the DNS Resource
+5.2.  Observing the DNS Resource
 
    There are use cases where updating a DNS record might be necessary on
    the fly.  Examples of this include e.g.  [RFC8490], Section 4.1.2,
@@ -356,7 +342,7 @@ Table of Contents
    might also be valid.  As such, the DNS resource MAY be observable as
    specified in [RFC7641].
 
-5.4.  OSCORE
+5.3.  OSCORE
 
    It is RECOMMENDED to carry DNS messages end-to-end encrypted using
    OSCORE [RFC8611].  The exchange of the security context is out of
