@@ -5,13 +5,13 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                 FU Berlin
 Intended status: Standards Track                               C. Amsüss
-Expires: 25 December 2022                                               
+Expires: 26 December 2022                                               
                                                              C. Gündoğan
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                                                FU Berlin
-                                                            23 June 2022
+                                                            24 June 2022
 
 
                           DNS over CoAP (DoC)
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 December 2022.
+   This Internet-Draft will expire on 26 December 2022.
 
 Copyright Notice
 
@@ -200,8 +200,8 @@ Table of Contents
    Accept option to indicate the type of content that can be parsed in
    the response.
 
-   To enable reliable message exchange, the CoAP request SHOULD be
-   carried in a Confirmable (CON) message.
+   The CoAP request SHOULD be carried in a Confirmable (CON) message, if
+   the transport used does not provide reliable message exchange.
 
 4.2.1.  Request Format
 
