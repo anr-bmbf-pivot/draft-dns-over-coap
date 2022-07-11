@@ -5,13 +5,13 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                 FU Berlin
 Intended status: Standards Track                               C. Amsüss
-Expires: 31 December 2022                                               
+Expires: 12 January 2023                                                
                                                              C. Gündoğan
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                                                FU Berlin
-                                                            29 June 2022
+                                                            11 July 2022
 
 
                           DNS over CoAP (DoC)
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 December 2022.
+   This Internet-Draft will expire on 12 January 2023.
 
 Copyright Notice
 
@@ -96,10 +96,11 @@ Table of Contents
      9.1.  Normative References
      9.2.  Informative References
    Appendix A.  Change Log
-     A.1.  Since draft-lenders-dns-over-coap-02
-     A.2.  Since draft-lenders-dns-over-coap-01
-     A.3.  Since draft-lenders-dns-over-coap-00
-     A.4.  Since draft-lenders-dns-over-coaps-00
+     A.1.  Since draft-lenders-dns-over-coap-03
+     A.2.  Since draft-lenders-dns-over-coap-02
+     A.3.  Since draft-lenders-dns-over-coap-01
+     A.4.  Since draft-lenders-dns-over-coap-00
+     A.5.  Since draft-lenders-dns-over-coaps-00
    Acknowledgments
    Authors' Addresses
 
@@ -444,9 +445,9 @@ Table of Contents
               Boucadair, M., Reddy, T., Wing, D., Cook, N., and T.
               Jensen, "DHCP and Router Advertisement Options for the
               Discovery of Network-designated Resolvers (DNR)", Work in
-              Progress, Internet-Draft, draft-ietf-add-dnr-09, 24 June
+              Progress, Internet-Draft, draft-ietf-add-dnr-11, 11 July
               2022, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              add-dnr-09>.
+              add-dnr-11>.
 
    [I-D.ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
@@ -505,7 +506,42 @@ Table of Contents
 
 Appendix A.  Change Log
 
-A.1.  Since draft-lenders-dns-over-coap-02
+A.1.  Since draft-lenders-dns-over-coap-03
+      (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
+      coap-03)
+
+   *  Remove TBD on CoRE resource directory in Section 1.  Optional
+      usage of CoRE-RD is already discussed in Section 3
+
+   *  Remove TBD on "request text duplication" in Appendix A.  This
+      issue will be handled in a separate draft on a new CBOR-based
+      content format
+
+   *  Add note on OSCORE in Section 5.3
+
+   *  Add note on Observe in Section 5.2
+
+   *  Change title from "DNS queries over CoAP" to "DNS over CoAP"
+
+   *  Mention "application/dns-message" parsing requirement in
+      Section 4.1
+
+   *  Remove obvious CoAP behavior restatements from Section 4
+
+   *  Remove ETag specifications in Section 4.3.2
+
+   *  Caching: specify Max-Age / TTL calculation including simplified
+      version in Section 4.3.2
+
+   *  Remove subsection on "Proxies and caching".  All relevant things
+      on caching were discussed in Section 4.2.2 and Section 4.3.2,
+      considerations on proxy / DoC server behavior and late responses
+      are general CoAP problems.
+
+   *  Be more precise when Confirmable (CON) messages SHOULD be used in
+      Section 4.2
+
+A.2.  Since draft-lenders-dns-over-coap-02
       (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
       coap-02)
 
@@ -517,7 +553,7 @@ A.1.  Since draft-lenders-dns-over-coap-02
 
    *  Update Considerations for Unencrypted Use in Section 6
 
-A.2.  Since draft-lenders-dns-over-coap-01
+A.3.  Since draft-lenders-dns-over-coap-01
       (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
       coap-01)
 
@@ -529,7 +565,7 @@ A.2.  Since draft-lenders-dns-over-coap-01
 
    *  Clarify Content-Format / Accept handling
 
-A.3.  Since draft-lenders-dns-over-coap-00
+A.4.  Since draft-lenders-dns-over-coap-00
       (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
       coap-00)
 
@@ -540,7 +576,7 @@ A.3.  Since draft-lenders-dns-over-coap-00
 
    *  Fix nits and typos
 
-A.4.  Since draft-lenders-dns-over-coaps-00
+A.5.  Since draft-lenders-dns-over-coaps-00
       (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
       coaps-00)
 
