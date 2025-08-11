@@ -1,3 +1,50 @@
+Revision Plan for draft-ietf-core-dns-over-coap-18
+==================================================
+
+- [Major Issues](#major-issues)
+  - [ ] [Clarify (or Discuss with Gory) What Happens if DNS Unsubscribe Fails](#clarify-or-discuss-with-gory-what-happens-if-dns-unsubscribe-fails)
+  - [ ] [Add Operational Considerations on Redirection](#add-operational-considerations-on-redirection)
+  - [ ] [Add Considerations on Hop-Limit Option](#add-considerations-on-hop-limit-option)
+- [Minor Issues](#minor-issues)
+  - [ ] [Mention That Only OPCODE=0 Is Supported in Abstract and Introduction](#mention-that-only-opcode0-is-supported-in-abstract-and-introduction)
+  - [ ] [Mention DNSSEC Earlier](#mention-dnssec-earlier)
+  - [ ] [Clarify (or Discuss with Gory) Actions Server Needs to Complete When Client Observes Resource](#clarify-or-discuss-with-gory-actions-server-needs-to-complete-when-client-observes-resource)
+  - [ ] [Clarify (or Discuss with Gory) What “No More Clients Observe A Resource Record” Means](#clarify-or-discuss-with-gory-what-no-more-clients-observe-a-resource-record-means)
+  - [ ] [Refer to Drafts as If They Were Already Published](#refer-to-drafts-as-if-they-were-already-published)
+  - [ ] [RFC 9460 Should be Normative](#rfc-9460-should-be-normative)
+  - [ ] [State More Clearly Why DNS ID = 0 Is OK to Use With DTLS or OSCORE](#state-more-clearly-why-dns-id-0-is-ok-to-use-with-dtls-or-oscore)
+  - [ ] [Remove Confusing MAY](#remove-confusing-may)
+  - [ ] [Clarify Why SVCB Record Algorithm SHOULD Be Repeated (and not MUST)](#clarify-why-svcb-record-algorithm-should-be-repeated-and-not-must)
+- [Nits](#nits)
+  - [ ] [Unify `ARCOUNT` to `ADDITIONAL` in Examples](#unify-arcount-to-additional-in-examples)
+  - [ ] [Remove AD Bit from Query Examples](#remove-ad-bit-from-query-examples)
+  - [ ] [Label Note on `ff 0a` More Clearly as an RFC-Ed Note](#label-note-on-ff-0a-more-clearly-as-an-rfc-ed-note)
+  - [ ] [Add Missing Citation to -coap-dtls-alpn](#add-missing-citation-to--coap-dtls-alpn)
+  - [ ] [DoC Server May be the Authoritative Nameserver](#doc-server-may-be-the-authoritative-nameserver)
+  - [ ] [MUST Configure from Trusted Source](#must-configure-from-trusted-source)
+  - [ ] [Redundant requirement on "application/dns-message"](#redundant-requirement-on-applicationdns-message)
+  - [ ] [Use BCP/STD instead of RFCs When Applicable](#use-bcpstd-instead-of-rfcs-when-applicable)
+  - [ ] [Use Singular in Title When Only One Example in Section](#use-singular-in-title-when-only-one-example-in-section)
+  - [ ] [Remove Unused Reference](#remove-unused-reference)
+  - [ ] [Mention Protocols First, Then Sequence Up the References / Explicitly Mention (D)TLS 1.2, 1.3](#mention-protocols-first-then-sequence-up-the-references-explicitly-mention-dtls-12-13)
+  - [ ] [Are There Other Integrity Mechanisms Than DNSSEC](#are-there-other-integrity-mechanisms-than-dnssec)
+  - [ ] [Rephrasings Regarding Accept Option](#rephrasings-regarding-accept-option)
+  - [ ] [Language Nits](#language-nits)
+- [No-Ops](#no-ops)
+  - [x] [Longer Segments Than Allowed "docpath" MUST NOT be Allowed?](#longer-segments-than-allowed-docpath-must-not-be-allowed)
+  - [x] [IoT Devices Can Not Do DNSSEC Validation](#iot-devices-can-not-do-dnssec-validation)
+  - [x] [Provide Operational Considerations on Non-Confirmable vs Confirmable](#provide-operational-considerations-on-non-confirmable-vs-confirmable)
+  - [x] [How Should DNS Errors Be Signaled to DoC Client?](#how-should-dns-errors-be-signaled-to-doc-client)
+  - [x] [Where Does the Destination Address in DDR/DNR Come From](#where-does-the-destination-address-in-ddrdnr-come-from)
+  - [x] [Remove RFC Editor's Note on I-D.ietf-iotops-7228bis](#remove-rfc-editors-note-on-i-dietf-iotops-7228bis)
+  - [x] [Mention TLS as Security Mechanism](#mention-tls-as-security-mechanism)
+  - [x] [Link-layer vs. Link Layer](#link-layer-vs-link-layer)
+  - [x] [Add Space to `255OCTET`](#add-space-to-255octet)
+- [Unclear Issues](#unclear-issues)
+  - [ ] [Indicate B2B Entity in Figure 1](#indicate-b2b-entity-in-figure-1)
+  - [ ] [Statement about ALPN Extension Contradicts DNR?](#statement-about-alpn-extension-contradicts-dnr)
+  - [ ] [Provide Extension Point For Other OPCODEs](#provide-extension-point-for-other-opcodes)
+
 Major Issues
 ============
 
@@ -34,7 +81,7 @@ Resets (as per the cancellation procedure in
 We will add some words on that. My [Martine] intuitive thought is, there is nothing speaking against
 it, but we should be careful to write centralization into the spec.
 
-## Add Considertaions on Hop-Limit Option
+## Add Considerations on Hop-Limit Option
 > ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
 >
 > Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
@@ -48,6 +95,29 @@ recommendation.
 
 Minor Issues
 ============
+
+## Mention That Only OPCODE=0 Is Supported in Abstract and Introduction
+
+> #### [[ErVy-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Abstract
+>
+> Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
+
+> #### Section 1
+>
+> [[ErVy-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
+
+Will do, but I [Martine] think it is somewhat confusing that both the client initiated message and
+the communication type defined by OPCODE=0 is called “DNS query” (see also old title of the draft
+until [draft-lenders-dns-over-coap-03](https://datatracker.ietf.org/doc/draft-lenders-dns-over-coap/03/)).
+So we should be really careful about the wording.
+
+## Mention DNSSEC Earlier
+
+> #### Section 8
+>
+> [[ErVy-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-ervy]] More generally, I was expecting more text about DNSSEC earlier in the text, e.g, by stating that a DoC server MAY (or SHOULD or MUST) be the DNSSEC validator.
+
+Also considering [Paul's comment](#iot-devices-can-not-do-dnssec-validation), we should do that.
 
 ## Clarify (or Discuss with Gory) Actions Server Needs to Complete When Client Observes Resource
 
@@ -116,29 +186,6 @@ Proposed phrasing:
 > Suggests that understanding the concept of SvcParam is required. I suggest to cite SVCB as normative.
 
 Will do.
-
-## Mention That Only OPCODE=0 Is Supported in Abstract and Introduction
-
-> #### [[ErVy-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Abstract
->
-> Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
-
-> #### Section 1
->
-> [[ErVy-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
-
-Will do, but I [Martine] think it is somewhat confusing that both the client initiated message and
-the communication type defined by OPCODE=0 is called “DNS query” (see also old title of the draft
-until [draft-lenders-dns-over-coap-03](https://datatracker.ietf.org/doc/draft-lenders-dns-over-coap/03/)).
-So we should be really careful about the wording.
-
-## Mention DNSSEC Earlier
-
-> #### Section 8
->
-> [[ErVy-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-ervy]] More generally, I was expecting more text about DNSSEC earlier in the text, e.g, by stating that a DoC server MAY (or SHOULD or MUST) be the DNSSEC validator.
-
-Also considering [Paul's comment](#iot-devices-can-not-do-dnssec-validation), we should do that.
 
 ## State More Clearly Why DNS ID = 0 Is OK to Use With DTLS or OSCORE
 
@@ -217,20 +264,6 @@ whole paragraph once done at the end.
 > - This seems to be missing a normative reference to: I-D.ietf-core-coap-dtls-alpn.
 
 Will do.
-
-## Language Nits
-> [[GoFa-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /This document provides no specification on how to map between DoC and
->    DoH, e.g., at a CoAP-to-HTTP-proxy.  In fact, such...
-> /This document provides no specification on how to map between DoC and
->    DoH, e.g., at a CoAP-to-HTTP-proxy, such.../
-> (To connect the RFC2119 requirement to the clause to which it refers.)
-
-> [[GoFa-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /...this kind of poisoning attacks./...this kind of poisoning attack./
-(remove 's').
-
-> #### Section 8
->
-> [[ErVy-Comment-10][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/That information can also imply trust in the DNSSEC validation by that server./That information can also imply trust in the DNSSEC validation by that *DoC* server./
 
 ## DoC Server May be the Authoritative Nameserver
 
@@ -327,6 +360,20 @@ Never say never, regarding other options, but we can remove the 'e.g.' if it con
 > Possibly an alternative wording would be clearer.
 
 It's an option in CoAP, not a header, but will do.
+
+## Language Nits
+> [[GoFa-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /This document provides no specification on how to map between DoC and
+>    DoH, e.g., at a CoAP-to-HTTP-proxy.  In fact, such...
+> /This document provides no specification on how to map between DoC and
+>    DoH, e.g., at a CoAP-to-HTTP-proxy, such.../
+> (To connect the RFC2119 requirement to the clause to which it refers.)
+
+> [[GoFa-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /...this kind of poisoning attacks./...this kind of poisoning attack./
+(remove 's').
+
+> #### Section 8
+>
+> [[ErVy-Comment-10][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/That information can also imply trust in the DNSSEC validation by that server./That information can also imply trust in the DNSSEC validation by that *DoC* server./
 
 No-Ops
 ======
@@ -433,8 +480,8 @@ own style guide on that; e.g., RFC 4957 uses hyphens).
 This notation was directly taken from [RFC 9460, section 7.1.1](https://datatracker.ietf.org/doc/html/rfc9460#section-7.1.1-2)
 to be in line with that definition.
 
-Unclear
-=======
+Unclear Issues
+==============
 
 ## Indicate B2B Entity in Figure 1
 > ### [[MoBo-Comment-9][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Back-to-Back DoC Server and Do53/DoT/DoH
