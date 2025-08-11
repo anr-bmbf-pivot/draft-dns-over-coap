@@ -117,6 +117,66 @@ Proposed phrasing:
 
 Will do.
 
+## Mention That Only OPCODE=0 Is Supported in Abstract and Introduction
+
+> #### [[ErVy-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Abstract
+>
+> Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
+
+> #### Section 1
+>
+> [[ErVy-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
+
+Will do, but I [Martine] think it is somewhat confusing that both the client initiated message and
+the communication type defined by OPCODE=0 is called “DNS query” (see also old title of the draft
+until [draft-lenders-dns-over-coap-03](https://datatracker.ietf.org/doc/draft-lenders-dns-over-coap/03/)).
+So we should be really careful about the wording.
+
+## Mention DNSSEC Earlier
+
+> #### Section 8
+>
+> [[ErVy-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-ervy]] More generally, I was expecting more text about DNSSEC earlier in the text, e.g, by stating that a DoC server MAY (or SHOULD or MUST) be the DNSSEC validator.
+
+Also considering [Paul's comment](#iot-devices-can-not-do-dnssec-validation), we should do that.
+
+## State More Clearly Why DNS ID = 0 Is OK to Use With DTLS or OSCORE
+
+> [[DeCo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 8, para 4:  I don't understand the first sentence:  'impact....limited,..both harden against injecting...' seem to be opposite?  If the impact is limited, how does it harden against injecting?
+
+That sentence is indeed a bit of a word salad. Will fix.
+
+## Remove Confusing MAY
+
+> #### [[OrSte-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-orste]] confusing MAY
+>
+> ```
+> 302	   list.  The same considerations for the "," and "" characters in
+> 303	   docpath-segments for zone-file implementations as for the alpn-ids in
+> 304	   an "alpn" SvcParam MAY apply (Section 7.1.1 of [RFC9460]).
+> ```
+>
+> Do you need the "MAY" here, is it not enough to say the same considerations apply?
+> I only skimmed 7.1.1 but it also contains a MAY, which I read as being sufficiently clear.
+
+Will do.
+
+## Clarify Why SVCB Record Algorithm SHOULD Be Repeated (and not MUST)
+
+> #### [[OrSte-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-orste]] Why not MUST?
+>
+> ```
+> 375	      If not, or if the endpoint becomes unreachable, the algorithm
+> 376	      SHOULD be repeated with the SVCB record with the next highest
+> 377	      priority.
+> ```
+>
+> Are there other strategies implied by this should, or is this a should only because retry is not required?
+
+Discovery of the server is somewhat optional (there are other ways to configure a DoC server), so it
+would be weird to require using the next highest priority SVCB record (also what if there is none).
+I [Martine] think we should clarify at least that.
+
 Nits
 ====
 
@@ -168,6 +228,10 @@ Will do.
 > [[GoFa-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /...this kind of poisoning attacks./...this kind of poisoning attack./
 (remove 's').
 
+> #### Section 8
+>
+> [[ErVy-Comment-10][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/That information can also imply trust in the DNSSEC validation by that server./That information can also imply trust in the DNSSEC validation by that *DoC* server./
+
 ## DoC Server May be the Authoritative Nameserver
 
 > ### [[MoBo-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Recursion termination in the CoAP realm
@@ -187,7 +251,20 @@ Introduction text.
 >
 > Why isn’t this a MUST?
 
+> [[DeCo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 3, last sentence:  What are the consequences of not complying with the SHOULD?
+
+> #### [[OrSte-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-orste]] Why not MUST?
+>
+> ```
+> 252	   discovery of designated resolvers [RFC9462].  Automatic configuration
+> 253	   SHOULD only be done from a trusted source.
+> ```
+>
+> Suggest to strengthen the language to "MUST" or provide a rationale for why it is "SHOULD".
+
 I [Martine] am a bit hesitant about this since we do not really define what “a trusted source” is.
+However, three reviews pointed this out (and Deb asked for the inverse of the SHOULD) so we probably
+should change the SHOULD to a MUST.
 
 ## Redundant requirement on "application/dns-message"
 > ### [[MoBo-Comment-13][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Redundant requirement?
@@ -202,6 +279,54 @@ I [Martine] am a bit hesitant about this since we do not really define what “a
 >   Content-Format"?
 
 We will remove the redundant requirement in Section 4.2.1.
+
+## Use BCP/STD instead of RFCs When Applicable
+> [[ErVy-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Rather than using RFC 1035, you may want to use STD 13.
+
+> [[ErVy-Comment-12][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Rather then referring to RFC 9364, you may want to refer to BCP 237.
+
+Will do.
+
+
+## Use Singular in Title When Only One Example in Section
+
+> #### [[ErVy-Comment-9][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.2.3
+>
+> As there is only one example, please use singular in the section title.
+
+Will do.
+
+## Remove Unused Reference
+
+>   `==` [[RoDa-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-roda]] Unused Reference: 'RFC8742' is defined on line 951, but no explicit reference was found in the text
+
+Will do. This is a left-over from when `docpath` was a CBOR sequence.
+
+## Mention Protocols First, Then Sequence Up the References / Explicitly Mention (D)TLS 1.2, 1.3
+
+> [[DeCo-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 1, para 1:  Instead of just referencing DTLS with two RFCs, perhaps say that 'be secured by DTLS 1.2 or 1.3' and then add the RFC references (and you do need RFC 6347 even though 9147 obsoletes it).  If you can do the same for TLS, then do it (obviously RFC8446 is TLS 1.3).  [this construct appears throughout the draft, not just in Section 1]
+
+Will do.
+
+## Are There Other Integrity Mechanisms Than DNSSEC
+
+> [[DeCo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 8, para 5, last sentence:  The 'e.g.' makes this confusing.  Are there other options besides DNSSEC?
+
+Never say never, regarding other options, but we can remove the 'e.g.' if it confuses people.
+
+## Rephrasings Regarding Accept Option
+> #### [[OrSte-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-orste]] MUST be able to understand when not accepted
+>
+> ```
+> 525	   Section 4.1) when requested.  A DoC client MUST be able to understand
+> 526	   responses in the "application/dns-message" Content-Format when it
+> 527	   does not send an Accept option.  Any response Content-Format other
+> ```
+>
+> I think this is better phrased as "use of the accept header is optional, however, all DoC clients MUST understand the "application/dns-message" Content-Format".
+> Possibly an alternative wording would be clearer.
+
+It's an option in CoAP, not a header, but will do.
 
 No-Ops
 ======
@@ -292,6 +417,22 @@ This was a recommendation by a reviewer and it does not hurt to have the note th
 
 Already done in [`d1f0f2f`](https://github.com/core-wg/draft-dns-over-coap/commit/d1f0f2ffb8ce30bc6a91d114e51284d0c4d7d438) (review was on a previous version of the draft).
 
+## Link-layer vs. Link Layer
+
+> [[ErVy-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/link layer frame sizes/link-layer frame sizes/ ?
+
+As far as I [Martine] know, the common spelling for “[data] link layer” is without hyphen (see also,
+e.g., titles of RFCs 935 and 7133), but I let myself convince otherwise (e.g. if the IETF has their
+own style guide on that; e.g., RFC 4957 uses hyphens).
+
+## Add Space to `255OCTET`
+> #### [[ErVy-Comment-7][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 3.2
+>
+> Should there be a space in `255OCTET`?
+
+This notation was directly taken from [RFC 9460, section 7.1.1](https://datatracker.ietf.org/doc/html/rfc9460#section-7.1.1-2)
+to be in line with that definition.
+
 Unclear
 =======
 
@@ -325,180 +466,15 @@ Not sure what is meant with Back-to-Back here.
 Not sure, which part of DNR (RFC9463? That one does not mention CoAP or OSCORE) Med is referring to
 here. The paragraph is not part of the -dns-over-coap, nor -transport-indication.
 
----
-
-[Éric Vyncke's Yes on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-ervy]
-=======================================================
-
-## COMMENT
-
-### Éric Vyncke, INT AD, comments for draft-ietf-avtcore-rtp-scip-05
-CC @evyncke
-
-[[ErVy-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Thank you for the work put into this document. Like others, I was puzzled at first sight about a n+1 mechanism to transport DNS traffic, but after reading the motivation in section 1, it does make sense even if actual data (packet size, transaction, ...) would be helpful as DNS payload is already compressed.
-
-Please find below some non-blocking COMMENT points/nits (replies would be appreciated even if only for my own education).
-
-Special thanks to Marco Tiloca for the shepherd's write-up including the WG consensus and the justification of the intended status.
-
-Other thanks to Vladimír Čunát , the DNS directorate reviewer (at my request), please consider this dns-dir review:
-https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
-
-I hope that this review helps to improve the document,
-
-Regards,
-
--éric
-
-### COMMENTS (non-blocking)
-
-#### [[ErVy-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Abstract
-
-Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
-
-#### Section 1
-
-[[ErVy-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Rather than using RFC 1035, you may want to use STD 13.
-
-[[ErVy-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
-
-[[ErVy-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/link layer frame sizes/link-layer frame sizes/ ?
-
-[[ErVy-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Thanks for providing SVG graphics, the HTML rendering is so much nicer :)
-
-#### [[ErVy-Comment-7][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 3.2
-
-Should there be a space in `255OCTET`?
-
-#### [[ErVy-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.1
-
-Is there any way for provide an extension to other RR codes ? `For the purposes of this document, only OPCODE 0 (Query) is supported for DNS messages. Future work might provide specifications and considerations for other values of OPCODE.` seems rather vague about extension points. The UPDATE op-code could be very interesting.
-
-#### [[ErVy-Comment-9][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.2.3
-
-As there is only one example, please use singular in the section title.
-
-#### Section 8
-
-[[ErVy-Comment-10][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/That information can also imply trust in the DNSSEC validation by that server./That information can also imply trust in the DNSSEC validation by that *DoC* server./
-
-[[ErVy-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-ervy]] More generally, I was expecting more text about DNSSEC earlier in the text, e.g, by stating that a DoC server MAY (or SHOULD or MUST) be the DNSSEC validator.
-
-[[ErVy-Comment-12][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Rather then referring to RFC 9364, you may want to refer to BCP 237.
-
-[Andy Newton's No Objection on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-anne]
-================================================================
-
-## Andy Newton, ART AD, comments for draft-ietf-core-dns-over-coap-17
-CC @anewton1998
-
-* line numbers:
-  - https://author-tools.ietf.org/api/idnits?url=https://www.ietf.org/archive/id/draft-ietf-core-dns-over-coap-17.txt&submitcheck=True
-
-* comment syntax:
-  - https://github.com/mnot/ietf-comments/blob/main/format.md
-
-* "Handling Ballot Positions":
-  - https://ietf.org/about/groups/iesg/statements/handling-ballot-positions/
-
-## No Objection
-
-I have no objection to the publication of this document as an RFC.
-
-Many thanks to Todd Herr for the ARTART review.
-
-[Deb Cooley's No Objection on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-deco]
-===============================================================
-
-COMMENT
--------
-
-Thanks to Ben Schwartz for his earlier review (if not his secdir review) of this draft.
-
-[[DeCo-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 1, para 1:  Instead of just referencing DTLS with two RFCs, perhaps say that 'be secured by DTLS 1.2 or 1.3' and then add the RFC references (and you do need RFC 6347 even though 9147 obsoletes it).  If you can do the same for TLS, then do it (obviously RFC8446 is TLS 1.3).  [this construct appears throughout the draft, not just in Section 1]
-
-[[DeCo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 3, last sentence:  What are the consequences of not complying with the SHOULD?
-
-[[DeCo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 8, para 4:  I don't understand the first sentence:  'impact....limited,..both harden against injecting...' seem to be opposite?  If the impact is limited, how does it harden against injecting?
-
-[[DeCo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 8, para 5, last sentence:  The 'e.g.' makes this confusing.  Are there other options besides DNSSEC?
-
-[Orie Steele's No Objection on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-orste]
-================================================================
-
-COMMENT
--------
-
-### Orie Steele, ART AD, comments for draft-ietf-core-dns-over-coap-17
-CC @OR13
-
-* line numbers:
-  - https://author-tools.ietf.org/api/idnits?url=https://www.ietf.org/archive/id/draft-ietf-core-dns-over-coap-17.txt&submitcheck=True
-
-* comment syntax:
-  - https://github.com/mnot/ietf-comments/blob/main/format.md
-
-* "Handling Ballot Positions":
-  - https://ietf.org/about/groups/iesg/statements/handling-ballot-positions/
-
-Thanks to Todd Herr for the ARTART review.
-
-### Comments
-
-#### [[OrSte-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-orste]] Why not MUST?
-
-```
-252	   discovery of designated resolvers [RFC9462].  Automatic configuration
-253	   SHOULD only be done from a trusted source.
-```
-
-Suggest to strengthen the language to "MUST" or provide a rationale for why it is "SHOULD".
-
-
-#### [[OrSte-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-orste]] confusing MAY
-
-```
-302	   list.  The same considerations for the "," and "" characters in
-303	   docpath-segments for zone-file implementations as for the alpn-ids in
-304	   an "alpn" SvcParam MAY apply (Section 7.1.1 of [RFC9460]).
-```
-
-Do you need the "MAY" here, is it not enough to say the same considerations apply?
-I only skimmed 7.1.1 but it also contains a MAY, which I read as being sufficiently clear.
-
-#### [[OrSte-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-orste]] Why not MUST?
-
-```
-375	      If not, or if the endpoint becomes unreachable, the algorithm
-376	      SHOULD be repeated with the SVCB record with the next highest
-377	      priority.
-```
-
-Are there other strategies implied by this should, or is this a should only because retry is not required?
-
-#### [[OrSte-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-orste]] MUST be able to understand when not accepted
-
-```
-525	   Section 4.1) when requested.  A DoC client MUST be able to understand
-526	   responses in the "application/dns-message" Content-Format when it
-527	   does not send an Accept option.  Any response Content-Format other
-```
-
-I think this is better phrased as "use of the accept header is optional, however, all DoC clients MUST understand the "application/dns-message" Content-Format".
-Possibly an alternative wording would be clearer.
-
-[Roman Danyliw's No Objection on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-roda]
-===============
-
-COMMENT
--------
-
-Thank you to Elwyn Davies for the GENART review.
-
-From idnits:
-
-  == [[RoDa-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-roda]] Unused Reference: 'RFC8742' is defined on line 951, but no explicit
-     reference was found in the text
+## Provide Extension Point For Other OPCODEs
+> #### [[ErVy-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.1
+>
+> Is there any way for provide an extension to other RR codes ? `For the purposes of this document, only OPCODE 0 (Query) is supported for DNS messages. Future work might provide specifications and considerations for other values of OPCODE.` seems rather vague about extension points. The UPDATE op-code could be very interesting.
+
+I do not see how people would be prevented from writing a draft on that. Maybe I am missing
+something.
+While many anticipate the UPDATE OPCODE for DoC, the decision to restrict to OPCODE 0 and later
+extend for other OPCODEs came directly out of [working group discussions](https://notes.ietf.org/notes-ietf-interim-2025-core-03-core#%E2%80%9CDNS-over-CoAP-DoC%E2%80%9D).
 
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gofa]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
