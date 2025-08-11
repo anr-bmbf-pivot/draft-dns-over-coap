@@ -405,6 +405,19 @@ Are there other strategies implied by this should, or is this a should only beca
 I think this is better phrased as "use of the accept header is optional, however, all DoC clients MUST understand the "application/dns-message" Content-Format".
 Possibly an alternative wording would be clearer.
 
+[Roman Danyliw's No Objection on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-roda]
+===============
+
+COMMENT
+-------
+
+Thank you to Elwyn Davies for the GENART review.
+
+From idnits:
+
+  == [[RoDa-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-roda]] Unused Reference: 'RFC8742' is defined on line 951, but no explicit
+     reference was found in the text
+
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gofa]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
 [draft-ietf-core-dns-over-coap-17-ballot-pawo]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_paul-wouters
@@ -414,3 +427,4 @@ Possibly an alternative wording would be clearer.
 [draft-ietf-core-dns-over-coap-17-ballot-anne]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_andy-newton
 [draft-ietf-core-dns-over-coap-17-ballot-deco]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_deb-cooley
 [draft-ietf-core-dns-over-coap-17-ballot-orste]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_orie-steele
+[draft-ietf-core-dns-over-coap-17-ballot-roda]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_roman-danyliw
