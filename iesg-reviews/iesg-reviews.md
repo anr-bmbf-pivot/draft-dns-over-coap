@@ -304,9 +304,31 @@ As there is only one example, please use singular in the section title.
 
 [[ErVy-Comment-12][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Rather then referring to RFC 9364, you may want to refer to BCP 237.
 
+[Andy Newton's No Objection on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-anne]
+================================================================
+
+## Andy Newton, ART AD, comments for draft-ietf-core-dns-over-coap-17
+CC @anewton1998
+
+* line numbers:
+  - https://author-tools.ietf.org/api/idnits?url=https://www.ietf.org/archive/id/draft-ietf-core-dns-over-coap-17.txt&submitcheck=True
+
+* comment syntax:
+  - https://github.com/mnot/ietf-comments/blob/main/format.md
+
+* "Handling Ballot Positions":
+  - https://ietf.org/about/groups/iesg/statements/handling-ballot-positions/
+
+## No Objection
+
+I have no objection to the publication of this document as an RFC.
+
+Many thanks to Todd Herr for the ARTART review.
+
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gofa]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
 [draft-ietf-core-dns-over-coap-17-ballot-pawo]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_paul-wouters
 [draft-ietf-core-dns-over-coap-16-ballot-mibi]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_mike-bishop
 [draft-ietf-core-dns-over-coap-17-ballot-mobo]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_mohamed-boucadair
 [draft-ietf-core-dns-over-coap-17-ballot-ervy]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_eric-vyncke
+[draft-ietf-core-dns-over-coap-17-ballot-anne]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_andy-newton
