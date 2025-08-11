@@ -127,6 +127,14 @@ is doable, implementing a fully recursive validating DNS server is not.
 I would rewrite the Section based on these assumptions (eg it has to trust
 the AD bit)
 
+[Mike Bishop's Yes on draft-ietf-core-dns-over-coap-16][draft-ietf-core-dns-over-coap-16-ballot-mb]
+=======================================================
+
+COMMENT
+-------
+[[MB-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-mb]] One more item I noticed while preparing the ballot: the abstract and introduction state the use of DTLS and OSCORE for message protection, but TLS is also supported according to the remaining sections. Please either explicitly mention TLS or adjust to "(D)TLS" where appropriate.
+
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gf]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
 [draft-ietf-core-dns-over-coap-17-ballot-pw]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_paul-wouters
+[draft-ietf-core-dns-over-coap-16-ballot-mb]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_mike-bishop
