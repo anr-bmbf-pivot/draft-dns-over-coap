@@ -84,5 +84,49 @@ NiTs:
 [[GF-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-gf]] /...this kind of poisoning attacks./...this kind of poisoning attack./
 (remove 's').
 
+[Paul Wouters' Discuss on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-pw]
+===========================================================
+
+DISCUSS
+-------
+[[PW-Discuss-1][draft-ietf-core-dns-over-coap-17-ballot-pw]] I have a DISCUSS that should be easy to fix, and a few comments.
+
+[[PW-Discuss-2][draft-ietf-core-dns-over-coap-17-ballot-pw]] Section 4.2.3.
+
+[[PW-Discuss-3][draft-ietf-core-dns-over-coap-17-ballot-pw]] I don't see RFC3655 or RFC2535 allowing setting the AD bit in a query,
+only in the answer. But here it shows the example query with an AD bit
+set. Shouldn't this be the DO bit?
+
+COMMENT
+-------
+> [[PW-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-pw]] A full SVCB mapping is being prepared in
+> [I-D.ietf-core-transport-indication],
+
+[[PW-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-pw]] Phrase this more neutrally, as if the document is also already published.
+
+> [[PW-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-pw]] Paths with longer segments cannot be advertised with the "docpath"
+> SvcParam and are thus NOT RECOMMENDED for the path to the DoC
+> resource.
+
+[[PW-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-pw]] Should this not be a MUST NOT?
+
+[[PW-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-pw]] Section 8
+
+> [[PW-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-pw]] A DoC client may not be able to perform DNSSEC validation,
+> e.g., due to code size constraints, or due to the size of
+> the responses. It may trust its DoC server to perform DNSSEC
+> validation;
+
+[[PW-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-pw]] I can't see an IoT device doing DNSSEC validation. It would have to
+validate a large number of queries in a row to get the validation from
+the DNS root down to the domain. Validation of a single query would
+not contain all the information required, so you either need to implement
+a fully recursive validating DNS server, or support RFC 7901 CHAIN Query
+Requests in both the DoC Server and DoC client. While I think RFC7901 support
+is doable, implementing a fully recursive validating DNS server is not.
+I would rewrite the Section based on these assumptions (eg it has to trust
+the AD bit)
+
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gf]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
+[draft-ietf-core-dns-over-coap-17-ballot-pw]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_paul-wouters
