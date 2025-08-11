@@ -238,12 +238,6 @@ not advertisable with the "docpath" SvcParam.
 DoC server are not IoT devices. Implementing CHAIN Query Requests is up to the implementation,
 nothing in DoC prevents that.
 
-## Mention TLS as Security Mechanism
-
-> [[MiBi-Comment-1][draft-ietf-core-dns-over-coap-16-ballot-mibi]] One more item I noticed while preparing the ballot: the abstract and introduction state the use of DTLS and OSCORE for message protection, but TLS is also supported according to the remaining sections. Please either explicitly mention TLS or adjust to "(D)TLS" where appropriate.
-
-Already done in [`d1f0f2f`](https://github.com/core-wg/draft-dns-over-coap/commit/d1f0f2ffb8ce30bc6a91d114e51284d0c4d7d438) (review was on a previous version of the draft).
-
 ## Provide Operational Considerations on Non-Confirmable vs Confirmable
 
 > ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
@@ -291,6 +285,12 @@ Records or DNR” says as much. Is there something that needs to be clarified he
 > It is unlikely that I-D.ietf-iotops-7228bis will make it before DoC. I suggest you simply delete that RFC Editor note.
 
 This was a recommendation by a reviewer and it does not hurt to have the note there.
+
+## Mention TLS as Security Mechanism
+
+> [[MiBi-Comment-1][draft-ietf-core-dns-over-coap-16-ballot-mibi]] One more item I noticed while preparing the ballot: the abstract and introduction state the use of DTLS and OSCORE for message protection, but TLS is also supported according to the remaining sections. Please either explicitly mention TLS or adjust to "(D)TLS" where appropriate.
+
+Already done in [`d1f0f2f`](https://github.com/core-wg/draft-dns-over-coap/commit/d1f0f2ffb8ce30bc6a91d114e51284d0c4d7d438) (review was on a previous version of the draft).
 
 Unclear
 =======
