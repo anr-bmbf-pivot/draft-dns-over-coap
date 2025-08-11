@@ -245,8 +245,68 @@ It is unlikely that I-D.ietf-iotops-7228bis will make it before DoC. I suggest y
 Cheers,
 Med
 
+[Éric Vyncke's Yes on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-ervy]
+=======================================================
+
+## COMMENT
+
+### Éric Vyncke, INT AD, comments for draft-ietf-avtcore-rtp-scip-05
+CC @evyncke
+
+[[ErVy-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Thank you for the work put into this document. Like others, I was puzzled at first sight about a n+1 mechanism to transport DNS traffic, but after reading the motivation in section 1, it does make sense even if actual data (packet size, transaction, ...) would be helpful as DNS payload is already compressed.
+
+Please find below some non-blocking COMMENT points/nits (replies would be appreciated even if only for my own education).
+
+Special thanks to Marco Tiloca for the shepherd's write-up including the WG consensus and the justification of the intended status.
+
+Other thanks to Vladimír Čunát , the DNS directorate reviewer (at my request), please consider this dns-dir review:
+https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
+
+I hope that this review helps to improve the document,
+
+Regards,
+
+-éric
+
+### COMMENTS (non-blocking)
+
+#### [[ErVy-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Abstract
+
+Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
+
+#### Section 1
+
+[[ErVy-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Rather than using RFC 1035, you may want to use STD 13.
+
+[[ErVy-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Please mention that only OPCODE=0 is supported, i.e., not 'generic DNS messages' but only "DNS queries".
+
+[[ErVy-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/link layer frame sizes/link-layer frame sizes/ ?
+
+[[ErVy-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Thanks for providing SVG graphics, the HTML rendering is so much nicer :)
+
+#### [[ErVy-Comment-7][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 3.2
+
+Should there be a space in `255OCTET`?
+
+#### [[ErVy-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.1
+
+Is there any way for provide an extension to other RR codes ? `For the purposes of this document, only OPCODE 0 (Query) is supported for DNS messages. Future work might provide specifications and considerations for other values of OPCODE.` seems rather vague about extension points. The UPDATE op-code could be very interesting.
+
+#### [[ErVy-Comment-9][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.2.3
+
+As there is only one example, please use singular in the section title.
+
+#### Section 8
+
+[[ErVy-Comment-10][draft-ietf-core-dns-over-coap-17-ballot-ervy]] s/That information can also imply trust in the DNSSEC validation by that server./That information can also imply trust in the DNSSEC validation by that *DoC* server./
+
+[[ErVy-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-ervy]] More generally, I was expecting more text about DNSSEC earlier in the text, e.g, by stating that a DoC server MAY (or SHOULD or MUST) be the DNSSEC validator.
+
+[[ErVy-Comment-12][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Rather then referring to RFC 9364, you may want to refer to BCP 237.
+
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gofa]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
 [draft-ietf-core-dns-over-coap-17-ballot-pawo]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_paul-wouters
 [draft-ietf-core-dns-over-coap-16-ballot-mibi]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_mike-bishop
 [draft-ietf-core-dns-over-coap-17-ballot-mobo]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_mohamed-boucadair
+[draft-ietf-core-dns-over-coap-17-ballot-ervy]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_eric-vyncke
