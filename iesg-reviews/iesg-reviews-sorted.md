@@ -21,6 +21,31 @@ This would cause the server to keep sending notifications to the client and the 
 Resets (as per the cancellation procedure in
 [RFC 7641, section 3.6](https://datatracker.ietf.org/doc/html/rfc7641#section-3.6)).
 
+## Add Operational Considerations on Redirection
+
+> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
+>
+> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+>
+> #### [[MoBo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Redirection (*)
+>
+> Likewise, do we allow (and thus need to support) server redirection in case of 5.03? We should be explicit about the expected behavior. An example of deployment case where redirection support may be useful is: bootstrapping with a centralized DoC server and then redirect the DoC client to a local DoC server. I’m not pushing for any direction here, but simply providing an example of aspects to cover.
+
+We will add some words on that. My [Martine] intuitive thought is, there is nothing speaking against
+it, but we should be careful to write centralization into the spec.
+
+## Add Considertaions on Hop-Limit Option
+> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
+>
+> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+>
+> #### [[MoBo-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Control of CoAP Proxy Hops (*)
+>
+> The spec mentions CoAP proxies, but I wonder whether it needs to mention the use of Hop-Limit Option to control how queries are propagated or help detect infinite loops due to incorrect proxy configuration.
+
+Makes sense to at least mention [RFC8768](https://datatracker.ietf.org/doc/rfc8768) as a
+recommendation.
+
 Minor Issues
 ============
 
@@ -73,6 +98,25 @@ Proposed phrasing:
 > It generalizes mechanisms for all CoAP services.
 > This document introduces only the discovery of DoC services.
 
+## RFC 9460 Should be Normative
+
+> ### [[MoBo-Comment-7][draft-ietf-core-dns-over-coap-17-ballot-mobo]] SVCB is normative  (*)
+>
+> Text such as (and similar)
+>
+>    This document specifies "docpath" as a single-valued SvcParamKey that
+>    is mandatory for DoC SVCB records.
+>
+> or
+>
+>    Paths with longer segments cannot be advertised
+>    with the "docpath" SvcParam and are thus NOT RECOMMENDED for the path
+>    to the DoC resource.
+>
+> Suggests that understanding the concept of SvcParam is required. I suggest to cite SVCB as normative.
+
+Will do.
+
 Nits
 ====
 
@@ -124,6 +168,41 @@ Will do.
 > [[GoFa-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /...this kind of poisoning attacks./...this kind of poisoning attack./
 (remove 's').
 
+## DoC Server May be the Authoritative Nameserver
+
+> ### [[MoBo-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Recursion termination in the CoAP realm
+>
+> Figure 1 may be interpreted as if “conventional” DNS message will always be triggered by a query from a DoC client. Should we mention that DoC server can terminate the query if it is authoritative for the queried resource?
+
+The dashed line might be interpreted as such, but might be worth to explicitly mention this in the
+Introduction text.
+
+## MUST Configure from Trusted Source
+
+> ### [[MoBo-Comment-10][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Trusted source
+>
+> CURRENT:
+>   Automatic configuration
+>    SHOULD only be done from a trusted source.
+>
+> Why isn’t this a MUST?
+
+I [Martine] am a bit hesitant about this since we do not really define what “a trusted source” is.
+
+## Redundant requirement on "application/dns-message"
+> ### [[MoBo-Comment-13][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Redundant requirement?
+>
+> CURRENT:
+>    A DoC server MUST be able to parse requests of
+>    Content-Format "application/dns-message".
+>
+> How is this different from:
+>
+>   “Both DoC client and DoC server MUST be able to parse contents in the "application/dns-message"
+>   Content-Format"?
+
+We will remove the redundant requirement in Section 4.2.1.
+
 No-Ops
 ======
 
@@ -165,118 +244,88 @@ nothing in DoC prevents that.
 
 Already done in [`d1f0f2f`](https://github.com/core-wg/draft-dns-over-coap/commit/d1f0f2ffb8ce30bc6a91d114e51284d0c4d7d438) (review was on a previous version of the draft).
 
----
+## Provide Operational Considerations on Non-Confirmable vs Confirmable
 
-[Mohamed Boucadair's Yes on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-mobo]
-=============================================================
+> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
+>
+> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+>
+> #### [[MoBo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Confirmable and Non-Confirmable (*)
+>
+> Should the spec provide more guidance about which mode should be used by default? I guess, the default mode is Confirmable. Right?
 
-COMMENT
--------
+The selection of NON vs CON is very use case and deployment dependent. I [Martine] don't think we
+should restrict the implementer here. As always with CoAP, you probably want CON, but NON should not
+be disregarded by an arbitrary default.
 
-Hi Martine, Christian, Cenk, Thomas, and Matthias,
-
-Thank you for the effort put into this specification.
-
-Also, thanks to Tim Wicinski for the DNSDIR reviews and for the authors for taking care of his comments.
-
-[[MoBo-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Although there are a bunch of DNS transport out there (Do53, DoT, DoQ, DoH, etc.), the motivations for DoC are solid. Better, the proposed design is well-thought. I support this effort, hence my "Yes" ballot.
-
-Please find below some comments; major comments are tagged with (*):
+## How Should DNS Errors Be Signaled to DoC Client?
 
 ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
 
-Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+>
+> #### [[MoBo-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Troubleshooting (*)
+>
+> Do we need extra codes to demux DNS-related errors vs. conventional CoAP? For example, CoAP leg may be OK but the upstream DNS query may not be sent out because of a DNS failure. How to report that back to the DoC client?
 
-#### [[MoBo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Redirection (*)
+[Section 4.3.1](https://www.ietf.org/archive/id/draft-ietf-core-dns-over-coap-17.html#section-4.3.1) clarifies this in our eyes. DNS errors are conveyed with Rcodes in the DNS part of the response. Should we be clearer there?
 
-Likewise, do we allow (and thus need to support) server redirection in case of 5.03? We should be explicit about the expected behavior. An example of deployment case where redirection support may be useful is: bootstrapping with a centralized DoC server and then redirect the DoC client to a local DoC server. I’m not pushing for any direction here, but simply providing an example of aspects to cover.
-
-#### [[MoBo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Confirmable and Non-Confirmable (*)
-
-Should the spec provide more guidance about which mode should be used by default? I guess, the default mode is Confirmable. Right?
-
-#### [[MoBo-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Control of CoAP Proxy Hops (*)
-
-The spec mentions CoAP proxies, but I wonder whether it needs to mention the use of Hop-Limit Option to control how queries are propagated or help detect infinite loops due to incorrect proxy configuration.
-
-#### [[MoBo-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Troubleshooting (*)
-
-Do we need extra codes to demux DNS-related errors vs. conventional CoAP? For example, CoAP leg may be OK but the upstream DNS query may not be sent out because of a DNS failure. How to report that back to the DoC client?
-
-### [[MoBo-Comment-7][draft-ietf-core-dns-over-coap-17-ballot-mobo]] SVCB is normative  (*)
-
-Text such as (and similar)
-
-   This document specifies "docpath" as a single-valued SvcParamKey that
-   is mandatory for DoC SVCB records.
-
-or
-
-   Paths with longer segments cannot be advertised
-   with the "docpath" SvcParam and are thus NOT RECOMMENDED for the path
-   to the DoC resource.
-
-Suggests that understanding the concept of SvcParam is required. I suggest to cite SVCB as normative.
-
-### [[MoBo-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Recursion termination in the CoAP realm
-
-Figure 1 may be interpreted as if “conventional” DNS message will always be triggered by a query from a DoC client. Should we mention that DoC server can terminate the query if it is authoritative for the queried resource?
-
-### [[MoBo-Comment-9][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Back-to-Back DoC Server and Do53/DoT/DoH
-
-There is no mapping frozen in the spec between various DNS transport. It would be cleaner from an architectural standpoint to indicate the B2B entity in Figure 1.
-
-### [[MoBo-Comment-10][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Trusted source
-
-CURRENT:
-  Automatic configuration
-   SHOULD only be done from a trusted source.
-
-Why isn’t this a MUST?
-
-### [[MoBo-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-mobo]] On OSCORE
-
-CURRENT:
-   Because the ALPN extension is only
-   defined for (D)TLS, these mechanisms cannot be used for DoC servers
-   which use only OSCORE [RFC8613] and Ephemeral Diffie-Hellman Over
-   COSE (EDHOC) [RFC9528] (with COSE abbreviating "Concise Binary Object
-   Notation (CBOR) Object Signing and Encryption" [RFC9052]) for
-   security.
-
-Please note that DNR says the following:
-
-      The "alpn" SvcParam may not be required in contexts such as a
-      variant of DNS over the Constrained Application Protocol (CoAP)
-      where messages are encrypted using Object Security for Constrained
-      RESTful Environments (OSCORE) [RFC8613].
+## Where Does the Destination Address in DDR/DNR Come From
 
 ### [[MoBo-Comment-12][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Mysterious destination IP address (*)
 
-CURRENT:
-   *  The destination address for the request SHOULD be taken from
-      additional information about the target, e.g., from an AAAA resource record
-      associated with the target name or from an "ipv6hint" SvcParam
+> CURRENT:
+>    *  The destination address for the request SHOULD be taken from
+>       additional information about the target, e.g., from an AAAA resource record
+>       associated with the target name or from an "ipv6hint" SvcParam
+>
+> How we got that resolution as at this stage we don’t have a DNS server to communicate with? Maybe I’m missing something.
 
-How we got that resolution as at this stage we don’t have a DNS server to communicate with? Maybe I’m missing something.
+The DoC server is either configured by DNS (via SVCB records from another DNS server), DHCP, or RA,
+as described in RFC 9462 and RFC 9463. The title of the section “Discovery using SVCB Resource
+Records or DNR” says as much. Is there something that needs to be clarified here?
 
-### [[MoBo-Comment-13][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Redundant requirement?
+## Remove RFC Editor's Note on I-D.ietf-iotops-7228bis
+> ### [[MoBo-Comment-14][draft-ietf-core-dns-over-coap-17-ballot-mobo]] I-D.ietf-iotops-7228bis note
+>
+> It is unlikely that I-D.ietf-iotops-7228bis will make it before DoC. I suggest you simply delete that RFC Editor note.
 
-CURRENT:
-   A DoC server MUST be able to parse requests of
-   Content-Format "application/dns-message".
+This was a recommendation by a reviewer and it does not hurt to have the note there.
 
-How is this different from:
+Unclear
+=======
 
-  “Both DoC client and DoC server MUST be able to parse contents in the "application/dns-message"
-  Content-Format"?
+## Indicate B2B Entity in Figure 1
+> ### [[MoBo-Comment-9][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Back-to-Back DoC Server and Do53/DoT/DoH
+>
+> There is no mapping frozen in the spec between various DNS transport. It would be cleaner from an architectural standpoint to indicate the B2B entity in Figure 1.
 
-### [[MoBo-Comment-14][draft-ietf-core-dns-over-coap-17-ballot-mobo]] I-D.ietf-iotops-7228bis note
+Not sure what is meant with Back-to-Back here.
 
-It is unlikely that I-D.ietf-iotops-7228bis will make it before DoC. I suggest you simply delete that RFC Editor note.
 
-Cheers,
-Med
+## Statement about ALPN Extension Contradicts DNR?
+
+### [[MoBo-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-mobo]] On OSCORE
+
+> CURRENT:
+>    Because the ALPN extension is only
+>    defined for (D)TLS, these mechanisms cannot be used for DoC servers
+>    which use only OSCORE [RFC8613] and Ephemeral Diffie-Hellman Over
+>    COSE (EDHOC) [RFC9528] (with COSE abbreviating "Concise Binary Object
+>    Notation (CBOR) Object Signing and Encryption" [RFC9052]) for
+>    security.
+>
+> Please note that DNR says the following:
+>
+>       The "alpn" SvcParam may not be required in contexts such as a
+>       variant of DNS over the Constrained Application Protocol (CoAP)
+>       where messages are encrypted using Object Security for Constrained
+>       RESTful Environments (OSCORE) [RFC8613].
+
+Not sure, which part of DNR (RFC9463? That one does not mention CoAP or OSCORE) Med is referring to
+here. The paragraph is not part of the -dns-over-coap, nor -transport-indication.
+
+---
 
 [Éric Vyncke's Yes on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-ervy]
 =======================================================
