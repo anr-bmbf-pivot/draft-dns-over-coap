@@ -1,19 +1,19 @@
 [Dnsdir Telechat review of -17 by Vladimír Čunát][review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]
 =================================================
 
-[[VlaCu-Review-1][review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]] dnsdir assigned me reviewing this draft.  I found no issues in there, except a
+dnsdir assigned me reviewing this draft.  I found no issues in there, except a
 nit below.
 
-[[VlaCu-Review-2][review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]] Note that my knowledge around constrained systems (including CoAP) is close to
+Note that my knowledge around constrained systems (including CoAP) is close to
 zero, so I could easily miss issues in those aspects.  I've read through this
 whole document and glanced at some related constrained stuff.
 
-[[VlaCu-Review-3][review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]] Aside: I'd think that DNS people in IETF mostly won't be thrilled to have yet
+Aside: I'd think that DNS people in IETF mostly won't be thrilled to have yet
 another transport for DNS, but I understand that the current DNS encryption
 options aren't great for such very constrained use cases, and I don't expect
 DoC to become common outside of those cases.
 
-[[VlaCu-Review-4][review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]] Nit: some examples use `ARCOUNT` and some don't.  I'd suggest to unify all to
+[[VlaCu-Review-1][review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]] Nit: some examples use `ARCOUNT` and some don't.  I'd suggest to unify all to
 `ADDITIONAL`.
 
 [Gorry Fairhurst's Discuss on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-gofa]
@@ -22,34 +22,34 @@ DoC to become common outside of those cases.
 DISCUSS
 -------
 
-[[GoFa-Discuss-1][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Thanks for this short and useful specification, I have two areas I would like to discuss to understand how this is expected to operate.
+Thanks for this short and useful specification, I have two areas I would like to discuss to understand how this is expected to operate.
 
-[[GoFa-Discuss-2][draft-ietf-core-dns-over-coap-17-ballot-gofa]] As noted in https://datatracker.ietf.org/doc/statement-iesg-handling-ballot-positions-20220121/, a DISCUSS ballot is a request to have a discussion on the points below; I think that the document would be improved with a small addition here, but can be convinced otherwise.
+As noted in https://datatracker.ietf.org/doc/statement-iesg-handling-ballot-positions-20220121/, a DISCUSS ballot is a request to have a discussion on the points below; I think that the document would be improved with a small addition here, but can be convinced otherwise.
 
 ---
 
-1. [[GoFa-Discuss-3][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Are there actions the server needs to complete when a client has requested
+1. [[GoFa-Discuss-1][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Are there actions the server needs to complete when a client has requested
 to observe the record, such as to retain a count/list of observing
 clients? ... I think I couuld be missing a part of the logic here:
 
-   [[GoFa-Discuss-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] If the CoAP request indicates that the DoC client wants to observe a
-   resource record, a DoC server MAY use a DNS Subscribe message instead
-   of a classic DNS query to fetch the information on behalf of a DoC
-   client.
+> If the CoAP request indicates that the DoC client wants to observe a
+> resource record, a DoC server MAY use a DNS Subscribe message instead
+> of a classic DNS query to fetch the information on behalf of a DoC
+> client.
 
 ---
 
-2. [[GoFa-Discuss-5][draft-ietf-core-dns-over-coap-17-ballot-gofa]] This statement confused me:
+2. [[GoFa-Discuss-2][draft-ietf-core-dns-over-coap-17-ballot-gofa]] This statement confused me:
 
-   [[GoFa-Discuss-6][draft-ietf-core-dns-over-coap-17-ballot-gofa]] If no more DoC clients observe a resource record for which the DoC
-   server has an open subscription, the DoC server MUST use a DNS
-   Unsubscribe message to close its subscription to the resource record
-   as well.
+> If no more DoC clients observe a resource record for which the DoC
+> server has an open subscription, the DoC server MUST use a DNS
+> Unsubscribe message to close its subscription to the resource record
+> as well.
 
-- [[GoFa-Discuss-7][draft-ietf-core-dns-over-coap-17-ballot-gofa]] 2.1. What does 'no more' mean?
-- [[GoFa-Discuss-8][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Is this perhaps when there are no remaining clients, if so how is this
+- [[GoFa-Discuss-3][draft-ietf-core-dns-over-coap-17-ballot-gofa]] 2.1. What does 'no more' mean?
+- [[GoFa-Discuss-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Is this perhaps when there are no remaining clients, if so how is this
 known? See above query about how should (or could) this be detected?
-- [[GoFa-Discuss-9][draft-ietf-core-dns-over-coap-17-ballot-gofa]] 2.2. What happens if the DNS Unsubscribe message fails to close its subscription?
+- [[GoFa-Discuss-5][draft-ietf-core-dns-over-coap-17-ballot-gofa]] 2.2. What happens if the DNS Unsubscribe message fails to close its subscription?
 ... please explain a little the implication and what needs to be done in this case.
 
 ----
@@ -57,31 +57,31 @@ known? See above query about how should (or could) this be detected?
 COMMENT
 -------
 
-[[GoFa-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Thanks for responding to the TSV-ART review by T Pauley.
+Thanks for responding to the TSV-ART review by T Pauley.
 
 ---
 
-[[GoFa-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Editorial:
+[[GoFa-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Editorial:
 Please more clearly label the following, so it is seen as an RFC-Ed comment:
 "Before publication, please replace ff 0a with the hexadecimal...."
 
 ---
 
-[[GoFa-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Editorial:
+[[GoFa-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-gofa]] Editorial:
       If it is "co", a
       CoAP request for CoAP over DTLS MUST be constructed.  Any other
       SvcParamKeys specifying a transport are out of the scope of this
       document.
-- [[GoFa-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] This seems to be missing a normative reference to: I-D.ietf-core-coap-dtls-alpn.
+- This seems to be missing a normative reference to: I-D.ietf-core-coap-dtls-alpn.
 
 NiTs:
-[[GoFa-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /This document provides no specification on how to map between DoC and
+[[GoFa-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /This document provides no specification on how to map between DoC and
    DoH, e.g., at a CoAP-to-HTTP-proxy.  In fact, such...
 /This document provides no specification on how to map between DoC and
    DoH, e.g., at a CoAP-to-HTTP-proxy, such.../
 (To connect the RFC2119 requirement to the clause to which it refers.)
 
-[[GoFa-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /...this kind of poisoning attacks./...this kind of poisoning attack./
+[[GoFa-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-gofa]] /...this kind of poisoning attacks./...this kind of poisoning attack./
 (remove 's').
 
 [Paul Wouters' Discuss on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-pawo]
@@ -89,11 +89,11 @@ NiTs:
 
 DISCUSS
 -------
-[[PaWo-Discuss-1][draft-ietf-core-dns-over-coap-17-ballot-pawo]] I have a DISCUSS that should be easy to fix, and a few comments.
+I have a DISCUSS that should be easy to fix, and a few comments.
 
-[[PaWo-Discuss-2][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Section 4.2.3.
+[[PaWo-Discuss-1][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Section 4.2.3.
 
-[[PaWo-Discuss-3][draft-ietf-core-dns-over-coap-17-ballot-pawo]] I don't see RFC3655 or RFC2535 allowing setting the AD bit in a query,
+I don't see RFC3655 or RFC2535 allowing setting the AD bit in a query,
 only in the answer. But here it shows the example query with an AD bit
 set. Shouldn't this be the DO bit?
 
@@ -102,22 +102,22 @@ COMMENT
 > [[PaWo-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-pawo]] A full SVCB mapping is being prepared in
 > [I-D.ietf-core-transport-indication],
 
-[[PaWo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Phrase this more neutrally, as if the document is also already published.
+Phrase this more neutrally, as if the document is also already published.
 
-> [[PaWo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Paths with longer segments cannot be advertised with the "docpath"
+> [[PaWo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Paths with longer segments cannot be advertised with the "docpath"
 > SvcParam and are thus NOT RECOMMENDED for the path to the DoC
 > resource.
 
-[[PaWo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Should this not be a MUST NOT?
+Should this not be a MUST NOT?
 
-[[PaWo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Section 8
+[[PaWo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-pawo]] Section 8
 
-> [[PaWo-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-pawo]] A DoC client may not be able to perform DNSSEC validation,
+> A DoC client may not be able to perform DNSSEC validation,
 > e.g., due to code size constraints, or due to the size of
 > the responses. It may trust its DoC server to perform DNSSEC
 > validation;
 
-[[PaWo-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-pawo]] I can't see an IoT device doing DNSSEC validation. It would have to
+I can't see an IoT device doing DNSSEC validation. It would have to
 validate a large number of queries in a row to get the validation from
 the DNS root down to the domain. Validation of a single query would
 not contain all the information required, so you either need to implement
