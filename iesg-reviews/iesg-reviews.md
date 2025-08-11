@@ -325,6 +325,22 @@ I have no objection to the publication of this document as an RFC.
 
 Many thanks to Todd Herr for the ARTART review.
 
+[Deb Cooley's No Objection on draft-ietf-core-dns-over-coap-17][draft-ietf-core-dns-over-coap-17-ballot-deco]
+===============================================================
+
+COMMENT
+-------
+
+Thanks to Ben Schwartz for his earlier review (if not his secdir review) of this draft.
+
+[[DeCo-Comment-1][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 1, para 1:  Instead of just referencing DTLS with two RFCs, perhaps say that 'be secured by DTLS 1.2 or 1.3' and then add the RFC references (and you do need RFC 6347 even though 9147 obsoletes it).  If you can do the same for TLS, then do it (obviously RFC8446 is TLS 1.3).  [this construct appears throughout the draft, not just in Section 1]
+
+[[DeCo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 3, last sentence:  What are the consequences of not complying with the SHOULD?
+
+[[DeCo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 8, para 4:  I don't understand the first sentence:  'impact....limited,..both harden against injecting...' seem to be opposite?  If the impact is limited, how does it harden against injecting?
+
+[[DeCo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-deco]] Section 8, para 5, last sentence:  The 'e.g.' makes this confusing.  Are there other options besides DNSSEC?
+
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gofa]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
 [draft-ietf-core-dns-over-coap-17-ballot-pawo]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_paul-wouters
@@ -332,3 +348,4 @@ Many thanks to Todd Herr for the ARTART review.
 [draft-ietf-core-dns-over-coap-17-ballot-mobo]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_mohamed-boucadair
 [draft-ietf-core-dns-over-coap-17-ballot-ervy]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_eric-vyncke
 [draft-ietf-core-dns-over-coap-17-ballot-anne]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_andy-newton
+[draft-ietf-core-dns-over-coap-17-ballot-deco]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_deb-cooley
