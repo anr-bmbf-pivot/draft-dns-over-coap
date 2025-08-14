@@ -11,14 +11,14 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
       - [x] [How Should DNS Errors Be Signaled to DoC Client?](#how-should-dns-errors-be-signaled-to-doc-client)
 - [Minor Issues](#minor-issues)
   - [x] [Statement about ALPN Extension Contradicts DNR?](#statement-about-alpn-extension-contradicts-dnr)
-  - [ ] [Mention That Only OPCODE=0 Is Supported in Abstract and Introduction](#mention-that-only-opcode0-is-supported-in-abstract-and-introduction)
-  - [ ] [Provide Extension Point For Other OPCODEs](#provide-extension-point-for-other-opcodes)
-  - [ ] [Mention DNSSEC Earlier](#mention-dnssec-earlier)
+  - [x] [Mention That Only OPCODE=0 Is Supported in Abstract and Introduction](#mention-that-only-opcode0-is-supported-in-abstract-and-introduction)
+  - [x] [Provide Extension Point For Other OPCODEs](#provide-extension-point-for-other-opcodes)
+  - [x] [Mention DNSSEC Earlier](#mention-dnssec-earlier)
   - [x] [Clarify (or Discuss with Gory) Actions Server Needs to Complete When Client Observes Resource](#clarify-or-discuss-with-gory-actions-server-needs-to-complete-when-client-observes-resource) (@chrysn)
   - [x] [Clarify (or Discuss with Gory) What “No More Clients Observe A Resource Record” Means](#clarify-or-discuss-with-gory-what-no-more-clients-observe-a-resource-record-means) (@chrysn)
   - [x] [Refer to Drafts as If They Were Already Published](#refer-to-drafts-as-if-they-were-already-published)
   - [x] [RFC 9460 Should be Normative](#rfc-9460-should-be-normative)
-  - [ ] [State More Clearly Why DNS ID = 0 Is OK to Use With DTLS or OSCORE](#state-more-clearly-why-dns-id-0-is-ok-to-use-with-dtls-or-oscore)
+  - [ ] [State More Clearly Why DNS ID = 0 Is OK to Use With DTLS or OSCORE](#state-more-clearly-why-dns-id--0-is-ok-to-use-with-dtls-or-oscore)
   - [ ] [Remove Confusing MAY](#remove-confusing-may)
   - [ ] [Clarify Why SVCB Record Algorithm SHOULD Be Repeated (and not MUST)](#clarify-why-svcb-record-algorithm-should-be-repeated-and-not-must)
 - [Nits](#nits)
@@ -29,13 +29,13 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
   - [ ] [DoC Server May be the Authoritative Nameserver](#doc-server-may-be-the-authoritative-nameserver)
   - [x] [MUST Configure from Trusted Source](#must-configure-from-trusted-source)
   - [x] [Redundant requirement on "application/dns-message"](#redundant-requirement-on-applicationdns-message)
-  - [ ] [Use BCP/STD instead of RFCs When Applicable](#use-bcpstd-instead-of-rfcs-when-applicable)
-  - [ ] [Use Singular in Title When Only One Example in Section](#use-singular-in-title-when-only-one-example-in-section)
+  - [x] [Use BCP/STD instead of RFCs When Applicable](#use-bcpstd-instead-of-rfcs-when-applicable)
+  - [x] [Use Singular in Title When Only One Example in Section](#use-singular-in-title-when-only-one-example-in-section)
   - [x] [Remove Unused Reference](#remove-unused-reference) ([d772a47](https://github.com/core-wg/draft-dns-over-coap/commit/d772a47b6810cadbf91e3ae93626f25359963a05))
   - [ ] [Mention Protocols First, Then Sequence Up the References / Explicitly Mention (D)TLS 1.2, 1.3](#mention-protocols-first-then-sequence-up-the-references-explicitly-mention-dtls-12-13)
   - [ ] [Are There Other Integrity Mechanisms Than DNSSEC](#are-there-other-integrity-mechanisms-than-dnssec)
   - [ ] [Rephrasings Regarding Accept Option](#rephrasings-regarding-accept-option)
-  - [ ] [Language Nits](#language-nits)
+  - [x] [Language Nits](#language-nits)
 - [No-Ops](#no-ops)
   - [x] [Longer Segments Than Allowed "docpath" MUST NOT be Allowed?](#longer-segments-than-allowed-docpath-must-not-be-allowed)
   - [x] [IoT Devices Can Not Do DNSSEC Validation](#iot-devices-can-not-do-dnssec-validation)
@@ -511,39 +511,6 @@ Unclear Issues
 > There is no mapping frozen in the spec between various DNS transport. It would be cleaner from an architectural standpoint to indicate the B2B entity in Figure 1.
 
 Not sure what is meant with Back-to-Back here.
-
-
-## Statement about ALPN Extension Contradicts DNR?
-
-### [[MoBo-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-mobo]] On OSCORE
-
-> CURRENT:
->    Because the ALPN extension is only
->    defined for (D)TLS, these mechanisms cannot be used for DoC servers
->    which use only OSCORE [RFC8613] and Ephemeral Diffie-Hellman Over
->    COSE (EDHOC) [RFC9528] (with COSE abbreviating "Concise Binary Object
->    Notation (CBOR) Object Signing and Encryption" [RFC9052]) for
->    security.
->
-> Please note that DNR says the following:
->
->       The "alpn" SvcParam may not be required in contexts such as a
->       variant of DNS over the Constrained Application Protocol (CoAP)
->       where messages are encrypted using Object Security for Constrained
->       RESTful Environments (OSCORE) [RFC8613].
-
-Not sure, which part of DNR (RFC9463? That one does not mention CoAP or OSCORE) Med is referring to
-here. The paragraph is not part of the -dns-over-coap, nor -transport-indication.
-
-## Provide Extension Point For Other OPCODEs
-> #### [[ErVy-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.1
->
-> Is there any way for provide an extension to other RR codes ? `For the purposes of this document, only OPCODE 0 (Query) is supported for DNS messages. Future work might provide specifications and considerations for other values of OPCODE.` seems rather vague about extension points. The UPDATE op-code could be very interesting.
-
-I do not see how people would be prevented from writing a draft on that. Maybe I am missing
-something.
-While many anticipate the UPDATE OPCODE for DoC, the decision to restrict to OPCODE 0 and later
-extend for other OPCODEs came directly out of [working group discussions](https://notes.ietf.org/notes-ietf-interim-2025-core-03-core#%E2%80%9CDNS-over-CoAP-DoC%E2%80%9D).
 
 [review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31]: https://datatracker.ietf.org/doc/review-ietf-core-dns-over-coap-17-dnsdir-telechat-cunat-2025-07-31/
 [draft-ietf-core-dns-over-coap-17-ballot-gofa]: https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/ballot/#draft-ietf-core-dns-over-coap_gorry-fairhurst
