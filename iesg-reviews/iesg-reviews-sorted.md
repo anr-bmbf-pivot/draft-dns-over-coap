@@ -10,7 +10,9 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
       - [x] [Add Considerations on Hop-Limit Option](#add-considerations-on-hop-limit-option)
       - [x] [How Should DNS Errors Be Signaled to DoC Client?](#how-should-dns-errors-be-signaled-to-doc-client)
 - [Minor Issues](#minor-issues)
+  - [x] [Statement about ALPN Extension Contradicts DNR?](#statement-about-alpn-extension-contradicts-dnr)
   - [ ] [Mention That Only OPCODE=0 Is Supported in Abstract and Introduction](#mention-that-only-opcode0-is-supported-in-abstract-and-introduction)
+  - [ ] [Provide Extension Point For Other OPCODEs](#provide-extension-point-for-other-opcodes)
   - [ ] [Mention DNSSEC Earlier](#mention-dnssec-earlier)
   - [x] [Clarify (or Discuss with Gory) Actions Server Needs to Complete When Client Observes Resource](#clarify-or-discuss-with-gory-actions-server-needs-to-complete-when-client-observes-resource) (@chrysn)
   - [x] [Clarify (or Discuss with Gory) What “No More Clients Observe A Resource Record” Means](#clarify-or-discuss-with-gory-what-no-more-clients-observe-a-resource-record-means) (@chrysn)
@@ -44,8 +46,6 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
   - [x] [Add Space to `255OCTET`](#add-space-to-255octet)
 - [Unclear Issues](#unclear-issues)
   - [ ] [Indicate B2B Entity in Figure 1](#indicate-b2b-entity-in-figure-1)
-  - [ ] [Statement about ALPN Extension Contradicts DNR?](#statement-about-alpn-extension-contradicts-dnr)
-  - [ ] [Provide Extension Point For Other OPCODEs](#provide-extension-point-for-other-opcodes)
 
 Major Issues
 ============
@@ -74,6 +74,29 @@ Resets (as per the cancellation procedure in
 Minor Issues
 ============
 
+## Statement about ALPN Extension Contradicts DNR?
+
+### [[MoBo-Comment-11][draft-ietf-core-dns-over-coap-17-ballot-mobo]] On OSCORE
+
+> CURRENT:
+>    Because the ALPN extension is only
+>    defined for (D)TLS, these mechanisms cannot be used for DoC servers
+>    which use only OSCORE [RFC8613] and Ephemeral Diffie-Hellman Over
+>    COSE (EDHOC) [RFC9528] (with COSE abbreviating "Concise Binary Object
+>    Notation (CBOR) Object Signing and Encryption" [RFC9052]) for
+>    security.
+>
+> Please note that DNR says the following:
+>
+>       The "alpn" SvcParam may not be required in contexts such as a
+>       variant of DNS over the Constrained Application Protocol (CoAP)
+>       where messages are encrypted using Object Security for Constrained
+>       RESTful Environments (OSCORE) [RFC8613].
+
+Remove
+
+> Because the ALPN extension is only defined for (D)TLS, [...]
+
 ## Mention That Only OPCODE=0 Is Supported in Abstract and Introduction
 
 > #### [[ErVy-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Abstract
@@ -88,6 +111,17 @@ Will do, but I [Martine] think it is somewhat confusing that both the client ini
 the communication type defined by OPCODE=0 is called “DNS query” (see also old title of the draft
 until [draft-lenders-dns-over-coap-03](https://datatracker.ietf.org/doc/draft-lenders-dns-over-coap/03/)).
 So we should be really careful about the wording.
+
+"Support for DNS queries (OPCODE = 0) ..."
+
+## Provide Extension Point For Other OPCODEs
+> #### [[ErVy-Comment-8][draft-ietf-core-dns-over-coap-17-ballot-ervy]] Section 4.1
+>
+> Is there any way for provide an extension to other RR codes ? `For the purposes of this document, only OPCODE 0 (Query) is supported for DNS messages. Future work might provide specifications and considerations for other values of OPCODE.` seems rather vague about extension points. The UPDATE op-code could be very interesting.
+
+Proposal:
+
+"This document only specifies OPCODE 0 (Query) for DNS over CoAP messages. This document only specifies OPCODE 0 (Query) for DNS over CoAP messages. Future documents, providing considerations for additional OPCODEs or extending its specification (e.g. by describing whether other CoAP codes need to be used for some operations)."
 
 ## Mention DNSSEC Earlier
 
