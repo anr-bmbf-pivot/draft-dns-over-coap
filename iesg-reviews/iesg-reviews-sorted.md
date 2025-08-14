@@ -3,15 +3,19 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
 
 - [Major Issues](#major-issues)
   - [ ] [Clarify (or Discuss with Gory) What Happens if DNS Unsubscribe Fails](#clarify-or-discuss-with-gory-what-happens-if-dns-unsubscribe-fails) (@chrysn)
-  - [ ] [Add Operational Considerations on Redirection](#add-operational-considerations-on-redirection)
-  - [ ] [Add Considerations on Hop-Limit Option](#add-considerations-on-hop-limit-option)
+  - [x] [Add Operational Considerations Section](#add-operational-considerations-section)
+      - [x] [Preference of Different Transport Flavors](#preference-of-different-transport-flavors)
+      - [x] [Add Operational Considerations on Redirection](#add-operational-considerations-on-redirection)
+      - [x] [Provide Operational Considerations on Non-Confirmable vs Confirmable](#provide-operational-considerations-on-non-confirmable-vs-confirmable)
+      - [x] [Add Considerations on Hop-Limit Option](#add-considerations-on-hop-limit-option)
+      - [x] [How Should DNS Errors Be Signaled to DoC Client?](#how-should-dns-errors-be-signaled-to-doc-client)
 - [Minor Issues](#minor-issues)
   - [ ] [Mention That Only OPCODE=0 Is Supported in Abstract and Introduction](#mention-that-only-opcode0-is-supported-in-abstract-and-introduction)
   - [ ] [Mention DNSSEC Earlier](#mention-dnssec-earlier)
   - [ ] [Clarify (or Discuss with Gory) Actions Server Needs to Complete When Client Observes Resource](#clarify-or-discuss-with-gory-actions-server-needs-to-complete-when-client-observes-resource) (@chrysn)
   - [ ] [Clarify (or Discuss with Gory) What “No More Clients Observe A Resource Record” Means](#clarify-or-discuss-with-gory-what-no-more-clients-observe-a-resource-record-means) (@chrysn)
   - [ ] [Refer to Drafts as If They Were Already Published](#refer-to-drafts-as-if-they-were-already-published)
-  - [ ] [RFC 9460 Should be Normative](#rfc-9460-should-be-normative)
+  - [x] [RFC 9460 Should be Normative](#rfc-9460-should-be-normative)
   - [ ] [State More Clearly Why DNS ID = 0 Is OK to Use With DTLS or OSCORE](#state-more-clearly-why-dns-id-0-is-ok-to-use-with-dtls-or-oscore)
   - [ ] [Remove Confusing MAY](#remove-confusing-may)
   - [ ] [Clarify Why SVCB Record Algorithm SHOULD Be Repeated (and not MUST)](#clarify-why-svcb-record-algorithm-should-be-repeated-and-not-must)
@@ -21,8 +25,8 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
   - [ ] [Label Note on `ff 0a` More Clearly as an RFC-Ed Note](#label-note-on-ff-0a-more-clearly-as-an-rfc-ed-note)
   - [ ] [Add Missing Citation to -coap-dtls-alpn](#add-missing-citation-to--coap-dtls-alpn)
   - [ ] [DoC Server May be the Authoritative Nameserver](#doc-server-may-be-the-authoritative-nameserver)
-  - [ ] [MUST Configure from Trusted Source](#must-configure-from-trusted-source)
-  - [ ] [Redundant requirement on "application/dns-message"](#redundant-requirement-on-applicationdns-message)
+  - [x] [MUST Configure from Trusted Source](#must-configure-from-trusted-source)
+  - [x] [Redundant requirement on "application/dns-message"](#redundant-requirement-on-applicationdns-message)
   - [ ] [Use BCP/STD instead of RFCs When Applicable](#use-bcpstd-instead-of-rfcs-when-applicable)
   - [ ] [Use Singular in Title When Only One Example in Section](#use-singular-in-title-when-only-one-example-in-section)
   - [ ] [Remove Unused Reference](#remove-unused-reference)
@@ -33,14 +37,11 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
 - [No-Ops](#no-ops)
   - [x] [Longer Segments Than Allowed "docpath" MUST NOT be Allowed?](#longer-segments-than-allowed-docpath-must-not-be-allowed)
   - [x] [IoT Devices Can Not Do DNSSEC Validation](#iot-devices-can-not-do-dnssec-validation)
-  - [x] [Provide Operational Considerations on Non-Confirmable vs Confirmable](#provide-operational-considerations-on-non-confirmable-vs-confirmable)
-  - [x] [How Should DNS Errors Be Signaled to DoC Client?](#how-should-dns-errors-be-signaled-to-doc-client)
   - [x] [Where Does the Destination Address in DDR/DNR Come From](#where-does-the-destination-address-in-ddrdnr-come-from)
   - [x] [Remove RFC Editor's Note on I-D.ietf-iotops-7228bis](#remove-rfc-editors-note-on-i-dietf-iotops-7228bis)
   - [x] [Mention TLS as Security Mechanism](#mention-tls-as-security-mechanism)
   - [x] [Link-layer vs. Link Layer](#link-layer-vs-link-layer)
   - [x] [Add Space to `255OCTET`](#add-space-to-255octet)
-  - [x] [Preference of Different Transport Flavors](#preference-of-different-transport-flavors)
 - [Unclear Issues](#unclear-issues)
   - [ ] [Indicate B2B Entity in Figure 1](#indicate-b2b-entity-in-figure-1)
   - [ ] [Statement about ALPN Extension Contradicts DNR?](#statement-about-alpn-extension-contradicts-dnr)
@@ -69,30 +70,6 @@ This would cause the server to keep sending notifications to the client and the 
 Resets (as per the cancellation procedure in
 [RFC 7641, section 3.6](https://datatracker.ietf.org/doc/html/rfc7641#section-3.6)).
 
-## Add Operational Considerations on Redirection
-
-> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
->
-> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
->
-> #### [[MoBo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Redirection (*)
->
-> Likewise, do we allow (and thus need to support) server redirection in case of 5.03? We should be explicit about the expected behavior. An example of deployment case where redirection support may be useful is: bootstrapping with a centralized DoC server and then redirect the DoC client to a local DoC server. I’m not pushing for any direction here, but simply providing an example of aspects to cover.
-
-We will add some words on that. My [Martine] intuitive thought is, there is nothing speaking against
-it, but we should be careful to write centralization into the spec.
-
-## Add Considerations on Hop-Limit Option
-> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
->
-> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
->
-> #### [[MoBo-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Control of CoAP Proxy Hops (*)
->
-> The spec mentions CoAP proxies, but I wonder whether it needs to mention the use of Hop-Limit Option to control how queries are propagated or help detect infinite loops due to incorrect proxy configuration.
-
-Makes sense to at least mention [RFC8768](https://datatracker.ietf.org/doc/rfc8768) as a
-recommendation.
 
 Minor Issues
 ============
@@ -411,31 +388,41 @@ not advertisable with the "docpath" SvcParam.
 DoC server are not IoT devices. Implementing CHAIN Query Requests is up to the implementation,
 nothing in DoC prevents that.
 
-## Provide Operational Considerations on Non-Confirmable vs Confirmable
+## Add Operational Considerations Section
 
-> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
+> #### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
 >
 > Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+
+### Preference of Different Transport Flavors
+
+> #### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
 >
-> #### [[MoBo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Confirmable and Non-Confirmable (*)
+> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+
+### Add Operational Considerations on Redirection
+
+> ##### [[MoBo-Comment-3][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Redirection (*)
+>
+> Likewise, do we allow (and thus need to support) server redirection in case of 5.03? We should be explicit about the expected behavior. An example of deployment case where redirection support may be useful is: bootstrapping with a centralized DoC server and then redirect the DoC client to a local DoC server. I’m not pushing for any direction here, but simply providing an example of aspects to cover.
+
+### Provide Operational Considerations on Non-Confirmable vs Confirmable
+
+> ##### [[MoBo-Comment-4][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Confirmable and Non-Confirmable (*)
 >
 > Should the spec provide more guidance about which mode should be used by default? I guess, the default mode is Confirmable. Right?
 
-The selection of NON vs CON is very use case and deployment dependent. I [Martine] don't think we
-should restrict the implementer here. As always with CoAP, you probably want CON, but NON should not
-be disregarded by an arbitrary default.
+### Add Considerations on Hop-Limit Option
 
-## How Should DNS Errors Be Signaled to DoC Client?
-
-### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
-
-> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+> ##### [[MoBo-Comment-5][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Control of CoAP Proxy Hops (*)
 >
-> #### [[MoBo-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Troubleshooting (*)
+> The spec mentions CoAP proxies, but I wonder whether it needs to mention the use of Hop-Limit Option to control how queries are propagated or help detect infinite loops due to incorrect proxy configuration.
+
+### How Should DNS Errors Be Signaled to DoC Client?
+
+> ##### [[MoBo-Comment-6][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Troubleshooting (*)
 >
 > Do we need extra codes to demux DNS-related errors vs. conventional CoAP? For example, CoAP leg may be OK but the upstream DNS query may not be sent out because of a DNS failure. How to report that back to the DoC client?
-
-[Section 4.3.1](https://www.ietf.org/archive/id/draft-ietf-core-dns-over-coap-17.html#section-4.3.1) clarifies this in our eyes. DNS errors are conveyed with Rcodes in the DNS part of the response. Should we be clearer there?
 
 ## Where Does the Destination Address in DDR/DNR Come From
 
@@ -480,15 +467,6 @@ own style guide on that; e.g., RFC 4957 uses hyphens).
 
 This notation was directly taken from [RFC 9460, section 7.1.1](https://datatracker.ietf.org/doc/html/rfc9460#section-7.1.1-2)
 to be in line with that definition.
-
-## Preference of Different Transport Flavors
-
-> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
->
-> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
-
-Priority exists in SvcParams, but this is an application implementor's and administrator's decision, so out of scope of this
-document.
 
 Unclear Issues
 ==============
