@@ -2,14 +2,14 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
 ==================================================
 
 - [Major Issues](#major-issues)
-  - [ ] [Clarify (or Discuss with Gory) What Happens if DNS Unsubscribe Fails](#clarify-or-discuss-with-gory-what-happens-if-dns-unsubscribe-fails)
+  - [ ] [Clarify (or Discuss with Gory) What Happens if DNS Unsubscribe Fails](#clarify-or-discuss-with-gory-what-happens-if-dns-unsubscribe-fails) (@chrysn)
   - [ ] [Add Operational Considerations on Redirection](#add-operational-considerations-on-redirection)
   - [ ] [Add Considerations on Hop-Limit Option](#add-considerations-on-hop-limit-option)
 - [Minor Issues](#minor-issues)
   - [ ] [Mention That Only OPCODE=0 Is Supported in Abstract and Introduction](#mention-that-only-opcode0-is-supported-in-abstract-and-introduction)
   - [ ] [Mention DNSSEC Earlier](#mention-dnssec-earlier)
-  - [ ] [Clarify (or Discuss with Gory) Actions Server Needs to Complete When Client Observes Resource](#clarify-or-discuss-with-gory-actions-server-needs-to-complete-when-client-observes-resource)
-  - [ ] [Clarify (or Discuss with Gory) What “No More Clients Observe A Resource Record” Means](#clarify-or-discuss-with-gory-what-no-more-clients-observe-a-resource-record-means)
+  - [ ] [Clarify (or Discuss with Gory) Actions Server Needs to Complete When Client Observes Resource](#clarify-or-discuss-with-gory-actions-server-needs-to-complete-when-client-observes-resource) (@chrysn)
+  - [ ] [Clarify (or Discuss with Gory) What “No More Clients Observe A Resource Record” Means](#clarify-or-discuss-with-gory-what-no-more-clients-observe-a-resource-record-means) (@chrysn)
   - [ ] [Refer to Drafts as If They Were Already Published](#refer-to-drafts-as-if-they-were-already-published)
   - [ ] [RFC 9460 Should be Normative](#rfc-9460-should-be-normative)
   - [ ] [State More Clearly Why DNS ID = 0 Is OK to Use With DTLS or OSCORE](#state-more-clearly-why-dns-id-0-is-ok-to-use-with-dtls-or-oscore)
