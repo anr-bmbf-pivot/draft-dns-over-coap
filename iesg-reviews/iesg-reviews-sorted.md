@@ -40,6 +40,7 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
   - [x] [Mention TLS as Security Mechanism](#mention-tls-as-security-mechanism)
   - [x] [Link-layer vs. Link Layer](#link-layer-vs-link-layer)
   - [x] [Add Space to `255OCTET`](#add-space-to-255octet)
+  - [x] [Preference of Different Transport Flavors](#preference-of-different-transport-flavors)
 - [Unclear Issues](#unclear-issues)
   - [ ] [Indicate B2B Entity in Figure 1](#indicate-b2b-entity-in-figure-1)
   - [ ] [Statement about ALPN Extension Contradicts DNR?](#statement-about-alpn-extension-contradicts-dnr)
@@ -479,6 +480,15 @@ own style guide on that; e.g., RFC 4957 uses hyphens).
 
 This notation was directly taken from [RFC 9460, section 7.1.1](https://datatracker.ietf.org/doc/html/rfc9460#section-7.1.1-2)
 to be in line with that definition.
+
+## Preference of Different Transport Flavors
+
+> ### [[MoBo-Comment-2][draft-ietf-core-dns-over-coap-17-ballot-mobo]] Lack of operation considerations (*)
+>
+> Other than discovery, the document does not discuss operational considerations that are worth to take into account to ease the deployability of DoC. At least, co-existence considerations (when several transport flavors are supported) should be covered (e.g., preference order). The following additional points may be considered:
+
+Priority exists in SvcParams, but this is an application implementor's and administrator's decision, so out of scope of this
+document.
 
 Unclear Issues
 ==============
