@@ -22,7 +22,7 @@ Revision Plan for draft-ietf-core-dns-over-coap-18
   - [ ] [Remove Confusing MAY](#remove-confusing-may)
   - [ ] [Clarify Why SVCB Record Algorithm SHOULD Be Repeated (and not MUST)](#clarify-why-svcb-record-algorithm-should-be-repeated-and-not-must)
 - [Nits](#nits)
-  - [ ] [Unify `ARCOUNT` to `ADDITIONAL` in Examples](#unify-arcount-to-additional-in-examples)
+  - [x] [Unify `ARCOUNT` to `ADDITIONAL` in Examples](#unify-arcount-to-additional-in-examples) ([db57f8e3](https://github.com/core-wg/draft-dns-over-coap/commit/db57f8e35f6ac90bc914f4eba343d0f3fbb1bd62))
   - [x] [Remove AD Bit from Query Examples](#remove-ad-bit-from-query-examples)
   - [x] [Label Note on `ff 0a` More Clearly as an RFC-Ed Note](#label-note-on-ff-0a-more-clearly-as-an-rfc-ed-note)
   - [x] [Add Missing Citation to -coap-dtls-alpn](#add-missing-citation-to--coap-dtls-alpn)
