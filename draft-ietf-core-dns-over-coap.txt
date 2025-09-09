@@ -5,14 +5,14 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                TU Dresden
 Intended status: Standards Track                               C. Amsüss
-Expires: 2 March 2026                                                   
+Expires: 13 March 2026                                                  
                                                              C. Gündoğan
                                                         NeuralAgent GmbH
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                         TU Dresden & Barkhausen Institut
-                                                          29 August 2025
+                                                        9 September 2025
 
 
                           DNS over CoAP (DoC)
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 March 2026.
+   This Internet-Draft will expire on 13 March 2026.
 
 Copyright Notice
 
@@ -106,29 +106,36 @@ Table of Contents
      9.1.  CoAP Content-Formats Registry
      9.2.  DNS Service Bindings (SVCB) Registry
      9.3.  Resource Type (rt=) Link Target Attribute Values Registry
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   10. Operational Considerations
+     10.1.  Co-existence of different DNS and CoAP transports
+     10.2.  Redirects
+     10.3.  Proxy Hop-Limit
+     10.4.  Error Handling
+     10.5.  DNS Extensions
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
    Appendix A.  Evaluation
    Appendix B.  Change Log
-     B.1.  Since draft-ietf-core-dns-over-coap-17
-     B.2.  Since draft-ietf-core-dns-over-coap-16
-     B.3.  Since draft-ietf-core-dns-over-coap-15
-     B.4.  Since draft-ietf-core-dns-over-coap-14
-     B.5.  Since draft-ietf-core-dns-over-coap-13
-     B.6.  Since draft-ietf-core-dns-over-coap-12
-     B.7.  Since draft-ietf-core-dns-over-coap-10
-     B.8.  Since draft-ietf-core-dns-over-coap-09
-     B.9.  Since draft-ietf-core-dns-over-coap-08
-     B.10. Since draft-ietf-core-dns-over-coap-07
-     B.11. Since draft-ietf-core-dns-over-coap-06
-     B.12. Since draft-ietf-core-dns-over-coap-05
-     B.13. Since draft-ietf-core-dns-over-coap-04
-     B.14. Since draft-ietf-core-dns-over-coap-03
-     B.15. Since draft-ietf-core-dns-over-coap-02
-     B.16. Since draft-ietf-core-dns-over-coap-01
-     B.17. Since draft-ietf-core-dns-over-coap-00
-     B.18. Since draft-lenders-dns-over-coap-04
+     B.1.  Since draft-ietf-core-dns-over-coap-18
+     B.2.  Since draft-ietf-core-dns-over-coap-17
+     B.3.  Since draft-ietf-core-dns-over-coap-16
+     B.4.  Since draft-ietf-core-dns-over-coap-15
+     B.5.  Since draft-ietf-core-dns-over-coap-14
+     B.6.  Since draft-ietf-core-dns-over-coap-13
+     B.7.  Since draft-ietf-core-dns-over-coap-12
+     B.8.  Since draft-ietf-core-dns-over-coap-10
+     B.9.  Since draft-ietf-core-dns-over-coap-09
+     B.10. Since draft-ietf-core-dns-over-coap-08
+     B.11. Since draft-ietf-core-dns-over-coap-07
+     B.12. Since draft-ietf-core-dns-over-coap-06
+     B.13. Since draft-ietf-core-dns-over-coap-05
+     B.14. Since draft-ietf-core-dns-over-coap-04
+     B.15. Since draft-ietf-core-dns-over-coap-03
+     B.16. Since draft-ietf-core-dns-over-coap-02
+     B.17. Since draft-ietf-core-dns-over-coap-01
+     B.18. Since draft-ietf-core-dns-over-coap-00
+     B.19. Since draft-lenders-dns-over-coap-04
    Acknowledgments
    Authors' Addresses
 
@@ -174,31 +181,32 @@ Table of Contents
    [RFC9250]), DoC allows for lightweight message protection based on
    OSCORE.
 
-                 . FETCH coaps://[2001:db8::1]/
-                /
-               /
-              CoAP request
-   +------+   [DNS query]   +------+   DNS query     .---------------.
-   | DoC  |---------------->| DoC  |--- --- --- --->|      DNS        |
-   |Client|<----------------|Server|<--- --- --- ---| Infrastructure  |
-   +------+  CoAP response  +------+  DNS response   '---------------'
-             [DNS response]
-      \                        /\                                 /
-       '-----DNS over CoAP----'  '--DNS over UDP/HTTPS/QUIC/...--'
+              . FETCH coaps://[2001:db8::1]/
+             /
+            /
+           CoAP request
++------+   [DNS query]   +------+------+   DNS query     .---------------.
+| DoC  |---------------->| DoC  | DNS  |--- --- --- --->|      DNS        |
+|Client|<----------------|Server|Client|<--- --- --- ---| Infrastructure  |
++------+  CoAP response  +------+------+  DNS response   '---------------'
+          [DNS response]
+   \                           / \                                     /
+    '------DNS over CoAP------'   '----DNS over UDP/HTTPS/QUIC/...----'
 
-                      Figure 1: Basic DoC architecture
+                   Figure 1: Basic DoC architecture
 
    The most important components of DoC can be seen in Figure 1: a DoC
    client tries to resolve DNS information by sending DNS queries
-   carried within CoAP requests to a DoC server.  That DoC server is a
-   DNS client (i.e., a stub or recursive resolver) that resolves DNS
-   information by using other DNS transports such as DNS over UDP
-   [STD13], DNS over HTTPS [RFC8484], or DNS over QUIC [RFC9250] when
-   communicating with the upstream DNS infrastructure.  Using that
-   information, the DoC server then replies to the queries of the DoC
-   client with DNS responses carried within CoAP responses.  A DoC
-   server MAY also serve as DNSSEC validator to provide DNSSEC
-   validation to the more constrained DoC clients.
+   carried within CoAP requests to a DoC server.  That DoC server can be
+   the authoritive name server for the queried record or a DNS client
+   (i.e., a stub or recursive resolver) that resolves DNS information by
+   using other DNS transports such as DNS over UDP [STD13], DNS over
+   HTTPS [RFC8484], or DNS over QUIC [RFC9250] when communicating with
+   the upstream DNS infrastructure.  Using that information, the DoC
+   server then replies to the queries of the DoC client with DNS
+   responses carried within CoAP responses.  A DoC server MAY also serve
+   as DNSSEC validator to provide DNSSEC validation to the more
+   constrained DoC clients.
 
    Note that this specification is distinct from DoH, since the CoAP-
    specific FETCH method [RFC8132] is used.  This has the benefit of
@@ -233,6 +241,13 @@ Table of Contents
    [RFC6690] describes that "Constrained RESTful Environments (CoRE)"
    realize the Representational State Transfer (REST) architecture
    [REST] in a suitable form for such constrained nodes.
+
+   A DoC server can provide Observe capabilities as defined in
+   [RFC7641], Section 1.2.  As part of that, it administers a "list of
+   observers".  DoC clients using these capabilities are "observers" as
+   defined in [RFC7641], Section 1.2 in that case.  A "notification" is
+   a CoAP response message with an Observe option, see [RFC7641],
+   Section 4.2.
 
    The terms "payload" and "body" are used as defined in [RFC7959],
    Section 2.  Note that, when block-wise transfer is not used, the
@@ -269,18 +284,18 @@ Table of Contents
 3.2.  Discovery using SVCB Resource Records or DNR
 
    A DoC server can also be discovered using Service Binding (SVCB)
-   Resource Records (RR) [RFC9460] [RFC9461] or Discovery of Network-
-   designated Resolvers (DNR) Service Parameters [RFC9463].  [RFC8323]
-   defines the Application-Layer Protocol Negotiation (ALPN) ID for CoAP
-   over TLS servers and [I-D.ietf-core-coap-dtls-alpn] defines the ALPN
-   ID for CoAP over DTLS servers.  Because the ALPN extension is only
-   defined for (D)TLS, these mechanisms cannot be used for DoC servers
-   which use only OSCORE [RFC8613] and Ephemeral Diffie-Hellman Over
-   COSE (EDHOC) [RFC9528] (with COSE abbreviating "Concise Binary Object
-   Notation (CBOR) Object Signing and Encryption" [RFC9052]) for
-   security.  Specifying an alternate discovery mechanism is out of
-   scope of this specification.  [I-D.lenders-core-dnr] provides further
-   exploration of the challenges here.
+   Resource Records (RR) [RFC9460] [RFC9461] resolved via another DNS
+   service (e.g., provided by an unencrypted local resolver) or
+   Discovery of Network-designated Resolvers (DNR) Service Parameters
+   [RFC9463] via DHCP or Router Advertisements.  [RFC8323] defines the
+   Application-Layer Protocol Negotiation (ALPN) ID for CoAP over TLS
+   servers and [I-D.ietf-core-coap-dtls-alpn] defines the ALPN ID for
+   CoAP over DTLS servers.  DoC servers that use only OSCORE [RFC8613]
+   and Ephemeral Diffie-Hellman Over COSE (EDHOC) [RFC9528] (with COSE
+   abbreviating "Concise Binary Object Notation (CBOR) Object Signing
+   and Encryption" [RFC9052]) to support security cannot be discovered
+   using these SVCB RR or DNR mechanisms.  Specifying an alternate
+   discovery mechanism is out of scope of this document.
 
    This document is not an SVCB mapping document for the CoAP schemes as
    defined in Section 2.4.3 of [RFC9460].  A full SVCB mapping is
@@ -351,10 +366,13 @@ Table of Contents
       a transport are out of the scope of this document.
 
    *  The destination address for the request SHOULD be taken from
-      additional information about the target, e.g., from an AAAA record
-      associated with the target name or from an "ipv6hint" SvcParam
-      value.  As a fallback, an address MAY be queried for the target
-      name of the SVCB record.
+      additional information about the target.  This may include (1) A
+      or AAAA RRs associated with the target name and delivered with the
+      SVCB RR (see [RFC9462]), (2) "ipv4hint" or "ipv6hint" SvcParams
+      from the SVCB RR (see [RFC9461]), or (3) from IPv4 or IPv6
+      addresses provided if DNR [RFC9463] is used.  As a fallback, an
+      address MAY be queried for the target name of the SVCB record from
+      another DNS service.
 
    *  The destination port for the request MUST be taken from the "port"
       SvcParam value, if present.  Otherwise, take the default port of
@@ -491,8 +509,7 @@ Table of Contents
    [RFC8132], the type of content of the body MUST be indicated using
    the Content-Format option.  This document specifies the usage of
    Content-Format "application/dns-message" (for details, see
-   Section 4.1).  A DoC server MUST be able to parse requests of
-   Content-Format "application/dns-message".
+   Section 4.1).
 
 4.2.2.  Support of CoAP Caching
 
@@ -670,29 +687,38 @@ Table of Contents
    However, it results in additional overhead, which conflicts with
    constrained resources.  This is the reason why it is RECOMMENDED to
    use CoAP Observe [RFC7641] instead of DNS Push in the DoC domain.
-   The DoC server SHOULD provide Observe capabilities on its DoC
-   resource and do as follows.
+   This is particularly useful if a short-lived record is requested
+   frequently.  The DoC server SHOULD provide Observe capabilities on
+   its DoC resource and do as follows.
 
-   A DoC server MAY subscribe to DNS push notifications, which involves
-   sending a DNS Subscribe message (see (Section 6.2 of [RFC8765]),
-   instead of a classic DNS query to fetch the information on behalf of
-   a DoC client.  This is particularly useful when a CoAP request
-   indicates that the DoC client wants to observe a resource record, or
-   when a short-lived record is requested frequently.  After the list of
-   observers for a particular DNS query has become empty (by explicit or
-   implicit cancellation of the observation as per Section 3.6 of
-   [RFC7641]), and no other reason to subscribe to that request is
-   present, the DoC server SHOULD cancel the corresponding subscription.
-   This can involve sending an DNS Unsubscribe message or closing the
-   session (see Section 6.4 of [RFC8765]).
+   If a DoC clients wants to observe a resource record, a DoC server can
+   respond with a notification and add the client to its list of
+   observers for that resource in accordance to [RFC7641].  The DoC
+   server MAY subscribe to DNS push notifications for that record.  This
+   involves sending a DNS Subscribe message (see (Section 6.2 of
+   [RFC8765]), instead of a classic DNS query to fetch the information
+   on behalf of the DoC client.
+
+   After the list of observers for a particular DNS query has become
+   empty (by explicit or implicit cancellation of the observation as per
+   Section 3.6 of [RFC7641]), and no other reason to subscribe to that
+   request is present, the DoC server SHOULD cancel the corresponding
+   subscription.  This can involve sending an DNS Unsubscribe message or
+   closing the session (see Section 6.4 of [RFC8765]).  As there is no
+   CoAP observer anymore from the perspective of the DoC server, a
+   failure to do so cannot be communicated back to any DoC observer.  As
+   such, error handling (if any) needs to be resolved between the DoC
+   server and the upstream DNS infrastructure.
 
    Whenever the DoC server receives a DNS Push message from the DNS
    infrastructure for an observed resource record, the DoC server sends
    an appropriate Observe notification response to the DoC client.
 
-   A server that cannot proxy to DNS Push (or any other means of
-   obtaining new records) should not send the response as a notification
-   (i.e., it should not send the Observe option).
+   A server that responds with notifications (i.e., sends the Observe
+   option) needs to have means of obtaining current resource records.
+   This may happen through DNS Push, but also by upstream polling or
+   implicit circumstances (e.g., if the DoC server is the authoritative
+   name server for the record and wants to notify about changes).
 
 5.2.  OSCORE
 
@@ -892,9 +918,59 @@ Table of Contents
 
    Reference: [RFC-XXXX], Section 3
 
-10.  References
+10.  Operational Considerations
 
-10.1.  Normative References
+10.1.  Co-existence of different DNS and CoAP transports
+
+   Many DNS transports may co-exist on the DoC server, such as DNS over
+   UDP [STD13], DNS over (D)TLS [RFC7858] [RFC8094], DNS over HTTPS
+   [RFC8484], or DNS over QUIC [RFC9250].  In principle, transports
+   employing channel or object security should be preferred.  In
+   constrained scenarios, DNS over CoAP is preferable to DNS over DTLS.
+   The final decision regarding the preference, however, heavily depends
+   on the use case and is therefore left to the implementers or users
+   and is not defined in this document.
+
+   CoAP supports Confirmable and Non-Confirmable messages [RFC7252] to
+   deploy different levels of reliability.  This document, however, does
+   not enforce any of these message types, as the decision on which one
+   is appropriate depends on the characteristics of the network where
+   DoC is deployed.
+
+10.2.  Redirects
+
+   Application-layer redirects (e.g., HTTP) redirct a client to a new
+   server.  In the case of DoC, this leads to a new DNS server.  This
+   new DNS server may provide different answers to the same DNS query
+   than the previous DNS server.  At the time of writing, CoAP does not
+   support redirection.  Future specifications of CoAP redirect may need
+   to consider the impact of different results between previous and new
+   DNS server.
+
+10.3.  Proxy Hop-Limit
+
+   Mistakes might lead to CoAP proxies forming infinite loops.  Using
+   the CoAP Hop-Limit option [RFC8768] mitigates such loops.
+
+10.4.  Error Handling
+
+   Section 4.3.1 specifies that DNS operational errors should be
+   reported back to a DoC client using the appropriate DNS RCODE.  If a
+   DoC client did not receive any successful DNS message from a DoC
+   server for a while, it might indicate that the DoC server lost
+   connectivity to the upstream DNS infrastructure.  The DoC client
+   should handle this error case like a recursive resolver that lost
+   connectivity to the upstream DNS infrastructure.  In case of CoAP
+   errors, the usual mechanisms for CoAP response codes apply.
+
+10.5.  DNS Extensions
+
+   DNS extensions that are specific to the choice of transport, such as
+   [RFC7828], are not applicable to DoC.
+
+11.  References
+
+11.1.  Normative References
 
    [I-D.ietf-core-coap-dtls-alpn]
               Lenders, M. S., Amsüss, C., Schmidt, T. C., and M.
@@ -966,6 +1042,11 @@ Table of Contents
               RFC 8765, DOI 10.17487/RFC8765, June 2020,
               <https://www.rfc-editor.org/rfc/rfc8765>.
 
+   [RFC8768]  Boucadair, M., Reddy.K, T., and J. Shallow, "Constrained
+              Application Protocol (CoAP) Hop-Limit Option", RFC 8768,
+              DOI 10.17487/RFC8768, March 2020,
+              <https://www.rfc-editor.org/rfc/rfc8768>.
+
    [RFC8949]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", STD 94, RFC 8949,
               DOI 10.17487/RFC8949, December 2020,
@@ -975,6 +1056,26 @@ Table of Contents
               Datagram Transport Layer Security (DTLS) Protocol Version
               1.3", RFC 9147, DOI 10.17487/RFC9147, April 2022,
               <https://www.rfc-editor.org/rfc/rfc9147>.
+
+   [RFC9460]  Schwartz, B., Bishop, M., and E. Nygren, "Service Binding
+              and Parameter Specification via the DNS (SVCB and HTTPS
+              Resource Records)", RFC 9460, DOI 10.17487/RFC9460,
+              November 2023, <https://www.rfc-editor.org/rfc/rfc9460>.
+
+   [RFC9461]  Schwartz, B., "Service Binding Mapping for DNS Servers",
+              RFC 9461, DOI 10.17487/RFC9461, November 2023,
+              <https://www.rfc-editor.org/rfc/rfc9461>.
+
+   [RFC9462]  Pauly, T., Kinnear, E., Wood, C. A., McManus, P., and T.
+              Jensen, "Discovery of Designated Resolvers", RFC 9462,
+              DOI 10.17487/RFC9462, November 2023,
+              <https://www.rfc-editor.org/rfc/rfc9462>.
+
+   [RFC9463]  Boucadair, M., Ed., Reddy.K, T., Ed., Wing, D., Cook, N.,
+              and T. Jensen, "DHCP and Router Advertisement Options for
+              the Discovery of Network-designated Resolvers (DNR)",
+              RFC 9463, DOI 10.17487/RFC9463, November 2023,
+              <https://www.rfc-editor.org/rfc/rfc9463>.
 
    [STD13]    Internet Standard 13,
               <https://www.rfc-editor.org/info/std13>.
@@ -988,7 +1089,7 @@ Table of Contents
               specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
               November 1987, <https://www.rfc-editor.org/info/rfc1035>.
 
-10.2.  Informative References
+11.2.  Informative References
 
    [BCP219]   Best Current Practice 219,
               <https://www.rfc-editor.org/info/bcp219>.
@@ -1031,9 +1132,9 @@ Table of Contents
    [I-D.ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
               Identifiers", Work in Progress, Internet-Draft, draft-
-              ietf-core-href-23, 7 July 2025,
+              ietf-core-href-24, 30 August 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-core-
-              href-23>.
+              href-24>.
 
    [I-D.ietf-core-transport-indication]
               Amsüss, C. and M. S. Lenders, "CoAP Transport Indication",
@@ -1048,14 +1149,6 @@ Table of Contents
               Progress, Internet-Draft, draft-ietf-iotops-7228bis-02, 7
               July 2025, <https://datatracker.ietf.org/doc/html/draft-
               ietf-iotops-7228bis-02>.
-
-   [I-D.lenders-core-dnr]
-              Lenders, M. S., Amsüss, C., Schmidt, T. C., and M.
-              Wählisch, "Discovery of Network-designated OSCORE-based
-              Resolvers: Problem Statement", Work in Progress, Internet-
-              Draft, draft-lenders-core-dnr-06, 7 July 2025,
-              <https://datatracker.ietf.org/doc/html/draft-lenders-core-
-              dnr-06>.
 
    [REST]     Fielding, R., "Architectural Styles and the Design of
               Network-based Software Architectures", Ph.D. Dissertation,
@@ -1075,6 +1168,16 @@ Table of Contents
               Constrained-Node Networks", RFC 7228,
               DOI 10.17487/RFC7228, May 2014,
               <https://www.rfc-editor.org/rfc/rfc7228>.
+
+   [RFC7828]  Wouters, P., Abley, J., Dickinson, S., and R. Bellis, "The
+              edns-tcp-keepalive EDNS0 Option", RFC 7828,
+              DOI 10.17487/RFC7828, April 2016,
+              <https://www.rfc-editor.org/rfc/rfc7828>.
+
+   [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
+              and P. Hoffman, "Specification for DNS over Transport
+              Layer Security (TLS)", RFC 7858, DOI 10.17487/RFC7858, May
+              2016, <https://www.rfc-editor.org/rfc/rfc7858>.
 
    [RFC7942]  Sheffer, Y. and A. Farrel, "Improving Awareness of Running
               Code: The Implementation Status Section", BCP 205,
@@ -1109,26 +1212,6 @@ Table of Contents
               DOI 10.17487/RFC9250, May 2022,
               <https://www.rfc-editor.org/rfc/rfc9250>.
 
-   [RFC9460]  Schwartz, B., Bishop, M., and E. Nygren, "Service Binding
-              and Parameter Specification via the DNS (SVCB and HTTPS
-              Resource Records)", RFC 9460, DOI 10.17487/RFC9460,
-              November 2023, <https://www.rfc-editor.org/rfc/rfc9460>.
-
-   [RFC9461]  Schwartz, B., "Service Binding Mapping for DNS Servers",
-              RFC 9461, DOI 10.17487/RFC9461, November 2023,
-              <https://www.rfc-editor.org/rfc/rfc9461>.
-
-   [RFC9462]  Pauly, T., Kinnear, E., Wood, C. A., McManus, P., and T.
-              Jensen, "Discovery of Designated Resolvers", RFC 9462,
-              DOI 10.17487/RFC9462, November 2023,
-              <https://www.rfc-editor.org/rfc/rfc9462>.
-
-   [RFC9463]  Boucadair, M., Ed., Reddy.K, T., Ed., Wing, D., Cook, N.,
-              and T. Jensen, "DHCP and Router Advertisement Options for
-              the Discovery of Network-designated Resolvers (DNR)",
-              RFC 9463, DOI 10.17487/RFC9463, November 2023,
-              <https://www.rfc-editor.org/rfc/rfc9463>.
-
    [RFC9528]  Selander, G., Preuß Mattsson, J., and F. Palombini,
               "Ephemeral Diffie-Hellman Over COSE (EDHOC)", RFC 9528,
               DOI 10.17487/RFC9528, March 2024,
@@ -1145,7 +1228,38 @@ Appendix B.  Change Log
 
    // RFC Ed.: Please remove this section before publication.
 
-B.1.  Since draft-ietf-core-dns-over-coap-17
+B.1.  Since draft-ietf-core-dns-over-coap-18
+      (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
+      coap-18)
+
+   *  Address Address Mohamed Boucadair's COMMENT:
+
+      -  Add Operational Considerations Section
+
+      -  Make SVCB references normative
+
+      -  Remove redundant requirement on parsing application/dns-message
+
+      -  Remove contradicting statement and outdated reference about
+         ALPN
+
+      -  Add DNS client to Fig. 1
+
+      -  Clarify recursion termination in the CoAP realm
+
+      -  Clarify where addresses are coming from with DDR/DNR
+
+   *  Address Gorry Fairhurst's follow-up DISCUSS:
+
+      -  Refer to Observe terminology in Section 2
+
+      -  Clarify registration
+
+      -  Provide alternative observation examples
+
+      -  Clarify that error handling is in the hands of the DoC server
+
+B.2.  Since draft-ietf-core-dns-over-coap-17
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-17)
 
@@ -1212,7 +1326,7 @@ B.1.  Since draft-ietf-core-dns-over-coap-17
 
       -  Remove confusing "e.g."
 
-B.2.  Since draft-ietf-core-dns-over-coap-16
+B.3.  Since draft-ietf-core-dns-over-coap-16
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-16)
 
@@ -1222,7 +1336,7 @@ B.2.  Since draft-ietf-core-dns-over-coap-16
 
    *  Make docpath wire-format paragraph easier to parse
 
-B.3.  Since draft-ietf-core-dns-over-coap-15
+B.4.  Since draft-ietf-core-dns-over-coap-15
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-15)
 
@@ -1257,7 +1371,7 @@ B.3.  Since draft-ietf-core-dns-over-coap-15
 
       -  Prefer ADN for Uri-Host; don't prescribe _how_ it is set
 
-B.4.  Since draft-ietf-core-dns-over-coap-14
+B.5.  Since draft-ietf-core-dns-over-coap-14
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-14)
 
@@ -1289,13 +1403,13 @@ B.4.  Since draft-ietf-core-dns-over-coap-14
 
       -  General grammar, wording, and spelling cleanups
 
-B.5.  Since draft-ietf-core-dns-over-coap-13
+B.6.  Since draft-ietf-core-dns-over-coap-13
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-13)
 
    *  Address shepherd review
 
-B.6.  Since draft-ietf-core-dns-over-coap-12
+B.7.  Since draft-ietf-core-dns-over-coap-12
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-12)
 
@@ -1305,7 +1419,7 @@ B.6.  Since draft-ietf-core-dns-over-coap-12
 
    *  Address Mikolai's review
 
-B.7.  Since draft-ietf-core-dns-over-coap-10
+B.8.  Since draft-ietf-core-dns-over-coap-10
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-10)
 
@@ -1339,7 +1453,7 @@ B.7.  Since draft-ietf-core-dns-over-coap-10
 
    *  General language check pass
 
-B.8.  Since draft-ietf-core-dns-over-coap-09
+B.9.  Since draft-ietf-core-dns-over-coap-09
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-09)
 
@@ -1354,13 +1468,13 @@ B.8.  Since draft-ietf-core-dns-over-coap-09
    *  Add to security considerations: unprotected upstream DNS and
       DNSSEC
 
-B.9.  Since draft-ietf-core-dns-over-coap-08
-      (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
-      coap-08)
+B.10.  Since draft-ietf-core-dns-over-coap-08
+       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
+       coap-08)
 
    *  Update Cenk's Affiliation
 
-B.10.  Since draft-ietf-core-dns-over-coap-07
+B.11.  Since draft-ietf-core-dns-over-coap-07
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-07)
 
@@ -1374,7 +1488,7 @@ B.10.  Since draft-ietf-core-dns-over-coap-07
 
    *  Implementation Status: Update to current version
 
-B.11.  Since draft-ietf-core-dns-over-coap-06
+B.12.  Since draft-ietf-core-dns-over-coap-06
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-06)
 
@@ -1389,13 +1503,13 @@ B.11.  Since draft-ietf-core-dns-over-coap-06
 
       -  IANA: unify self references
 
-B.12.  Since draft-ietf-core-dns-over-coap-05
+B.13.  Since draft-ietf-core-dns-over-coap-05
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-05)
 
    *  Add references to relevant SVCB/DNR RFCs and drafts
 
-B.13.  Since draft-ietf-core-dns-over-coap-04
+B.14.  Since draft-ietf-core-dns-over-coap-04
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-04)
 
@@ -1403,7 +1517,7 @@ B.13.  Since draft-ietf-core-dns-over-coap-04
 
    *  Address early IANA review
 
-B.14.  Since draft-ietf-core-dns-over-coap-03
+B.15.  Since draft-ietf-core-dns-over-coap-03
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-03)
 
@@ -1412,7 +1526,7 @@ B.14.  Since draft-ietf-core-dns-over-coap-03
 
    *  Add Appendix A on evaluation
 
-B.15.  Since draft-ietf-core-dns-over-coap-02
+B.16.  Since draft-ietf-core-dns-over-coap-02
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-02)
 
@@ -1434,7 +1548,7 @@ B.15.  Since draft-ietf-core-dns-over-coap-02
 
    *  Don't call OSCORE end-to-end encrypted
 
-B.16.  Since draft-ietf-core-dns-over-coap-01
+B.17.  Since draft-ietf-core-dns-over-coap-01
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-01)
 
@@ -1447,7 +1561,7 @@ B.16.  Since draft-ietf-core-dns-over-coap-01
 
    *  Add appendix on reference implementation
 
-B.17.  Since draft-ietf-core-dns-over-coap-00
+B.18.  Since draft-ietf-core-dns-over-coap-00
        (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
        coap-00)
 
@@ -1461,7 +1575,7 @@ B.17.  Since draft-ietf-core-dns-over-coap-00
 
    *  Add security considerations on ID=0
 
-B.18.  Since draft-lenders-dns-over-coap-04
+B.19.  Since draft-lenders-dns-over-coap-04
        (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
        coap-04)
 
@@ -1470,9 +1584,11 @@ B.18.  Since draft-lenders-dns-over-coap-04
 Acknowledgments
 
    The authors of this document want to thank Mike Bishop, Carsten
-   Bormann, Elwyn B.  Davies, Esko Dijk, Thomas Fossati, Mikolai
-   Gütschow, Todd Herr, Tommy Pauly, Ben Schwartz, Marco Tiloca, and Tim
-   Wicinski for their feedback and comments.
+   Bormann, Mohamed Boucadair, Deb Cooley, Vladimír Čunát, Roman
+   Danyliw, Elwyn B.  Davies, Esko Dijk, Gorry Fairhurst, Thomas
+   Fossati, Mikolai Gütschow, Todd Herr, Tommy Pauly, Ben Schwartz, Orie
+   Steele, Marco Tiloca, Éric Vyncke, Tim Wicinski, and Paul Wouters for
+   their feedback and comments.
 
 Authors' Addresses
 

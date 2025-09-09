@@ -17,24 +17,24 @@ by (D)TLS-Secured CoAP (CoAPS) or Object Security for Constrained RESTful
 Environments (OSCORE) to provide encrypted DNS message exchange for
 constrained devices in the Internet of Things (IoT). 
     " name="description">
-<meta content="xml2rfc 3.30.0" name="generator">
+<meta content="xml2rfc 3.30.1" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="CoRE" name="keyword">
 <meta content="CoAP" name="keyword">
 <meta content="DNS" name="keyword">
 <meta content="draft-ietf-core-dns-over-coap-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.0
+  xml2rfc 3.30.1
     Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.3.8
+    platformdirs 4.4.0
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.4
+    requests 2.32.5
     setuptools 80.9.0
     wcwidth 0.2.13
 -->
@@ -1055,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">DoC</td>
-<td class="right">August 2025</td>
+<td class="right">September 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Lenders, et al.</td>
-<td class="center">Expires 2 March 2026</td>
+<td class="center">Expires 13 March 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-core-dns-over-coap-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-08-29" class="published">29 August 2025</time>
+<time datetime="2025-09-09" class="published">9 September 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-03-02">2 March 2026</time></dd>
+<dd class="expires"><time datetime="2026-03-13">13 March 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1146,7 +1146,7 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1279,83 +1279,106 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-co-existence-of-different-d" class="internal xref">Co-existence of different DNS and CoAP transports</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-redirects" class="internal xref">Redirects</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
+                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-proxy-hop-limit" class="internal xref">Proxy Hop-Limit</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4">
+                <p id="section-toc.1-1.10.2.4.1"><a href="#section-10.4" class="auto internal xref">10.4</a>.  <a href="#name-error-handling" class="internal xref">Error Handling</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.5">
+                <p id="section-toc.1-1.10.2.5.1"><a href="#section-10.5" class="auto internal xref">10.5</a>.  <a href="#name-dns-extensions" class="internal xref">DNS Extensions</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-evaluation" class="internal xref">Evaluation</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-change-log" class="internal xref">Change Log</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.1">
-                <p id="section-toc.1-1.12.2.1.1"><a href="#appendix-B.1" class="auto internal xref">B.1</a>.  <a href="#name-since-draft-ietf-core-dns-o" class="internal xref">Since draft-ietf-core-dns-over-coap-17</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.2">
-                <p id="section-toc.1-1.12.2.2.1"><a href="#appendix-B.2" class="auto internal xref">B.2</a>.  <a href="#name-since-draft-ietf-core-dns-ov" class="internal xref">Since draft-ietf-core-dns-over-coap-16</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.3">
-                <p id="section-toc.1-1.12.2.3.1"><a href="#appendix-B.3" class="auto internal xref">B.3</a>.  <a href="#name-since-draft-ietf-core-dns-ove" class="internal xref">Since draft-ietf-core-dns-over-coap-15</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.4">
-                <p id="section-toc.1-1.12.2.4.1"><a href="#appendix-B.4" class="auto internal xref">B.4</a>.  <a href="#name-since-draft-ietf-core-dns-over" class="internal xref">Since draft-ietf-core-dns-over-coap-14</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.5">
-                <p id="section-toc.1-1.12.2.5.1"><a href="#appendix-B.5" class="auto internal xref">B.5</a>.  <a href="#name-since-draft-ietf-core-dns-over-" class="internal xref">Since draft-ietf-core-dns-over-coap-13</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.6">
-                <p id="section-toc.1-1.12.2.6.1"><a href="#appendix-B.6" class="auto internal xref">B.6</a>.  <a href="#name-since-draft-ietf-core-dns-over-c" class="internal xref">Since draft-ietf-core-dns-over-coap-12</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.7">
-                <p id="section-toc.1-1.12.2.7.1"><a href="#appendix-B.7" class="auto internal xref">B.7</a>.  <a href="#name-since-draft-ietf-core-dns-over-co" class="internal xref">Since draft-ietf-core-dns-over-coap-10</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.8">
-                <p id="section-toc.1-1.12.2.8.1"><a href="#appendix-B.8" class="auto internal xref">B.8</a>.  <a href="#name-since-draft-ietf-core-dns-over-coa" class="internal xref">Since draft-ietf-core-dns-over-coap-09</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.9">
-                <p id="section-toc.1-1.12.2.9.1"><a href="#appendix-B.9" class="auto internal xref">B.9</a>.  <a href="#name-since-draft-ietf-core-dns-over-coap" class="internal xref">Since draft-ietf-core-dns-over-coap-08</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.10">
-                <p id="section-toc.1-1.12.2.10.1"><a href="#appendix-B.10" class="auto internal xref">B.10</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-2" class="internal xref">Since draft-ietf-core-dns-over-coap-07</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.11">
-                <p id="section-toc.1-1.12.2.11.1"><a href="#appendix-B.11" class="auto internal xref">B.11</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-3" class="internal xref">Since draft-ietf-core-dns-over-coap-06</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.12">
-                <p id="section-toc.1-1.12.2.12.1"><a href="#appendix-B.12" class="auto internal xref">B.12</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-4" class="internal xref">Since draft-ietf-core-dns-over-coap-05</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.13">
-                <p id="section-toc.1-1.12.2.13.1"><a href="#appendix-B.13" class="auto internal xref">B.13</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-5" class="internal xref">Since draft-ietf-core-dns-over-coap-04</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.14">
-                <p id="section-toc.1-1.12.2.14.1"><a href="#appendix-B.14" class="auto internal xref">B.14</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-6" class="internal xref">Since draft-ietf-core-dns-over-coap-03</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.15">
-                <p id="section-toc.1-1.12.2.15.1"><a href="#appendix-B.15" class="auto internal xref">B.15</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-7" class="internal xref">Since draft-ietf-core-dns-over-coap-02</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.16">
-                <p id="section-toc.1-1.12.2.16.1"><a href="#appendix-B.16" class="auto internal xref">B.16</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-8" class="internal xref">Since draft-ietf-core-dns-over-coap-01</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.17">
-                <p id="section-toc.1-1.12.2.17.1"><a href="#appendix-B.17" class="auto internal xref">B.17</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-9" class="internal xref">Since draft-ietf-core-dns-over-coap-00</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.18">
-                <p id="section-toc.1-1.12.2.18.1"><a href="#appendix-B.18" class="auto internal xref">B.18</a>. <a href="#name-since-draft-lenders-dns-ove" class="internal xref">Since draft-lenders-dns-over-coap-04</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-evaluation" class="internal xref">Evaluation</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-change-log" class="internal xref">Change Log</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.1">
+                <p id="section-toc.1-1.13.2.1.1"><a href="#appendix-B.1" class="auto internal xref">B.1</a>.  <a href="#name-since-draft-ietf-core-dns-o" class="internal xref">Since draft-ietf-core-dns-over-coap-18</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.2">
+                <p id="section-toc.1-1.13.2.2.1"><a href="#appendix-B.2" class="auto internal xref">B.2</a>.  <a href="#name-since-draft-ietf-core-dns-ov" class="internal xref">Since draft-ietf-core-dns-over-coap-17</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.3">
+                <p id="section-toc.1-1.13.2.3.1"><a href="#appendix-B.3" class="auto internal xref">B.3</a>.  <a href="#name-since-draft-ietf-core-dns-ove" class="internal xref">Since draft-ietf-core-dns-over-coap-16</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.4">
+                <p id="section-toc.1-1.13.2.4.1"><a href="#appendix-B.4" class="auto internal xref">B.4</a>.  <a href="#name-since-draft-ietf-core-dns-over" class="internal xref">Since draft-ietf-core-dns-over-coap-15</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.5">
+                <p id="section-toc.1-1.13.2.5.1"><a href="#appendix-B.5" class="auto internal xref">B.5</a>.  <a href="#name-since-draft-ietf-core-dns-over-" class="internal xref">Since draft-ietf-core-dns-over-coap-14</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.6">
+                <p id="section-toc.1-1.13.2.6.1"><a href="#appendix-B.6" class="auto internal xref">B.6</a>.  <a href="#name-since-draft-ietf-core-dns-over-c" class="internal xref">Since draft-ietf-core-dns-over-coap-13</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.7">
+                <p id="section-toc.1-1.13.2.7.1"><a href="#appendix-B.7" class="auto internal xref">B.7</a>.  <a href="#name-since-draft-ietf-core-dns-over-co" class="internal xref">Since draft-ietf-core-dns-over-coap-12</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.8">
+                <p id="section-toc.1-1.13.2.8.1"><a href="#appendix-B.8" class="auto internal xref">B.8</a>.  <a href="#name-since-draft-ietf-core-dns-over-coa" class="internal xref">Since draft-ietf-core-dns-over-coap-10</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.9">
+                <p id="section-toc.1-1.13.2.9.1"><a href="#appendix-B.9" class="auto internal xref">B.9</a>.  <a href="#name-since-draft-ietf-core-dns-over-coap" class="internal xref">Since draft-ietf-core-dns-over-coap-09</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.10">
+                <p id="section-toc.1-1.13.2.10.1"><a href="#appendix-B.10" class="auto internal xref">B.10</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-2" class="internal xref">Since draft-ietf-core-dns-over-coap-08</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.11">
+                <p id="section-toc.1-1.13.2.11.1"><a href="#appendix-B.11" class="auto internal xref">B.11</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-3" class="internal xref">Since draft-ietf-core-dns-over-coap-07</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.12">
+                <p id="section-toc.1-1.13.2.12.1"><a href="#appendix-B.12" class="auto internal xref">B.12</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-4" class="internal xref">Since draft-ietf-core-dns-over-coap-06</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.13">
+                <p id="section-toc.1-1.13.2.13.1"><a href="#appendix-B.13" class="auto internal xref">B.13</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-5" class="internal xref">Since draft-ietf-core-dns-over-coap-05</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.14">
+                <p id="section-toc.1-1.13.2.14.1"><a href="#appendix-B.14" class="auto internal xref">B.14</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-6" class="internal xref">Since draft-ietf-core-dns-over-coap-04</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.15">
+                <p id="section-toc.1-1.13.2.15.1"><a href="#appendix-B.15" class="auto internal xref">B.15</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-7" class="internal xref">Since draft-ietf-core-dns-over-coap-03</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.16">
+                <p id="section-toc.1-1.13.2.16.1"><a href="#appendix-B.16" class="auto internal xref">B.16</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-8" class="internal xref">Since draft-ietf-core-dns-over-coap-02</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.17">
+                <p id="section-toc.1-1.13.2.17.1"><a href="#appendix-B.17" class="auto internal xref">B.17</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-9" class="internal xref">Since draft-ietf-core-dns-over-coap-01</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.18">
+                <p id="section-toc.1-1.13.2.18.1"><a href="#appendix-B.18" class="auto internal xref">B.18</a>. <a href="#name-since-draft-ietf-core-dns-over-coap-10" class="internal xref">Since draft-ietf-core-dns-over-coap-00</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.19">
+                <p id="section-toc.1-1.13.2.19.1"><a href="#appendix-B.19" class="auto internal xref">B.19</a>. <a href="#name-since-draft-lenders-dns-ove" class="internal xref">Since draft-lenders-dns-over-coap-04</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.14.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1397,44 +1420,45 @@ on constrained devices.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <figure id="figure-1">
         <div id="section-1-5.1">
           <div class="alignLeft art-svg artwork" id="section-1-5.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="224" width="552" viewBox="0 0 552 224" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="224" width="608" viewBox="0 0 608 224" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,96 L 8,144" fill="none" stroke="black"></path>
               <path d="M 64,96 L 64,144" fill="none" stroke="black"></path>
               <path d="M 208,96 L 208,144" fill="none" stroke="black"></path>
               <path d="M 264,96 L 264,144" fill="none" stroke="black"></path>
-              <path d="M 400,112 L 400,128" fill="none" stroke="black"></path>
-              <path d="M 544,112 L 544,128" fill="none" stroke="black"></path>
+              <path d="M 320,96 L 320,144" fill="none" stroke="black"></path>
+              <path d="M 456,112 L 456,128" fill="none" stroke="black"></path>
+              <path d="M 600,112 L 600,128" fill="none" stroke="black"></path>
               <path d="M 8,96 L 64,96" fill="none" stroke="black"></path>
-              <path d="M 208,96 L 264,96" fill="none" stroke="black"></path>
-              <path d="M 416,96 L 528,96" fill="none" stroke="black"></path>
+              <path d="M 208,96 L 320,96" fill="none" stroke="black"></path>
+              <path d="M 472,96 L 584,96" fill="none" stroke="black"></path>
               <path d="M 72,112 L 200,112" fill="none" stroke="black"></path>
-              <path d="M 272,112 L 288,112" fill="none" stroke="black"></path>
-              <path d="M 304,112 L 320,112" fill="none" stroke="black"></path>
-              <path d="M 336,112 L 352,112" fill="none" stroke="black"></path>
-              <path d="M 368,112 L 392,112" fill="none" stroke="black"></path>
+              <path d="M 328,112 L 344,112" fill="none" stroke="black"></path>
+              <path d="M 360,112 L 376,112" fill="none" stroke="black"></path>
+              <path d="M 392,112 L 408,112" fill="none" stroke="black"></path>
+              <path d="M 424,112 L 448,112" fill="none" stroke="black"></path>
               <path d="M 72,128 L 200,128" fill="none" stroke="black"></path>
-              <path d="M 272,128 L 296,128" fill="none" stroke="black"></path>
-              <path d="M 312,128 L 328,128" fill="none" stroke="black"></path>
-              <path d="M 344,128 L 360,128" fill="none" stroke="black"></path>
-              <path d="M 376,128 L 392,128" fill="none" stroke="black"></path>
+              <path d="M 328,128 L 352,128" fill="none" stroke="black"></path>
+              <path d="M 368,128 L 384,128" fill="none" stroke="black"></path>
+              <path d="M 400,128 L 416,128" fill="none" stroke="black"></path>
+              <path d="M 432,128 L 448,128" fill="none" stroke="black"></path>
               <path d="M 8,144 L 64,144" fill="none" stroke="black"></path>
-              <path d="M 208,144 L 264,144" fill="none" stroke="black"></path>
-              <path d="M 416,144 L 528,144" fill="none" stroke="black"></path>
-              <path d="M 40,192 L 80,192" fill="none" stroke="black"></path>
-              <path d="M 192,192 L 224,192" fill="none" stroke="black"></path>
-              <path d="M 248,192 L 264,192" fill="none" stroke="black"></path>
-              <path d="M 480,192 L 504,192" fill="none" stroke="black"></path>
+              <path d="M 208,144 L 320,144" fill="none" stroke="black"></path>
+              <path d="M 472,144 L 584,144" fill="none" stroke="black"></path>
+              <path d="M 40,192 L 88,192" fill="none" stroke="black"></path>
+              <path d="M 200,192 L 248,192" fill="none" stroke="black"></path>
+              <path d="M 280,192 L 312,192" fill="none" stroke="black"></path>
+              <path d="M 528,192 L 568,192" fill="none" stroke="black"></path>
               <path d="M 32,176 L 40,192" fill="none" stroke="black"></path>
-              <path d="M 236,168 L 248,192" fill="none" stroke="black"></path>
+              <path d="M 272,176 L 280,192" fill="none" stroke="black"></path>
               <path d="M 104,64 L 120,32" fill="none" stroke="black"></path>
-              <path d="M 224,192 L 236,168" fill="none" stroke="black"></path>
-              <path d="M 504,192 L 512,176" fill="none" stroke="black"></path>
-              <path d="M 416,96 C 407.16936,96 400,103.16936 400,112" fill="none" stroke="black"></path>
-              <path d="M 528,96 C 536.83064,96 544,103.16936 544,112" fill="none" stroke="black"></path>
-              <path d="M 416,144 C 407.16936,144 400,136.83064 400,128" fill="none" stroke="black"></path>
-              <path d="M 528,144 C 536.83064,144 544,136.83064 544,128" fill="none" stroke="black"></path>
-              <polygon class="arrowhead" points="400,112 388,106.4 388,117.6" fill="black" transform="rotate(0,392,112)"></polygon>
-              <polygon class="arrowhead" points="280,128 268,122.4 268,133.6" fill="black" transform="rotate(180,272,128)"></polygon>
+              <path d="M 248,192 L 256,176" fill="none" stroke="black"></path>
+              <path d="M 568,192 L 576,176" fill="none" stroke="black"></path>
+              <path d="M 472,96 C 463.16936,96 456,103.16936 456,112" fill="none" stroke="black"></path>
+              <path d="M 584,96 C 592.83064,96 600,103.16936 600,112" fill="none" stroke="black"></path>
+              <path d="M 472,144 C 463.16936,144 456,136.83064 456,128" fill="none" stroke="black"></path>
+              <path d="M 584,144 C 592.83064,144 600,136.83064 600,128" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="456,112 444,106.4 444,117.6" fill="black" transform="rotate(0,448,112)"></polygon>
+              <polygon class="arrowhead" points="336,128 324,122.4 324,133.6" fill="black" transform="rotate(180,328,128)"></polygon>
               <polygon class="arrowhead" points="208,112 196,106.4 196,117.6" fill="black" transform="rotate(0,200,112)"></polygon>
               <polygon class="arrowhead" points="80,128 68,122.4 68,133.6" fill="black" transform="rotate(180,72,128)"></polygon>
               <g class="text">
@@ -1444,26 +1468,28 @@ on constrained devices.<a href="#section-1-3" class="pilcrow">¶</a></p>
                 <text x="160" y="84">request</text>
                 <text x="108" y="100">[DNS</text>
                 <text x="156" y="100">query]</text>
-                <text x="304" y="100">DNS</text>
-                <text x="344" y="100">query</text>
+                <text x="360" y="100">DNS</text>
+                <text x="400" y="100">query</text>
                 <text x="32" y="116">DoC</text>
                 <text x="232" y="116">DoC</text>
-                <text x="464" y="116">DNS</text>
+                <text x="288" y="116">DNS</text>
+                <text x="520" y="116">DNS</text>
                 <text x="36" y="132">Client</text>
                 <text x="236" y="132">Server</text>
-                <text x="468" y="132">Infrastructure</text>
+                <text x="292" y="132">Client</text>
+                <text x="524" y="132">Infrastructure</text>
                 <text x="100" y="148">CoAP</text>
                 <text x="156" y="148">response</text>
-                <text x="296" y="148">DNS</text>
-                <text x="348" y="148">response</text>
+                <text x="352" y="148">DNS</text>
+                <text x="404" y="148">response</text>
                 <text x="100" y="164">[DNS</text>
                 <text x="160" y="164">response]</text>
-                <text x="96" y="196">DNS</text>
-                <text x="132" y="196">over</text>
-                <text x="172" y="196">CoAP</text>
-                <text x="280" y="196">DNS</text>
-                <text x="316" y="196">over</text>
-                <text x="408" y="196">UDP/HTTPS/QUIC/..</text>
+                <text x="104" y="196">DNS</text>
+                <text x="140" y="196">over</text>
+                <text x="180" y="196">CoAP</text>
+                <text x="328" y="196">DNS</text>
+                <text x="364" y="196">over</text>
+                <text x="456" y="196">UDP/HTTPS/QUIC/..</text>
               </g>
             </svg><a href="#section-1-5.1.1" class="pilcrow">¶</a>
 </div>
@@ -1475,7 +1501,7 @@ on constrained devices.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-6">The most important components of DoC can be seen in <a href="#fig-overview-arch" class="auto internal xref">Figure 1</a>: a DoC
 client tries to resolve DNS information by sending DNS queries carried within
 CoAP requests to a DoC server.
-That DoC server is a DNS client (i.e., a stub or recursive resolver) that resolves DNS information by using other DNS transports such
+That DoC server can be the authoritive name server for the queried record or a DNS client (i.e., a stub or recursive resolver) that resolves DNS information by using other DNS transports such
 as DNS over UDP <span>[<a href="#STD13" class="cite xref">STD13</a>]</span>, DNS over HTTPS <span>[<a href="#RFC8484" class="cite xref">RFC8484</a>]</span>, or DNS over QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span> when communicating with the upstream
 DNS infrastructure.
 Using that information, the DoC server then replies to the queries of the DoC client with DNS
@@ -1507,10 +1533,14 @@ A "DoC resource" is a CoAP resource <span>[<a href="#RFC7252" class="cite xref">
 DNS information is called a "DoC client".<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">The term "constrained nodes" is used as defined in <span>[<a href="#RFC7228" class="cite xref">RFC7228</a>]</span>.
 <span>[<a href="#RFC6690" class="cite xref">RFC6690</a>]</span> describes that "Constrained RESTful Environments (CoRE)" realize the Representational State Transfer (REST) architecture <span>[<a href="#REST" class="cite xref">REST</a>]</span> in a suitable form for such constrained nodes.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">The terms "payload" and "body" are used as defined in <span>[<a href="#RFC7959" class="cite xref">RFC7959</a>], <a href="https://rfc-editor.org/rfc/rfc7959#section-2" class="relref">Section 2</a></span>.
-Note that, when block-wise transfer is not used, the terms "payload" and "body" are to be understood as equal.<a href="#section-2-5" class="pilcrow">¶</a></p>
-<p id="section-2-6">For better readability, in the examples in this document the binary payload and resource records are shown in a hexadecimal representation as well as a human-readable format.
-In the actual message sent and received, however, they are encoded in the binary message format defined in <span>[<a href="#STD13" class="cite xref">STD13</a>]</span>.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-5">A DoC server can provide Observe capabilities as defined in <span>[<a href="#RFC7641" class="cite xref">RFC7641</a>], <a href="https://rfc-editor.org/rfc/rfc7641#section-1.2" class="relref">Section 1.2</a></span>.
+As part of that, it administers a "list of observers".
+DoC clients using these capabilities are "observers" as defined in <span>[<a href="#RFC7641" class="cite xref">RFC7641</a>], <a href="https://rfc-editor.org/rfc/rfc7641#section-1.2" class="relref">Section 1.2</a></span> in that case.
+A "notification" is a CoAP response message with an Observe option, see <span>[<a href="#RFC7641" class="cite xref">RFC7641</a>], <a href="https://rfc-editor.org/rfc/rfc7641#section-4.2" class="relref">Section 4.2</a></span>.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">The terms "payload" and "body" are used as defined in <span>[<a href="#RFC7959" class="cite xref">RFC7959</a>], <a href="https://rfc-editor.org/rfc/rfc7959#section-2" class="relref">Section 2</a></span>.
+Note that, when block-wise transfer is not used, the terms "payload" and "body" are to be understood as equal.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">For better readability, in the examples in this document the binary payload and resource records are shown in a hexadecimal representation as well as a human-readable format.
+In the actual message sent and received, however, they are encoded in the binary message format defined in <span>[<a href="#STD13" class="cite xref">STD13</a>]</span>.<a href="#section-2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec_doc-server-selection">
@@ -1541,12 +1571,11 @@ It can be used to identify a generic DNS resolver that is available to the clien
         <h3 id="name-discovery-using-svcb-resour">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-discovery-using-svcb-resour" class="section-name selfRef">Discovery using SVCB Resource Records or DNR</a>
         </h3>
-<p id="section-3.2-1">A DoC server can also be discovered using Service Binding (SVCB) Resource Records (RR) <span>[<a href="#RFC9460" class="cite xref">RFC9460</a>]</span> <span>[<a href="#RFC9461" class="cite xref">RFC9461</a>]</span> or Discovery of Network-designated Resolvers (DNR)
-Service Parameters <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>.
+<p id="section-3.2-1">A DoC server can also be discovered using Service Binding (SVCB) Resource Records (RR) <span>[<a href="#RFC9460" class="cite xref">RFC9460</a>]</span> <span>[<a href="#RFC9461" class="cite xref">RFC9461</a>]</span> resolved via another DNS service (e.g., provided by an unencrypted local resolver) or Discovery of Network-designated Resolvers (DNR)
+Service Parameters <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span> via DHCP or Router Advertisements.
 <span>[<a href="#RFC8323" class="cite xref">RFC8323</a>]</span> defines the Application-Layer Protocol Negotiation (ALPN) ID for CoAP over TLS servers and <span>[<a href="#I-D.ietf-core-coap-dtls-alpn" class="cite xref">I-D.ietf-core-coap-dtls-alpn</a>]</span> defines the ALPN ID for CoAP over DTLS servers.
-Because the ALPN extension is only defined for (D)TLS, these mechanisms cannot be used for DoC servers which use only OSCORE <span>[<a href="#RFC8613" class="cite xref">RFC8613</a>]</span> and Ephemeral Diffie-Hellman Over COSE (EDHOC) <span>[<a href="#RFC9528" class="cite xref">RFC9528</a>]</span> (with COSE abbreviating "Concise Binary Object Notation (CBOR) Object Signing and Encryption" <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>) for security.
-Specifying an alternate discovery mechanism is out of scope of this specification.
-<span>[<a href="#I-D.lenders-core-dnr" class="cite xref">I-D.lenders-core-dnr</a>]</span> provides  further exploration of the challenges here.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+DoC servers that use only OSCORE <span>[<a href="#RFC8613" class="cite xref">RFC8613</a>]</span> and Ephemeral Diffie-Hellman Over COSE (EDHOC) <span>[<a href="#RFC9528" class="cite xref">RFC9528</a>]</span> (with COSE abbreviating "Concise Binary Object Notation (CBOR) Object Signing and Encryption" <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>) to support security cannot be discovered using these SVCB RR or DNR mechanisms.
+Specifying an alternate discovery mechanism is out of scope of this document.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">This document is not an SVCB mapping document for the CoAP schemes
 as defined in <span><a href="https://rfc-editor.org/rfc/rfc9460#section-2.4.3" class="relref">Section 2.4.3</a> of [<a href="#RFC9460" class="cite xref">RFC9460</a>]</span>.
 A full SVCB mapping is specified in <span>[<a href="#I-D.ietf-core-transport-indication" class="cite xref">I-D.ietf-core-transport-indication</a>]</span>.
@@ -1599,8 +1628,9 @@ If it is "co", a CoAP request for CoAP over DTLS <span class="bcp14">MUST</span>
 Any other SvcParamKeys specifying a transport are out of the scope of this document.<a href="#section-3.2-11.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-11.2">
-            <p id="section-3.2-11.2.1">The destination address for the request <span class="bcp14">SHOULD</span> be taken from additional information about the target, e.g., from an AAAA record associated with the target name or from an "ipv6hint" SvcParam value.
-As a fallback, an address <span class="bcp14">MAY</span> be queried for the target name of the SVCB record.<a href="#section-3.2-11.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-11.2.1">The destination address for the request <span class="bcp14">SHOULD</span> be taken from additional information about the target.
+This may include (1) A or AAAA RRs associated with the target name and delivered with the SVCB RR (see <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>), (2) "ipv4hint" or "ipv6hint" SvcParams from the SVCB RR (see <span>[<a href="#RFC9461" class="cite xref">RFC9461</a>]</span>), or (3) from IPv4 or IPv6 addresses provided if DNR <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span> is used.
+As a fallback, an address <span class="bcp14">MAY</span> be queried for the target name of the SVCB record from another DNS service.<a href="#section-3.2-11.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-11.3">
             <p id="section-3.2-11.3.1">The destination port for the request <span class="bcp14">MUST</span> be taken from the "port" SvcParam value, if present.
@@ -1738,8 +1768,7 @@ DNS protocol as defined in <span>[<a href="#STD13" class="cite xref">STD13</a>]<
           </h4>
 <p id="section-4.2.1-1">When sending a CoAP request, a DoC client <span class="bcp14">MUST</span> include the DNS query in the body of the CoAP request.
 As specified in <span><a href="https://rfc-editor.org/rfc/rfc8132#section-2.3.1" class="relref">Section 2.3.1</a> of [<a href="#RFC8132" class="cite xref">RFC8132</a>]</span>, the type of content of the body <span class="bcp14">MUST</span> be indicated using the Content-Format option.
-This document specifies the usage of Content-Format "application/dns-message" (for details, see <a href="#sec_content-format" class="auto internal xref">Section 4.1</a>).
-A DoC server <span class="bcp14">MUST</span> be able to parse requests of Content-Format "application/dns-message".<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+This document specifies the usage of Content-Format "application/dns-message" (for details, see <a href="#sec_content-format" class="auto internal xref">Section 4.1</a>).<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec_req-caching">
@@ -1795,7 +1824,7 @@ The use of the Accept option in the request is optional.
 However, all DoC clients <span class="bcp14">MUST</span> be able to parse a "application/dns-message" response (see also <a href="#sec_content-format" class="auto internal xref">Section 4.1</a>).
 Any response Content-Format other than "application/dns-message" <span class="bcp14">MUST</span> be indicated with
 the Content-Format option by the DoC server.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<div id="response-codes-and-handling-dns-and-coap-errors">
+<div id="sec_resp-codes">
 <section id="section-4.3.1">
           <h4 id="name-response-codes-and-handling">
 <a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-response-codes-and-handling" class="section-name selfRef">Response Codes and Handling DNS and CoAP errors</a>
@@ -1916,25 +1945,26 @@ the server.<a href="#section-4.3.3-8" class="pilcrow">¶</a></p>
 However, it results in additional overhead, which conflicts with constrained resources.
 This is the reason why it is <span class="bcp14">RECOMMENDED</span> to use CoAP Observe <span>[<a href="#RFC7641" class="cite xref">RFC7641</a>]</span> instead of DNS Push
 in the DoC domain.
+This is particularly useful if a short-lived record is requested frequently.
 The DoC server <span class="bcp14">SHOULD</span> provide Observe capabilities on its DoC resource and do as follows.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">A DoC server
-<span class="bcp14">MAY</span> subscribe to DNS push notifications,
-which involves sending a DNS Subscribe message (see (<span><a href="https://rfc-editor.org/rfc/rfc8765#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC8765" class="cite xref">RFC8765</a>]</span>),
+<p id="section-5.1-2">If a DoC clients wants to observe a resource record, a DoC server can respond with a notification
+and add the client to its list of observers for that resource in accordance to <span>[<a href="#RFC7641" class="cite xref">RFC7641</a>]</span>.
+The DoC server <span class="bcp14">MAY</span> subscribe to DNS push notifications for that record.
+This involves sending a DNS Subscribe message (see (<span><a href="https://rfc-editor.org/rfc/rfc8765#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC8765" class="cite xref">RFC8765</a>]</span>),
 instead of a classic DNS query to fetch the
-information on behalf of a DoC client.
-This is particularly useful
-when a CoAP request indicates that the DoC client wants to observe a resource record,
-or when a short-lived record is requested frequently.
-After the list of observers for a particular DNS query has become empty
+information on behalf of the DoC client.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">After the list of observers for a particular DNS query has become empty
 (by explicit or implicit cancellation of the observation as per <span><a href="https://rfc-editor.org/rfc/rfc7641#section-3.6" class="relref">Section 3.6</a> of [<a href="#RFC7641" class="cite xref">RFC7641</a>]</span>),
 and no other reason to subscribe to that request is present,
 the DoC server <span class="bcp14">SHOULD</span> cancel the corresponding subscription.
-This can involve sending an DNS Unsubscribe message or closing the session (see <span><a href="https://rfc-editor.org/rfc/rfc8765#section-6.4" class="relref">Section 6.4</a> of [<a href="#RFC8765" class="cite xref">RFC8765</a>]</span>).<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1-3">Whenever the DoC server receives a DNS Push message from the DNS
+This can involve sending an DNS Unsubscribe message or closing the session (see <span><a href="https://rfc-editor.org/rfc/rfc8765#section-6.4" class="relref">Section 6.4</a> of [<a href="#RFC8765" class="cite xref">RFC8765</a>]</span>).
+As there is no CoAP observer anymore from the perspective of the DoC server, a failure to do so cannot be communicated back to any DoC observer.
+As such, error handling (if any) needs to be resolved between the DoC server and the upstream DNS infrastructure.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">Whenever the DoC server receives a DNS Push message from the DNS
 infrastructure for an observed resource record, the DoC server sends an appropriate Observe notification response
-to the DoC client.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1-4">A server that cannot proxy to DNS Push (or any other means of obtaining new records) should not send the response as a notification
-(i.e., it should not send the Observe option).<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+to the DoC client.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1-5">A server that responds with notifications (i.e., sends the Observe option) needs to have means of obtaining current resource records.
+This may happen through DNS Push, but also by upstream polling or implicit circumstances (e.g., if the DoC server is the authoritative name server for the record and wants to notify about changes).<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="oscore">
@@ -2185,15 +2215,77 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
 </div>
 </section>
 </div>
-<div id="sec-combined-references">
+<div id="operational-considerations">
 <section id="section-10">
+      <h2 id="name-operational-considerations">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
+      </h2>
+<div id="co-existence-of-different-dns-and-coap-transports">
+<section id="section-10.1">
+        <h3 id="name-co-existence-of-different-d">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-co-existence-of-different-d" class="section-name selfRef">Co-existence of different DNS and CoAP transports</a>
+        </h3>
+<p id="section-10.1-1">Many DNS transports may co-exist on the DoC server, such as DNS over UDP <span>[<a href="#STD13" class="cite xref">STD13</a>]</span>, DNS over (D)TLS <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span> <span>[<a href="#RFC8094" class="cite xref">RFC8094</a>]</span>, DNS over HTTPS <span>[<a href="#RFC8484" class="cite xref">RFC8484</a>]</span>, or DNS over QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>.
+In principle, transports employing channel or object security should be preferred.
+In constrained scenarios, DNS over CoAP is preferable to DNS over DTLS.
+The final decision regarding the preference, however, heavily depends on the use case and is therefore left to the implementers or users and is not defined in this document.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.1-2">CoAP supports Confirmable and Non-Confirmable messages <span>[<a href="#RFC7252" class="cite xref">RFC7252</a>]</span> to deploy different levels of reliability.
+This document, however, does not enforce any of these message types, as the decision on which one is appropriate depends on the characteristics of the network where DoC is deployed.<a href="#section-10.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="redirects">
+<section id="section-10.2">
+        <h3 id="name-redirects">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-redirects" class="section-name selfRef">Redirects</a>
+        </h3>
+<p id="section-10.2-1">Application-layer redirects (e.g., HTTP) redirct a client to a new server.
+In the case of DoC, this leads to a new DNS server.
+This new DNS server may provide different answers to the same DNS query than the previous DNS server.
+At the time of writing, CoAP does not support redirection.
+Future specifications of CoAP redirect may need to consider the impact of different results between previous and new DNS server.<a href="#section-10.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="proxy-hop-limit">
+<section id="section-10.3">
+        <h3 id="name-proxy-hop-limit">
+<a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-proxy-hop-limit" class="section-name selfRef">Proxy Hop-Limit</a>
+        </h3>
+<p id="section-10.3-1">Mistakes might lead to CoAP proxies forming infinite loops.
+Using the CoAP Hop-Limit option <span>[<a href="#RFC8768" class="cite xref">RFC8768</a>]</span> mitigates such loops.<a href="#section-10.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="error-handling">
+<section id="section-10.4">
+        <h3 id="name-error-handling">
+<a href="#section-10.4" class="section-number selfRef">10.4. </a><a href="#name-error-handling" class="section-name selfRef">Error Handling</a>
+        </h3>
+<p id="section-10.4-1"><a href="#sec_resp-codes" class="auto internal xref">Section 4.3.1</a> specifies that DNS operational errors should be reported back to a DoC client
+using the appropriate DNS RCODE.
+If a DoC client did not receive any successful DNS message from a DoC server for a while, it might
+indicate that the DoC server lost connectivity to the upstream DNS infrastructure.
+The DoC client should handle this error case like a recursive resolver that lost connectivity to the upstream DNS infrastructure.
+In case of CoAP errors, the usual mechanisms for CoAP response codes apply.<a href="#section-10.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="dns-extensions">
+<section id="section-10.5">
+        <h3 id="name-dns-extensions">
+<a href="#section-10.5" class="section-number selfRef">10.5. </a><a href="#name-dns-extensions" class="section-name selfRef">DNS Extensions</a>
+        </h3>
+<p id="section-10.5-1">DNS extensions that are specific to the choice of transport, such as <span>[<a href="#RFC7828" class="cite xref">RFC7828</a>]</span>, are not applicable to DoC.<a href="#section-10.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-11">
       <h2 id="name-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-10.1">
+<section id="section-11.1">
         <h3 id="name-normative-references">
-<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-core-coap-dtls-alpn">[I-D.ietf-core-coap-dtls-alpn]</dt>
@@ -2252,6 +2344,10 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
         <dd>
 <span class="refAuthor">Pusateri, T.</span> and <span class="refAuthor">S. Cheshire</span>, <span class="refTitle">"DNS Push Notifications"</span>, <span class="seriesInfo">RFC 8765</span>, <span class="seriesInfo">DOI 10.17487/RFC8765</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8765">https://www.rfc-editor.org/rfc/rfc8765</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8768">[RFC8768]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Reddy.K, T.</span>, and <span class="refAuthor">J. Shallow</span>, <span class="refTitle">"Constrained Application Protocol (CoAP) Hop-Limit Option"</span>, <span class="seriesInfo">RFC 8768</span>, <span class="seriesInfo">DOI 10.17487/RFC8768</span>, <time datetime="2020-03" class="refDate">March 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8768">https://www.rfc-editor.org/rfc/rfc8768</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8949">[RFC8949]</dt>
         <dd>
 <span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Concise Binary Object Representation (CBOR)"</span>, <span class="seriesInfo">STD 94</span>, <span class="seriesInfo">RFC 8949</span>, <span class="seriesInfo">DOI 10.17487/RFC8949</span>, <time datetime="2020-12" class="refDate">December 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8949">https://www.rfc-editor.org/rfc/rfc8949</a>&gt;</span>. </dd>
@@ -2259,6 +2355,22 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
 <dt id="RFC9147">[RFC9147]</dt>
         <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refAuthor">Tschofenig, H.</span>, and <span class="refAuthor">N. Modadugu</span>, <span class="refTitle">"The Datagram Transport Layer Security (DTLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 9147</span>, <span class="seriesInfo">DOI 10.17487/RFC9147</span>, <time datetime="2022-04" class="refDate">April 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9147">https://www.rfc-editor.org/rfc/rfc9147</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9460">[RFC9460]</dt>
+        <dd>
+<span class="refAuthor">Schwartz, B.</span>, <span class="refAuthor">Bishop, M.</span>, and <span class="refAuthor">E. Nygren</span>, <span class="refTitle">"Service Binding and Parameter Specification via the DNS (SVCB and HTTPS Resource Records)"</span>, <span class="seriesInfo">RFC 9460</span>, <span class="seriesInfo">DOI 10.17487/RFC9460</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9460">https://www.rfc-editor.org/rfc/rfc9460</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9461">[RFC9461]</dt>
+        <dd>
+<span class="refAuthor">Schwartz, B.</span>, <span class="refTitle">"Service Binding Mapping for DNS Servers"</span>, <span class="seriesInfo">RFC 9461</span>, <span class="seriesInfo">DOI 10.17487/RFC9461</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9461">https://www.rfc-editor.org/rfc/rfc9461</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9462">[RFC9462]</dt>
+        <dd>
+<span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Kinnear, E.</span>, <span class="refAuthor">Wood, C. A.</span>, <span class="refAuthor">McManus, P.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"Discovery of Designated Resolvers"</span>, <span class="seriesInfo">RFC 9462</span>, <span class="seriesInfo">DOI 10.17487/RFC9462</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9462">https://www.rfc-editor.org/rfc/rfc9462</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9463">[RFC9463]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Reddy.K, T., Ed.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Cook, N.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"DHCP and Router Advertisement Options for the Discovery of Network-designated Resolvers (DNR)"</span>, <span class="seriesInfo">RFC 9463</span>, <span class="seriesInfo">DOI 10.17487/RFC9463</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9463">https://www.rfc-editor.org/rfc/rfc9463</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="STD13">[STD13]</dt>
       <dd>
@@ -2274,9 +2386,9 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-10.2">
+<section id="section-11.2">
         <h3 id="name-informative-references">
-<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="BCP219">[BCP219]</dt>
@@ -2309,7 +2421,7 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
 <dd class="break"></dd>
 <dt id="I-D.ietf-core-href">[I-D.ietf-core-href]</dt>
         <dd>
-<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Constrained Resource Identifiers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-href-23</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-href-23">https://datatracker.ietf.org/doc/html/draft-ietf-core-href-23</a>&gt;</span>. </dd>
+<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Constrained Resource Identifiers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-href-24</span>, <time datetime="2025-08-30" class="refDate">30 August 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-href-24">https://datatracker.ietf.org/doc/html/draft-ietf-core-href-24</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-core-transport-indication">[I-D.ietf-core-transport-indication]</dt>
         <dd>
@@ -2318,10 +2430,6 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
 <dt id="I-D.ietf-iotops-7228bis">[I-D.ietf-iotops-7228bis]</dt>
         <dd>
 <span class="refAuthor">Bormann, C.</span>, <span class="refAuthor">Ersue, M.</span>, <span class="refAuthor">Keränen, A.</span>, and <span class="refAuthor">C. Gomez</span>, <span class="refTitle">"Terminology for Constrained-Node Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-iotops-7228bis-02</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-iotops-7228bis-02">https://datatracker.ietf.org/doc/html/draft-ietf-iotops-7228bis-02</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.lenders-core-dnr">[I-D.lenders-core-dnr]</dt>
-        <dd>
-<span class="refAuthor">Lenders, M. S.</span>, <span class="refAuthor">Amsüss, C.</span>, <span class="refAuthor">Schmidt, T. C.</span>, and <span class="refAuthor">M. Wählisch</span>, <span class="refTitle">"Discovery of Network-designated OSCORE-based Resolvers: Problem Statement"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-lenders-core-dnr-06</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-lenders-core-dnr-06">https://datatracker.ietf.org/doc/html/draft-lenders-core-dnr-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="REST">[REST]</dt>
         <dd>
@@ -2338,6 +2446,14 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
 <dt id="RFC7228">[RFC7228]</dt>
         <dd>
 <span class="refAuthor">Bormann, C.</span>, <span class="refAuthor">Ersue, M.</span>, and <span class="refAuthor">A. Keranen</span>, <span class="refTitle">"Terminology for Constrained-Node Networks"</span>, <span class="seriesInfo">RFC 7228</span>, <span class="seriesInfo">DOI 10.17487/RFC7228</span>, <time datetime="2014-05" class="refDate">May 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7228">https://www.rfc-editor.org/rfc/rfc7228</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7828">[RFC7828]</dt>
+        <dd>
+<span class="refAuthor">Wouters, P.</span>, <span class="refAuthor">Abley, J.</span>, <span class="refAuthor">Dickinson, S.</span>, and <span class="refAuthor">R. Bellis</span>, <span class="refTitle">"The edns-tcp-keepalive EDNS0 Option"</span>, <span class="seriesInfo">RFC 7828</span>, <span class="seriesInfo">DOI 10.17487/RFC7828</span>, <time datetime="2016-04" class="refDate">April 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7828">https://www.rfc-editor.org/rfc/rfc7828</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7858">[RFC7858]</dt>
+        <dd>
+<span class="refAuthor">Hu, Z.</span>, <span class="refAuthor">Zhu, L.</span>, <span class="refAuthor">Heidemann, J.</span>, <span class="refAuthor">Mankin, A.</span>, <span class="refAuthor">Wessels, D.</span>, and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Specification for DNS over Transport Layer Security (TLS)"</span>, <span class="seriesInfo">RFC 7858</span>, <span class="seriesInfo">DOI 10.17487/RFC7858</span>, <time datetime="2016-05" class="refDate">May 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7858">https://www.rfc-editor.org/rfc/rfc7858</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7942">[RFC7942]</dt>
         <dd>
@@ -2367,22 +2483,6 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
         <dd>
 <span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Dickinson, S.</span>, and <span class="refAuthor">A. Mankin</span>, <span class="refTitle">"DNS over Dedicated QUIC Connections"</span>, <span class="seriesInfo">RFC 9250</span>, <span class="seriesInfo">DOI 10.17487/RFC9250</span>, <time datetime="2022-05" class="refDate">May 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9250">https://www.rfc-editor.org/rfc/rfc9250</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC9460">[RFC9460]</dt>
-        <dd>
-<span class="refAuthor">Schwartz, B.</span>, <span class="refAuthor">Bishop, M.</span>, and <span class="refAuthor">E. Nygren</span>, <span class="refTitle">"Service Binding and Parameter Specification via the DNS (SVCB and HTTPS Resource Records)"</span>, <span class="seriesInfo">RFC 9460</span>, <span class="seriesInfo">DOI 10.17487/RFC9460</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9460">https://www.rfc-editor.org/rfc/rfc9460</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9461">[RFC9461]</dt>
-        <dd>
-<span class="refAuthor">Schwartz, B.</span>, <span class="refTitle">"Service Binding Mapping for DNS Servers"</span>, <span class="seriesInfo">RFC 9461</span>, <span class="seriesInfo">DOI 10.17487/RFC9461</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9461">https://www.rfc-editor.org/rfc/rfc9461</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9462">[RFC9462]</dt>
-        <dd>
-<span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Kinnear, E.</span>, <span class="refAuthor">Wood, C. A.</span>, <span class="refAuthor">McManus, P.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"Discovery of Designated Resolvers"</span>, <span class="seriesInfo">RFC 9462</span>, <span class="seriesInfo">DOI 10.17487/RFC9462</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9462">https://www.rfc-editor.org/rfc/rfc9462</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9463">[RFC9463]</dt>
-        <dd>
-<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Reddy.K, T., Ed.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Cook, N.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"DHCP and Router Advertisement Options for the Discovery of Network-designated Resolvers (DNR)"</span>, <span class="seriesInfo">RFC 9463</span>, <span class="seriesInfo">DOI 10.17487/RFC9463</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9463">https://www.rfc-editor.org/rfc/rfc9463</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC9528">[RFC9528]</dt>
       <dd>
 <span class="refAuthor">Selander, G.</span>, <span class="refAuthor">Preuß Mattsson, J.</span>, and <span class="refAuthor">F. Palombini</span>, <span class="refTitle">"Ephemeral Diffie-Hellman Over COSE (EDHOC)"</span>, <span class="seriesInfo">RFC 9528</span>, <span class="seriesInfo">DOI 10.17487/RFC9528</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9528">https://www.rfc-editor.org/rfc/rfc9528</a>&gt;</span>. </dd>
@@ -2407,113 +2507,165 @@ paper "Securing Name Resolution in the IoT: DNS over CoAP" <span>[<a href="#DoC-
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
 <p id="appendix-B-1"><span class="cref" id="remove-changelog">RFC Ed.: Please remove this section before publication.</span><a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<div id="since-draft-ietf-core-dns-over-coap-17">
+<div id="since-draft-ietf-core-dns-over-coap-18">
 <section id="appendix-B.1">
         <h3 id="name-since-draft-ietf-core-dns-o">
-<a href="#appendix-B.1" class="section-number selfRef">B.1. </a><a href="#name-since-draft-ietf-core-dns-o" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-17">draft-ietf-core-dns-over-coap-17</a></a>
+<a href="#appendix-B.1" class="section-number selfRef">B.1. </a><a href="#name-since-draft-ietf-core-dns-o" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-18">draft-ietf-core-dns-over-coap-18</a></a>
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.1-1.1">
-            <p id="appendix-B.1-1.1.1">Address Roman Danyliw's COMMENT:<a href="#appendix-B.1-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.1-1.1.1">Address Address Mohamed Boucadair's COMMENT:<a href="#appendix-B.1-1.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B.1-1.1.2.1">
-                <p id="appendix-B.1-1.1.2.1.1">Remove unused RFC8742 reference<a href="#appendix-B.1-1.1.2.1.1" class="pilcrow">¶</a></p>
+                <p id="appendix-B.1-1.1.2.1.1">Add Operational Considerations Section<a href="#appendix-B.1-1.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.1-1.1.2.2">
+                <p id="appendix-B.1-1.1.2.2.1">Make SVCB references normative<a href="#appendix-B.1-1.1.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.1-1.1.2.3">
+                <p id="appendix-B.1-1.1.2.3.1">Remove redundant requirement on parsing application/dns-message<a href="#appendix-B.1-1.1.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.1-1.1.2.4">
+                <p id="appendix-B.1-1.1.2.4.1">Remove contradicting statement and outdated reference about ALPN<a href="#appendix-B.1-1.1.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.1-1.1.2.5">
+                <p id="appendix-B.1-1.1.2.5.1">Add DNS client to Fig. 1<a href="#appendix-B.1-1.1.2.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.1-1.1.2.6">
+                <p id="appendix-B.1-1.1.2.6.1">Clarify recursion termination in the CoAP realm<a href="#appendix-B.1-1.1.2.6.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.1-1.1.2.7">
+                <p id="appendix-B.1-1.1.2.7.1">Clarify where addresses are coming from with DDR/DNR<a href="#appendix-B.1-1.1.2.7.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
           <li class="normal" id="appendix-B.1-1.2">
-            <p id="appendix-B.1-1.2.1">Address Vladimír Čunát's DNSDIR review<a href="#appendix-B.1-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.1-1.2.1">Address Gorry Fairhurst's follow-up DISCUSS:<a href="#appendix-B.1-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B.1-1.2.2.1">
-                <p id="appendix-B.1-1.2.2.1.1">Address Éric Vyncke' COMMENT:<a href="#appendix-B.1-1.2.2.1.1" class="pilcrow">¶</a></p>
+                <p id="appendix-B.1-1.2.2.1.1">Refer to Observe terminology in Section 2<a href="#appendix-B.1-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="appendix-B.1-1.2.2.2">
-                <p id="appendix-B.1-1.2.2.2.1">Mention OPCODE 0 in Abstract and Introduction<a href="#appendix-B.1-1.2.2.2.1" class="pilcrow">¶</a></p>
+                <p id="appendix-B.1-1.2.2.2.1">Clarify registration<a href="#appendix-B.1-1.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="appendix-B.1-1.2.2.3">
-                <p id="appendix-B.1-1.2.2.3.1">Reference to STD13 instead of RFC1035<a href="#appendix-B.1-1.2.2.3.1" class="pilcrow">¶</a></p>
+                <p id="appendix-B.1-1.2.2.3.1">Provide alternative observation examples<a href="#appendix-B.1-1.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="appendix-B.1-1.2.2.4">
-                <p id="appendix-B.1-1.2.2.4.1">Provide extension pointers for future documents on other OPCODES<a href="#appendix-B.1-1.2.2.4.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="appendix-B.1-1.2.2.5">
-                <p id="appendix-B.1-1.2.2.5.1">Use only singular for example section if there is only one example<a href="#appendix-B.1-1.2.2.5.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="appendix-B.1-1.2.2.6">
-                <p id="appendix-B.1-1.2.2.6.1">Improvements on DNSSEC<a href="#appendix-B.1-1.2.2.6.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="appendix-B.1-1.2.2.7">
-                <p id="appendix-B.1-1.2.2.7.1">Hyphenate link-layer as modifier to frame<a href="#appendix-B.1-1.2.2.7.1" class="pilcrow">¶</a></p>
+                <p id="appendix-B.1-1.2.2.4.1">Clarify that error handling is in the hands of the DoC server<a href="#appendix-B.1-1.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.1-1.3">
-            <p id="appendix-B.1-1.3.1">Address Paul Wouters's DISCUSS and COMMENT:<a href="#appendix-B.1-1.3.1" class="pilcrow">¶</a></p>
+        </ul>
+</section>
+</div>
+<div id="since-draft-ietf-core-dns-over-coap-17">
+<section id="appendix-B.2">
+        <h3 id="name-since-draft-ietf-core-dns-ov">
+<a href="#appendix-B.2" class="section-number selfRef">B.2. </a><a href="#name-since-draft-ietf-core-dns-ov" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-17">draft-ietf-core-dns-over-coap-17</a></a>
+        </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.1-1.3.2.1">
-                <p id="appendix-B.1-1.3.2.1.1">Remove unnecessary and confusing ad flag from query example<a href="#appendix-B.1-1.3.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="appendix-B.1-1.3.2.2">
-                <p id="appendix-B.1-1.3.2.2.1">Phrase full SVCB mapping sentence more neutrally<a href="#appendix-B.1-1.3.2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.2-1.1">
+            <p id="appendix-B.2-1.1.1">Address Roman Danyliw's COMMENT:<a href="#appendix-B.2-1.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B.2-1.1.2.1">
+                <p id="appendix-B.2-1.1.2.1.1">Remove unused RFC8742 reference<a href="#appendix-B.2-1.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.1-1.4">
-            <p id="appendix-B.1-1.4.1">Address Gorry Fairhurst's COMMENT:<a href="#appendix-B.1-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.2-1.2">
+            <p id="appendix-B.2-1.2.1">Address Vladimír Čunát's DNSDIR review<a href="#appendix-B.2-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.1-1.4.2.1">
-                <p id="appendix-B.1-1.4.2.1.1">Add note (in addition to the <code>RFC Ed.:</code>) about paragraph removal<a href="#appendix-B.1-1.4.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.2-1.2.2.1">
+                <p id="appendix-B.2-1.2.2.1.1">Address Éric Vyncke' COMMENT:<a href="#appendix-B.2-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.1-1.4.2.2">
-                <p id="appendix-B.1-1.4.2.2.1">Add references for "coap" and "co" ALPN to SvcParam algorithm<a href="#appendix-B.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.2-1.2.2.2">
+                <p id="appendix-B.2-1.2.2.2.1">Mention OPCODE 0 in Abstract and Introduction<a href="#appendix-B.2-1.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.1-1.4.2.3">
-                <p id="appendix-B.1-1.4.2.3.1">Address Gorry's nits<a href="#appendix-B.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.2-1.2.2.3">
+                <p id="appendix-B.2-1.2.2.3.1">Reference to STD13 instead of RFC1035<a href="#appendix-B.2-1.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.2.2.4">
+                <p id="appendix-B.2-1.2.2.4.1">Provide extension pointers for future documents on other OPCODES<a href="#appendix-B.2-1.2.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.2.2.5">
+                <p id="appendix-B.2-1.2.2.5.1">Use only singular for example section if there is only one example<a href="#appendix-B.2-1.2.2.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.2.2.6">
+                <p id="appendix-B.2-1.2.2.6.1">Improvements on DNSSEC<a href="#appendix-B.2-1.2.2.6.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.2.2.7">
+                <p id="appendix-B.2-1.2.2.7.1">Hyphenate link-layer as modifier to frame<a href="#appendix-B.2-1.2.2.7.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.1-1.5">
-            <p id="appendix-B.1-1.5.1">Address Gorry Fairhurst's DISCUSS:<a href="#appendix-B.1-1.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.2-1.3">
+            <p id="appendix-B.2-1.3.1">Address Paul Wouters's DISCUSS and COMMENT:<a href="#appendix-B.2-1.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.1-1.5.2.1">
-                <p id="appendix-B.1-1.5.2.1.1">Update push notifications<a href="#appendix-B.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.2-1.3.2.1">
+                <p id="appendix-B.2-1.3.2.1.1">Remove unnecessary and confusing ad flag from query example<a href="#appendix-B.2-1.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.1-1.5.2.2">
-                <p id="appendix-B.1-1.5.2.2.1">observation: Do not use normative language<a href="#appendix-B.1-1.5.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.2-1.3.2.2">
+                <p id="appendix-B.2-1.3.2.2.1">Phrase full SVCB mapping sentence more neutrally<a href="#appendix-B.2-1.3.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.1-1.6">
-            <p id="appendix-B.1-1.6.1">Address Orie Steele's COMMENT:<a href="#appendix-B.1-1.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.2-1.4">
+            <p id="appendix-B.2-1.4.1">Address Gorry Fairhurst's COMMENT:<a href="#appendix-B.2-1.4.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.1-1.6.2.1">
-                <p id="appendix-B.1-1.6.2.1.1">Automatic configuration <span class="bcp14">MUST</span> only be done from a trusted source<a href="#appendix-B.1-1.6.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.2-1.4.2.1">
+                <p id="appendix-B.2-1.4.2.1.1">Add note (in addition to the <code>RFC Ed.:</code>) about paragraph removal<a href="#appendix-B.2-1.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.1-1.6.2.2">
-                <p id="appendix-B.1-1.6.2.2.1">Remove confusing and unnecessary <span class="bcp14">MAY</span><a href="#appendix-B.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.2-1.4.2.2">
+                <p id="appendix-B.2-1.4.2.2.1">Add references for "coap" and "co" ALPN to SvcParam algorithm<a href="#appendix-B.2-1.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.1-1.6.2.3">
-                <p id="appendix-B.1-1.6.2.3.1">Remove normative repeat of SvcParam algorithm by citing RFC 9461<a href="#appendix-B.1-1.6.2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="appendix-B.1-1.6.2.4">
-                <p id="appendix-B.1-1.6.2.4.1">Fix wording around Accept option<a href="#appendix-B.1-1.6.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.2-1.4.2.3">
+                <p id="appendix-B.2-1.4.2.3.1">Address Gorry's nits<a href="#appendix-B.2-1.4.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.1-1.7">
-            <p id="appendix-B.1-1.7.1">Address Deb Cooley's COMMENT:<a href="#appendix-B.1-1.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.2-1.5">
+            <p id="appendix-B.2-1.5.1">Address Gorry Fairhurst's DISCUSS:<a href="#appendix-B.2-1.5.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.1-1.7.2.1">
-                <p id="appendix-B.1-1.7.2.1.1">Group (D)TLS references<a href="#appendix-B.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.2-1.5.2.1">
+                <p id="appendix-B.2-1.5.2.1.1">Update push notifications<a href="#appendix-B.2-1.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.1-1.7.2.2">
-                <p id="appendix-B.1-1.7.2.2.1">Automatic configuration <span class="bcp14">MUST</span> only be done from a trusted source<a href="#appendix-B.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.2-1.5.2.2">
+                <p id="appendix-B.2-1.5.2.2.1">observation: Do not use normative language<a href="#appendix-B.2-1.5.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.1-1.7.2.3">
-                <p id="appendix-B.1-1.7.2.3.1">Fix wording about unpredictable ID and spoofing<a href="#appendix-B.1-1.7.2.3.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-              <li class="normal" id="appendix-B.1-1.7.2.4">
-                <p id="appendix-B.1-1.7.2.4.1">Remove confusing "e.g."<a href="#appendix-B.1-1.7.2.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.2-1.6">
+            <p id="appendix-B.2-1.6.1">Address Orie Steele's COMMENT:<a href="#appendix-B.2-1.6.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B.2-1.6.2.1">
+                <p id="appendix-B.2-1.6.2.1.1">Automatic configuration <span class="bcp14">MUST</span> only be done from a trusted source<a href="#appendix-B.2-1.6.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.6.2.2">
+                <p id="appendix-B.2-1.6.2.2.1">Remove confusing and unnecessary <span class="bcp14">MAY</span><a href="#appendix-B.2-1.6.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.6.2.3">
+                <p id="appendix-B.2-1.6.2.3.1">Remove normative repeat of SvcParam algorithm by citing RFC 9461<a href="#appendix-B.2-1.6.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.6.2.4">
+                <p id="appendix-B.2-1.6.2.4.1">Fix wording around Accept option<a href="#appendix-B.2-1.6.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="normal" id="appendix-B.2-1.7">
+            <p id="appendix-B.2-1.7.1">Address Deb Cooley's COMMENT:<a href="#appendix-B.2-1.7.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B.2-1.7.2.1">
+                <p id="appendix-B.2-1.7.2.1.1">Group (D)TLS references<a href="#appendix-B.2-1.7.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.7.2.2">
+                <p id="appendix-B.2-1.7.2.2.1">Automatic configuration <span class="bcp14">MUST</span> only be done from a trusted source<a href="#appendix-B.2-1.7.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.7.2.3">
+                <p id="appendix-B.2-1.7.2.3.1">Fix wording about unpredictable ID and spoofing<a href="#appendix-B.2-1.7.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-B.2-1.7.2.4">
+                <p id="appendix-B.2-1.7.2.4.1">Remove confusing "e.g."<a href="#appendix-B.2-1.7.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -2521,78 +2673,78 @@ paper "Securing Name Resolution in the IoT: DNS over CoAP" <span>[<a href="#DoC-
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-16">
-<section id="appendix-B.2">
-        <h3 id="name-since-draft-ietf-core-dns-ov">
-<a href="#appendix-B.2" class="section-number selfRef">B.2. </a><a href="#name-since-draft-ietf-core-dns-ov" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-16">draft-ietf-core-dns-over-coap-16</a></a>
+<section id="appendix-B.3">
+        <h3 id="name-since-draft-ietf-core-dns-ove">
+<a href="#appendix-B.3" class="section-number selfRef">B.3. </a><a href="#name-since-draft-ietf-core-dns-ove" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-16">draft-ietf-core-dns-over-coap-16</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.2-1.1">
-            <p id="appendix-B.2-1.1.1">Mention TLS as possible protection mechanism in abstract and intro<a href="#appendix-B.2-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.3-1.1">
+            <p id="appendix-B.3-1.1.1">Mention TLS as possible protection mechanism in abstract and intro<a href="#appendix-B.3-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.2-1.2">
-            <p id="appendix-B.2-1.2.1">Fix representation format in the docpath examples<a href="#appendix-B.2-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.3-1.2">
+            <p id="appendix-B.3-1.2.1">Fix representation format in the docpath examples<a href="#appendix-B.3-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.2-1.3">
-            <p id="appendix-B.2-1.3.1">Make docpath wire-format paragraph easier to parse<a href="#appendix-B.2-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.3-1.3">
+            <p id="appendix-B.3-1.3.1">Make docpath wire-format paragraph easier to parse<a href="#appendix-B.3-1.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-15">
-<section id="appendix-B.3">
-        <h3 id="name-since-draft-ietf-core-dns-ove">
-<a href="#appendix-B.3" class="section-number selfRef">B.3. </a><a href="#name-since-draft-ietf-core-dns-ove" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-15">draft-ietf-core-dns-over-coap-15</a></a>
+<section id="appendix-B.4">
+        <h3 id="name-since-draft-ietf-core-dns-over">
+<a href="#appendix-B.4" class="section-number selfRef">B.4. </a><a href="#name-since-draft-ietf-core-dns-over" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-15">draft-ietf-core-dns-over-coap-15</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.3-1.1">
-            <p id="appendix-B.3-1.1.1">Address Genart and Artart review:<a href="#appendix-B.3-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.4-1.1">
+            <p id="appendix-B.4-1.1.1">Address Genart and Artart review:<a href="#appendix-B.4-1.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.3-1.1.2.1">
-                <p id="appendix-B.3-1.1.2.1.1">Add editor's note about removing RFC7228 reference in case rfc7228bis comes out before
-publication<a href="#appendix-B.3-1.1.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.4-1.1.2.1">
+                <p id="appendix-B.4-1.1.2.1.1">Add editor's note about removing RFC7228 reference in case rfc7228bis comes out before
+publication<a href="#appendix-B.4-1.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.1.2.2">
-                <p id="appendix-B.3-1.1.2.2.1">Address minor nits<a href="#appendix-B.3-1.1.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.1.2.2">
+                <p id="appendix-B.4-1.1.2.2.1">Address minor nits<a href="#appendix-B.4-1.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.1.2.3">
-                <p id="appendix-B.3-1.1.2.3.1">Resolve less well-known abbreviations<a href="#appendix-B.3-1.1.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.1.2.3">
+                <p id="appendix-B.4-1.1.2.3.1">Resolve less well-known abbreviations<a href="#appendix-B.4-1.1.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.1.2.4">
-                <p id="appendix-B.3-1.1.2.4.1">Name default ports for "coap" and "co"<a href="#appendix-B.3-1.1.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.1.2.4">
+                <p id="appendix-B.4-1.1.2.4.1">Name default ports for "coap" and "co"<a href="#appendix-B.4-1.1.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.1.2.5">
-                <p id="appendix-B.3-1.1.2.5.1">Add reasoning why we also consider DTLS v1.2 (RFC 6347)<a href="#appendix-B.3-1.1.2.5.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.1.2.5">
+                <p id="appendix-B.4-1.1.2.5.1">Add reasoning why we also consider DTLS v1.2 (RFC 6347)<a href="#appendix-B.4-1.1.2.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.1.2.6">
-                <p id="appendix-B.3-1.1.2.6.1">Add illustrative reference for ETag generation<a href="#appendix-B.3-1.1.2.6.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.1.2.6">
+                <p id="appendix-B.4-1.1.2.6.1">Add illustrative reference for ETag generation<a href="#appendix-B.4-1.1.2.6.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.3-1.2">
-            <p id="appendix-B.3-1.2.1">Address DNS SVCB SvcParamKeys IANA expert review:<a href="#appendix-B.3-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.4-1.2">
+            <p id="appendix-B.4-1.2.1">Address DNS SVCB SvcParamKeys IANA expert review:<a href="#appendix-B.4-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.3-1.2.2.1">
-                <p id="appendix-B.3-1.2.2.1.1">docpath: clarifications and examples<a href="#appendix-B.3-1.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.4-1.2.2.1">
+                <p id="appendix-B.4-1.2.2.1.1">docpath: clarifications and examples<a href="#appendix-B.4-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.2.2.2">
-                <p id="appendix-B.3-1.2.2.2.1">Rework representation format and wire-format of "docpath"<a href="#appendix-B.3-1.2.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.2.2.2">
+                <p id="appendix-B.4-1.2.2.2.1">Rework representation format and wire-format of "docpath"<a href="#appendix-B.4-1.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.2.2.3">
-                <p id="appendix-B.3-1.2.2.3.1">State that we don't do the full SVCB mapping<a href="#appendix-B.3-1.2.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.2.2.3">
+                <p id="appendix-B.4-1.2.2.3.1">State that we don't do the full SVCB mapping<a href="#appendix-B.4-1.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.2.2.4">
-                <p id="appendix-B.3-1.2.2.4.1">Explicitly do not limit what port= can do.<a href="#appendix-B.3-1.2.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.2.2.4">
+                <p id="appendix-B.4-1.2.2.4.1">Explicitly do not limit what port= can do.<a href="#appendix-B.4-1.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.3-1.2.2.5">
-                <p id="appendix-B.3-1.2.2.5.1">port limitations: We're not the SVCB mapping document<a href="#appendix-B.3-1.2.2.5.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.4-1.2.2.5">
+                <p id="appendix-B.4-1.2.2.5.1">port limitations: We're not the SVCB mapping document<a href="#appendix-B.4-1.2.2.5.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.3-1.3">
-            <p id="appendix-B.3-1.3.1">Address Tsvart Review<a href="#appendix-B.3-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.4-1.3">
+            <p id="appendix-B.4-1.3.1">Address Tsvart Review<a href="#appendix-B.4-1.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.3-1.3.2.1">
-                <p id="appendix-B.3-1.3.2.1.1">Prefer ADN for Uri-Host; don't prescribe <em>how</em> it is set<a href="#appendix-B.3-1.3.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.4-1.3.2.1">
+                <p id="appendix-B.4-1.3.2.1.1">Prefer ADN for Uri-Host; don't prescribe <em>how</em> it is set<a href="#appendix-B.4-1.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -2600,49 +2752,49 @@ publication<a href="#appendix-B.3-1.1.2.1.1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-14">
-<section id="appendix-B.4">
-        <h3 id="name-since-draft-ietf-core-dns-over">
-<a href="#appendix-B.4" class="section-number selfRef">B.4. </a><a href="#name-since-draft-ietf-core-dns-over" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-14">draft-ietf-core-dns-over-coap-14</a></a>
+<section id="appendix-B.5">
+        <h3 id="name-since-draft-ietf-core-dns-over-">
+<a href="#appendix-B.5" class="section-number selfRef">B.5. </a><a href="#name-since-draft-ietf-core-dns-over-" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-14">draft-ietf-core-dns-over-coap-14</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.4-1.1">
-            <p id="appendix-B.4-1.1.1">Remove superfluous and confusing step in SVCB to request algorithm<a href="#appendix-B.4-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.5-1.1">
+            <p id="appendix-B.5-1.1.1">Remove superfluous and confusing step in SVCB to request algorithm<a href="#appendix-B.5-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.4-1.2">
-            <p id="appendix-B.4-1.2.1">Address AD review:<a href="#appendix-B.4-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.5-1.2">
+            <p id="appendix-B.5-1.2.1">Address AD review:<a href="#appendix-B.5-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.4-1.2.2.1">
-                <p id="appendix-B.4-1.2.2.1.1">Remove RFC8949 as CBOR diagnostic notation reference<a href="#appendix-B.4-1.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.5-1.2.2.1">
+                <p id="appendix-B.5-1.2.2.1.1">Remove RFC8949 as CBOR diagnostic notation reference<a href="#appendix-B.5-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.2">
-                <p id="appendix-B.4-1.2.2.2.1">CoRE-specific FETCH method -&gt; CoAP-specific FETCH method<a href="#appendix-B.4-1.2.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.2">
+                <p id="appendix-B.5-1.2.2.2.1">CoRE-specific FETCH method -&gt; CoAP-specific FETCH method<a href="#appendix-B.5-1.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.3">
-                <p id="appendix-B.4-1.2.2.3.1">Remove double reference to BCP 219<a href="#appendix-B.4-1.2.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.3">
+                <p id="appendix-B.5-1.2.2.3.1">Remove double reference to BCP 219<a href="#appendix-B.5-1.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.4">
-                <p id="appendix-B.4-1.2.2.4.1">Fix wording and references around SVCB records and ALPN<a href="#appendix-B.4-1.2.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.4">
+                <p id="appendix-B.5-1.2.2.4.1">Fix wording and references around SVCB records and ALPN<a href="#appendix-B.5-1.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.5">
-                <p id="appendix-B.4-1.2.2.5.1">Move format description for examples to Terminology section<a href="#appendix-B.4-1.2.2.5.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.5">
+                <p id="appendix-B.5-1.2.2.5.1">Move format description for examples to Terminology section<a href="#appendix-B.5-1.2.2.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.6">
-                <p id="appendix-B.4-1.2.2.6.1">Retitle section 5 to "Interaction with other CoAP and CoRE Features"<a href="#appendix-B.4-1.2.2.6.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.6">
+                <p id="appendix-B.5-1.2.2.6.1">Retitle section 5 to "Interaction with other CoAP and CoRE Features"<a href="#appendix-B.5-1.2.2.6.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.7">
-                <p id="appendix-B.4-1.2.2.7.1">Make prevention of poisoning attacks normative for unprotected CoAP<a href="#appendix-B.4-1.2.2.7.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.7">
+                <p id="appendix-B.5-1.2.2.7.1">Make prevention of poisoning attacks normative for unprotected CoAP<a href="#appendix-B.5-1.2.2.7.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.8">
-                <p id="appendix-B.4-1.2.2.8.1">Provide specs on if the <span class="bcp14">SHOULD</span> on ID=0 does not apply<a href="#appendix-B.4-1.2.2.8.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.8">
+                <p id="appendix-B.5-1.2.2.8.1">Provide specs on if the <span class="bcp14">SHOULD</span> on ID=0 does not apply<a href="#appendix-B.5-1.2.2.8.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.9">
-                <p id="appendix-B.4-1.2.2.9.1">Make construction algorithm normative<a href="#appendix-B.4-1.2.2.9.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.9">
+                <p id="appendix-B.5-1.2.2.9.1">Make construction algorithm normative<a href="#appendix-B.5-1.2.2.9.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.10">
-                <p id="appendix-B.4-1.2.2.10.1">Add definition for CoRE<a href="#appendix-B.4-1.2.2.10.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.10">
+                <p id="appendix-B.5-1.2.2.10.1">Add definition for CoRE<a href="#appendix-B.5-1.2.2.10.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.4-1.2.2.11">
-                <p id="appendix-B.4-1.2.2.11.1">General grammar, wording, and spelling cleanups<a href="#appendix-B.4-1.2.2.11.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.5-1.2.2.11">
+                <p id="appendix-B.5-1.2.2.11.1">General grammar, wording, and spelling cleanups<a href="#appendix-B.5-1.2.2.11.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -2650,166 +2802,166 @@ publication<a href="#appendix-B.3-1.1.2.1.1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-13">
-<section id="appendix-B.5">
-        <h3 id="name-since-draft-ietf-core-dns-over-">
-<a href="#appendix-B.5" class="section-number selfRef">B.5. </a><a href="#name-since-draft-ietf-core-dns-over-" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-13">draft-ietf-core-dns-over-coap-13</a></a>
+<section id="appendix-B.6">
+        <h3 id="name-since-draft-ietf-core-dns-over-c">
+<a href="#appendix-B.6" class="section-number selfRef">B.6. </a><a href="#name-since-draft-ietf-core-dns-over-c" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-13">draft-ietf-core-dns-over-coap-13</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.5-1.1">
-            <p id="appendix-B.5-1.1.1">Address shepherd review<a href="#appendix-B.5-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.6-1.1">
+            <p id="appendix-B.6-1.1.1">Address shepherd review<a href="#appendix-B.6-1.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-12">
-<section id="appendix-B.6">
-        <h3 id="name-since-draft-ietf-core-dns-over-c">
-<a href="#appendix-B.6" class="section-number selfRef">B.6. </a><a href="#name-since-draft-ietf-core-dns-over-c" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-12">draft-ietf-core-dns-over-coap-12</a></a>
+<section id="appendix-B.7">
+        <h3 id="name-since-draft-ietf-core-dns-over-co">
+<a href="#appendix-B.7" class="section-number selfRef">B.7. </a><a href="#name-since-draft-ietf-core-dns-over-co" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-12">draft-ietf-core-dns-over-coap-12</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.6-1.1">
-            <p id="appendix-B.6-1.1.1">Address Esko's review<a href="#appendix-B.6-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.7-1.1">
+            <p id="appendix-B.7-1.1.1">Address Esko's review<a href="#appendix-B.7-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.6-1.2">
-            <p id="appendix-B.6-1.2.1">Address Marcos's review<a href="#appendix-B.6-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.7-1.2">
+            <p id="appendix-B.7-1.2.1">Address Marcos's review<a href="#appendix-B.7-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.6-1.3">
-            <p id="appendix-B.6-1.3.1">Address Mikolai's review<a href="#appendix-B.6-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.7-1.3">
+            <p id="appendix-B.7-1.3.1">Address Mikolai's review<a href="#appendix-B.7-1.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-10">
-<section id="appendix-B.7">
-        <h3 id="name-since-draft-ietf-core-dns-over-co">
-<a href="#appendix-B.7" class="section-number selfRef">B.7. </a><a href="#name-since-draft-ietf-core-dns-over-co" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-10">draft-ietf-core-dns-over-coap-10</a></a>
+<section id="appendix-B.8">
+        <h3 id="name-since-draft-ietf-core-dns-over-coa">
+<a href="#appendix-B.8" class="section-number selfRef">B.8. </a><a href="#name-since-draft-ietf-core-dns-over-coa" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-10">draft-ietf-core-dns-over-coap-10</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.7-1.1">
-            <p id="appendix-B.7-1.1.1">Replace imprecise or wrong terms:<a href="#appendix-B.7-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.8-1.1">
+            <p id="appendix-B.8-1.1.1">Replace imprecise or wrong terms:<a href="#appendix-B.8-1.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.7-1.1.2.1">
-                <p id="appendix-B.7-1.1.2.1.1">disjunct =&gt; distinct<a href="#appendix-B.7-1.1.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.8-1.1.2.1">
+                <p id="appendix-B.8-1.1.2.1.1">disjunct =&gt; distinct<a href="#appendix-B.8-1.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.7-1.1.2.2">
-                <p id="appendix-B.7-1.1.2.2.1">unencrypted CoAP =&gt; unprotected CoAP<a href="#appendix-B.7-1.1.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.8-1.1.2.2">
+                <p id="appendix-B.8-1.1.2.2.1">unencrypted CoAP =&gt; unprotected CoAP<a href="#appendix-B.8-1.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.7-1.1.2.3">
-                <p id="appendix-B.7-1.1.2.3.1">security mode =&gt; confidential communication<a href="#appendix-B.7-1.1.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.8-1.1.2.3">
+                <p id="appendix-B.8-1.1.2.3.1">security mode =&gt; confidential communication<a href="#appendix-B.8-1.1.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="appendix-B.7-1.2">
-            <p id="appendix-B.7-1.2.1">Pull in definition of CBOR sequences and their EDN<a href="#appendix-B.7-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.2">
+            <p id="appendix-B.8-1.2.1">Pull in definition of CBOR sequences and their EDN<a href="#appendix-B.8-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.3">
-            <p id="appendix-B.7-1.3.1">Fix broken external section references<a href="#appendix-B.7-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.3">
+            <p id="appendix-B.8-1.3.1">Fix broken external section references<a href="#appendix-B.8-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.4">
-            <p id="appendix-B.7-1.4.1">Define terminology for "upstream DNS infrastructure" and "upstream DNS server"<a href="#appendix-B.7-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.4">
+            <p id="appendix-B.8-1.4.1">Define terminology for "upstream DNS infrastructure" and "upstream DNS server"<a href="#appendix-B.8-1.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.5">
-            <p id="appendix-B.7-1.5.1">Fix wording on DNS error handling<a href="#appendix-B.7-1.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.5">
+            <p id="appendix-B.8-1.5.1">Fix wording on DNS error handling<a href="#appendix-B.8-1.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.6">
-            <p id="appendix-B.7-1.6.1">Clarify that any OpCode beyond 0 is not supported for now and remove now redundant DNS Upgrade
-section as a consequence<a href="#appendix-B.7-1.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.6">
+            <p id="appendix-B.8-1.6.1">Clarify that any OpCode beyond 0 is not supported for now and remove now redundant DNS Upgrade
+section as a consequence<a href="#appendix-B.8-1.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.7">
-            <p id="appendix-B.7-1.7.1">Clarify that the DoC/DoH mapping is what is <span class="bcp14">NOT RECOMMENDED</span><a href="#appendix-B.7-1.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.7">
+            <p id="appendix-B.8-1.7.1">Clarify that the DoC/DoH mapping is what is <span class="bcp14">NOT RECOMMENDED</span><a href="#appendix-B.8-1.7.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.8">
-            <p id="appendix-B.7-1.8.1">Avoid use of undefined term “CoAP resource identifier”<a href="#appendix-B.7-1.8.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.8">
+            <p id="appendix-B.8-1.8.1">Avoid use of undefined term “CoAP resource identifier”<a href="#appendix-B.8-1.8.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.9">
-            <p id="appendix-B.7-1.9.1">Discuss Max-Age option value in an error case<a href="#appendix-B.7-1.9.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.9">
+            <p id="appendix-B.8-1.9.1">Discuss Max-Age option value in an error case<a href="#appendix-B.8-1.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.10">
-            <p id="appendix-B.7-1.10.1">Add human-readable format to examples<a href="#appendix-B.7-1.10.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.10">
+            <p id="appendix-B.8-1.10.1">Add human-readable format to examples<a href="#appendix-B.8-1.10.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.7-1.11">
-            <p id="appendix-B.7-1.11.1">General language check pass<a href="#appendix-B.7-1.11.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.8-1.11">
+            <p id="appendix-B.8-1.11.1">General language check pass<a href="#appendix-B.8-1.11.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-09">
-<section id="appendix-B.8">
-        <h3 id="name-since-draft-ietf-core-dns-over-coa">
-<a href="#appendix-B.8" class="section-number selfRef">B.8. </a><a href="#name-since-draft-ietf-core-dns-over-coa" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-09">draft-ietf-core-dns-over-coap-09</a></a>
+<section id="appendix-B.9">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap">
+<a href="#appendix-B.9" class="section-number selfRef">B.9. </a><a href="#name-since-draft-ietf-core-dns-over-coap" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-09">draft-ietf-core-dns-over-coap-09</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.8-1.1">
-            <p id="appendix-B.8-1.1.1">Update SVCB SvcParamKey<a href="#appendix-B.8-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.9-1.1">
+            <p id="appendix-B.9-1.1.1">Update SVCB SvcParamKey<a href="#appendix-B.9-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.8-1.2">
-            <p id="appendix-B.8-1.2.1">Update corr-clar reference<a href="#appendix-B.8-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.9-1.2">
+            <p id="appendix-B.9-1.2.1">Update corr-clar reference<a href="#appendix-B.9-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.8-1.3">
-            <p id="appendix-B.8-1.3.1">Add reference to DNS Update <a href="https://datatracker.ietf.org/doc/html/rfc2136">[RFC2136]</a>, clarify that it is currently not considered<a href="#appendix-B.8-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.9-1.3">
+            <p id="appendix-B.9-1.3.1">Add reference to DNS Update <a href="https://datatracker.ietf.org/doc/html/rfc2136">[RFC2136]</a>, clarify that it is currently not considered<a href="#appendix-B.9-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.8-1.4">
-            <p id="appendix-B.8-1.4.1">Add to security considerations: unprotected upstream DNS and DNSSEC<a href="#appendix-B.8-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.9-1.4">
+            <p id="appendix-B.9-1.4.1">Add to security considerations: unprotected upstream DNS and DNSSEC<a href="#appendix-B.9-1.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-08">
-<section id="appendix-B.9">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap">
-<a href="#appendix-B.9" class="section-number selfRef">B.9. </a><a href="#name-since-draft-ietf-core-dns-over-coap" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-08">draft-ietf-core-dns-over-coap-08</a></a>
+<section id="appendix-B.10">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-2">
+<a href="#appendix-B.10" class="section-number selfRef">B.10. </a><a href="#name-since-draft-ietf-core-dns-over-coap-2" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-08">draft-ietf-core-dns-over-coap-08</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.9-1.1">
-            <p id="appendix-B.9-1.1.1">Update Cenk's Affiliation<a href="#appendix-B.9-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.10-1.1">
+            <p id="appendix-B.10-1.1.1">Update Cenk's Affiliation<a href="#appendix-B.10-1.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-07">
-<section id="appendix-B.10">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-2">
-<a href="#appendix-B.10" class="section-number selfRef">B.10. </a><a href="#name-since-draft-ietf-core-dns-over-coap-2" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-07">draft-ietf-core-dns-over-coap-07</a></a>
+<section id="appendix-B.11">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-3">
+<a href="#appendix-B.11" class="section-number selfRef">B.11. </a><a href="#name-since-draft-ietf-core-dns-over-coap-3" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-07">draft-ietf-core-dns-over-coap-07</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.10-1.1">
-            <p id="appendix-B.10-1.1.1">Address IANA early review #1368678<a href="#appendix-B.10-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.11-1.1">
+            <p id="appendix-B.11-1.1.1">Address IANA early review #1368678<a href="#appendix-B.11-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.10-1.2">
-            <p id="appendix-B.10-1.2.1">Update normative reference to CoAP over DTLS alpn SvcParam<a href="#appendix-B.10-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.11-1.2">
+            <p id="appendix-B.11-1.2.1">Update normative reference to CoAP over DTLS alpn SvcParam<a href="#appendix-B.11-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.10-1.3">
-            <p id="appendix-B.10-1.3.1">Add missing DTLSv1.2 reference<a href="#appendix-B.10-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.11-1.3">
+            <p id="appendix-B.11-1.3.1">Add missing DTLSv1.2 reference<a href="#appendix-B.11-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.10-1.4">
-            <p id="appendix-B.10-1.4.1">Security considerations: Point into corr-clar-future<a href="#appendix-B.10-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.11-1.4">
+            <p id="appendix-B.11-1.4.1">Security considerations: Point into corr-clar-future<a href="#appendix-B.11-1.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.10-1.5">
-            <p id="appendix-B.10-1.5.1">Implementation Status: Update to current version<a href="#appendix-B.10-1.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.11-1.5">
+            <p id="appendix-B.11-1.5.1">Implementation Status: Update to current version<a href="#appendix-B.11-1.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-06">
-<section id="appendix-B.11">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-3">
-<a href="#appendix-B.11" class="section-number selfRef">B.11. </a><a href="#name-since-draft-ietf-core-dns-over-coap-3" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-06">draft-ietf-core-dns-over-coap-06</a></a>
+<section id="appendix-B.12">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-4">
+<a href="#appendix-B.12" class="section-number selfRef">B.12. </a><a href="#name-since-draft-ietf-core-dns-over-coap-4" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-06">draft-ietf-core-dns-over-coap-06</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.11-1.1">
-            <p id="appendix-B.11-1.1.1">Add "docpath" SVCB ParamKey definition<a href="#appendix-B.11-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.12-1.1">
+            <p id="appendix-B.12-1.1.1">Add "docpath" SVCB ParamKey definition<a href="#appendix-B.12-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.11-1.2">
-            <p id="appendix-B.11-1.2.1">IANA fixes<a href="#appendix-B.11-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.12-1.2">
+            <p id="appendix-B.12-1.2.1">IANA fixes<a href="#appendix-B.12-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-B.11-1.2.2.1">
-                <p id="appendix-B.11-1.2.2.1.1">Use new column names (see Errata 4954)<a href="#appendix-B.11-1.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.12-1.2.2.1">
+                <p id="appendix-B.12-1.2.2.1.1">Use new column names (see Errata 4954)<a href="#appendix-B.12-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.11-1.2.2.2">
-                <p id="appendix-B.11-1.2.2.2.1">Add reference to RFC 8484 for application/dns-message Media Type<a href="#appendix-B.11-1.2.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.12-1.2.2.2">
+                <p id="appendix-B.12-1.2.2.2.1">Add reference to RFC 8484 for application/dns-message Media Type<a href="#appendix-B.12-1.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-B.11-1.2.2.3">
-                <p id="appendix-B.11-1.2.2.3.1">IANA: unify self references<a href="#appendix-B.11-1.2.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-B.12-1.2.2.3">
+                <p id="appendix-B.12-1.2.2.3.1">IANA: unify self references<a href="#appendix-B.12-1.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -2817,131 +2969,131 @@ section as a consequence<a href="#appendix-B.7-1.6.1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-05">
-<section id="appendix-B.12">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-4">
-<a href="#appendix-B.12" class="section-number selfRef">B.12. </a><a href="#name-since-draft-ietf-core-dns-over-coap-4" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-05">draft-ietf-core-dns-over-coap-05</a></a>
+<section id="appendix-B.13">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-5">
+<a href="#appendix-B.13" class="section-number selfRef">B.13. </a><a href="#name-since-draft-ietf-core-dns-over-coap-5" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-05">draft-ietf-core-dns-over-coap-05</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.12-1.1">
-            <p id="appendix-B.12-1.1.1">Add references to relevant SVCB/DNR RFCs and drafts<a href="#appendix-B.12-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.13-1.1">
+            <p id="appendix-B.13-1.1.1">Add references to relevant SVCB/DNR RFCs and drafts<a href="#appendix-B.13-1.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-04">
-<section id="appendix-B.13">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-5">
-<a href="#appendix-B.13" class="section-number selfRef">B.13. </a><a href="#name-since-draft-ietf-core-dns-over-coap-5" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-04">draft-ietf-core-dns-over-coap-04</a></a>
+<section id="appendix-B.14">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-6">
+<a href="#appendix-B.14" class="section-number selfRef">B.14. </a><a href="#name-since-draft-ietf-core-dns-over-coap-6" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-04">draft-ietf-core-dns-over-coap-04</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.13-1.1">
-            <p id="appendix-B.13-1.1.1">Add note on cacheable OSCORE<a href="#appendix-B.13-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.14-1.1">
+            <p id="appendix-B.14-1.1.1">Add note on cacheable OSCORE<a href="#appendix-B.14-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.13-1.2">
-            <p id="appendix-B.13-1.2.1">Address early IANA review<a href="#appendix-B.13-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.14-1.2">
+            <p id="appendix-B.14-1.2.1">Address early IANA review<a href="#appendix-B.14-1.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-03">
-<section id="appendix-B.14">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-6">
-<a href="#appendix-B.14" class="section-number selfRef">B.14. </a><a href="#name-since-draft-ietf-core-dns-over-coap-6" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-03">draft-ietf-core-dns-over-coap-03</a></a>
+<section id="appendix-B.15">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-7">
+<a href="#appendix-B.15" class="section-number selfRef">B.15. </a><a href="#name-since-draft-ietf-core-dns-over-coap-7" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-03">draft-ietf-core-dns-over-coap-03</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.14-1.1">
-            <p id="appendix-B.14-1.1.1">Amended Introduction with short contextualization of constrained environments<a href="#appendix-B.14-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.15-1.1">
+            <p id="appendix-B.15-1.1.1">Amended Introduction with short contextualization of constrained environments<a href="#appendix-B.15-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.14-1.2">
-            <p id="appendix-B.14-1.2.1">Add <a href="#sec_evaluation" class="auto internal xref">Appendix A</a> on evaluation<a href="#appendix-B.14-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.15-1.2">
+            <p id="appendix-B.15-1.2.1">Add <a href="#sec_evaluation" class="auto internal xref">Appendix A</a> on evaluation<a href="#appendix-B.15-1.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-02">
-<section id="appendix-B.15">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-7">
-<a href="#appendix-B.15" class="section-number selfRef">B.15. </a><a href="#name-since-draft-ietf-core-dns-over-coap-7" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-02">draft-ietf-core-dns-over-coap-02</a></a>
+<section id="appendix-B.16">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-8">
+<a href="#appendix-B.16" class="section-number selfRef">B.16. </a><a href="#name-since-draft-ietf-core-dns-over-coap-8" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-02">draft-ietf-core-dns-over-coap-02</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.15-1.1">
-            <p id="appendix-B.15-1.1.1">Move implementation details to Implementation Status (in accordance with <span>[<a href="#RFC7942" class="cite xref">RFC7942</a>]</span>)<a href="#appendix-B.15-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.16-1.1">
+            <p id="appendix-B.16-1.1.1">Move implementation details to Implementation Status (in accordance with <span>[<a href="#RFC7942" class="cite xref">RFC7942</a>]</span>)<a href="#appendix-B.16-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.15-1.2">
-            <p id="appendix-B.15-1.2.1">Recommend root path to keep the CoAP options small<a href="#appendix-B.15-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.16-1.2">
+            <p id="appendix-B.16-1.2.1">Recommend root path to keep the CoAP options small<a href="#appendix-B.16-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.15-1.3">
-            <p id="appendix-B.15-1.3.1">Set Content-Format for application/dns-message to 553<a href="#appendix-B.15-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.16-1.3">
+            <p id="appendix-B.16-1.3.1">Set Content-Format for application/dns-message to 553<a href="#appendix-B.16-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.15-1.4">
-            <p id="appendix-B.15-1.4.1">SVCB/DNR: Move to Server Selection Section but leave TBD based on DNSOP discussion for now<a href="#appendix-B.15-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.16-1.4">
+            <p id="appendix-B.16-1.4.1">SVCB/DNR: Move to Server Selection Section but leave TBD based on DNSOP discussion for now<a href="#appendix-B.16-1.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.15-1.5">
-            <p id="appendix-B.15-1.5.1">Clarify that DoC and DoH are distinct<a href="#appendix-B.15-1.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.16-1.5">
+            <p id="appendix-B.16-1.5.1">Clarify that DoC and DoH are distinct<a href="#appendix-B.16-1.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.15-1.6">
-            <p id="appendix-B.15-1.6.1">Clarify mapping between DoC and DoH<a href="#appendix-B.15-1.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.16-1.6">
+            <p id="appendix-B.16-1.6.1">Clarify mapping between DoC and DoH<a href="#appendix-B.16-1.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.15-1.7">
-            <p id="appendix-B.15-1.7.1">Update considerations on unprotected use<a href="#appendix-B.15-1.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.16-1.7">
+            <p id="appendix-B.16-1.7.1">Update considerations on unprotected use<a href="#appendix-B.16-1.7.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.15-1.8">
-            <p id="appendix-B.15-1.8.1">Don't call OSCORE end-to-end encrypted<a href="#appendix-B.15-1.8.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.16-1.8">
+            <p id="appendix-B.16-1.8.1">Don't call OSCORE end-to-end encrypted<a href="#appendix-B.16-1.8.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-01">
-<section id="appendix-B.16">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-8">
-<a href="#appendix-B.16" class="section-number selfRef">B.16. </a><a href="#name-since-draft-ietf-core-dns-over-coap-8" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-01">draft-ietf-core-dns-over-coap-01</a></a>
+<section id="appendix-B.17">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-9">
+<a href="#appendix-B.17" class="section-number selfRef">B.17. </a><a href="#name-since-draft-ietf-core-dns-over-coap-9" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-01">draft-ietf-core-dns-over-coap-01</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.16-1.1">
-            <p id="appendix-B.16-1.1.1">Specify DoC server role in terms of DNS terminology<a href="#appendix-B.16-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.17-1.1">
+            <p id="appendix-B.17-1.1.1">Specify DoC server role in terms of DNS terminology<a href="#appendix-B.17-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.16-1.2">
-            <p id="appendix-B.16-1.2.1">Clarify communication of DoC to DNS infrastructure is agnostic of the transport<a href="#appendix-B.16-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.17-1.2">
+            <p id="appendix-B.17-1.2.1">Clarify communication of DoC to DNS infrastructure is agnostic of the transport<a href="#appendix-B.17-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.16-1.3">
-            <p id="appendix-B.16-1.3.1">Add subsection on how to implement DNS Push in DoC<a href="#appendix-B.16-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.17-1.3">
+            <p id="appendix-B.17-1.3.1">Add subsection on how to implement DNS Push in DoC<a href="#appendix-B.17-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.16-1.4">
-            <p id="appendix-B.16-1.4.1">Add appendix on reference implementation<a href="#appendix-B.16-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.17-1.4">
+            <p id="appendix-B.17-1.4.1">Add appendix on reference implementation<a href="#appendix-B.17-1.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-core-dns-over-coap-00">
-<section id="appendix-B.17">
-        <h3 id="name-since-draft-ietf-core-dns-over-coap-9">
-<a href="#appendix-B.17" class="section-number selfRef">B.17. </a><a href="#name-since-draft-ietf-core-dns-over-coap-9" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-00">draft-ietf-core-dns-over-coap-00</a></a>
+<section id="appendix-B.18">
+        <h3 id="name-since-draft-ietf-core-dns-over-coap-10">
+<a href="#appendix-B.18" class="section-number selfRef">B.18. </a><a href="#name-since-draft-ietf-core-dns-over-coap-10" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-coap-00">draft-ietf-core-dns-over-coap-00</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.17-1.1">
-            <p id="appendix-B.17-1.1.1">SVGify ASCII art<a href="#appendix-B.17-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.18-1.1">
+            <p id="appendix-B.18-1.1.1">SVGify ASCII art<a href="#appendix-B.18-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.17-1.2">
-            <p id="appendix-B.17-1.2.1">Move section on "DoC Server Considerations" (was Section 5.1) to its own draft
-(<a href="https://datatracker.ietf.org/doc/draft-lenders-dns-cns/">draft-lenders-dns-cns</a>)<a href="#appendix-B.17-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.18-1.2">
+            <p id="appendix-B.18-1.2.1">Move section on "DoC Server Considerations" (was Section 5.1) to its own draft
+(<a href="https://datatracker.ietf.org/doc/draft-lenders-dns-cns/">draft-lenders-dns-cns</a>)<a href="#appendix-B.18-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.17-1.3">
-            <p id="appendix-B.17-1.3.1">Replace layer violating statement for CON with statement of fact<a href="#appendix-B.17-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.18-1.3">
+            <p id="appendix-B.18-1.3.1">Replace layer violating statement for CON with statement of fact<a href="#appendix-B.18-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-B.17-1.4">
-            <p id="appendix-B.17-1.4.1">Add security considerations on ID=0<a href="#appendix-B.17-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-B.18-1.4">
+            <p id="appendix-B.18-1.4.1">Add security considerations on ID=0<a href="#appendix-B.18-1.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-lenders-dns-over-coap-04">
-<section id="appendix-B.18">
+<section id="appendix-B.19">
         <h3 id="name-since-draft-lenders-dns-ove">
-<a href="#appendix-B.18" class="section-number selfRef">B.18. </a><a href="#name-since-draft-lenders-dns-ove" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-coap-04">draft-lenders-dns-over-coap-04</a></a>
+<a href="#appendix-B.19" class="section-number selfRef">B.19. </a><a href="#name-since-draft-lenders-dns-ove" class="section-name selfRef">Since <a href="https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-coap-04">draft-lenders-dns-over-coap-04</a></a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-B.18-1.1">
-            <p id="appendix-B.18-1.1.1">Removed change log of draft-lenders-dns-over-coap<a href="#appendix-B.18-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B.19-1.1">
+            <p id="appendix-B.19-1.1.1">Removed change log of draft-lenders-dns-over-coap<a href="#appendix-B.19-1.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -2953,7 +3105,7 @@ section as a consequence<a href="#appendix-B.7-1.6.1" class="pilcrow">¶</a></p>
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-C-1">The authors of this document want to thank Mike Bishop, Carsten Bormann, Elwyn B. Davies, Esko Dijk, Thomas Fossati, Mikolai Gütschow, Todd Herr, Tommy Pauly, Ben Schwartz, Marco Tiloca, and Tim Wicinski for their feedback and comments.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">The authors of this document want to thank Mike Bishop, Carsten Bormann, Mohamed Boucadair, Deb Cooley, Vladimír Čunát, Roman Danyliw, Elwyn B. Davies, Esko Dijk, Gorry Fairhurst, Thomas Fossati, Mikolai Gütschow, Todd Herr, Tommy Pauly, Ben Schwartz, Orie Steele, Marco Tiloca, Éric Vyncke, Tim Wicinski, and Paul Wouters for their feedback and comments.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
